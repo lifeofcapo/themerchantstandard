@@ -1,26 +1,125 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* -- Palette: a private trading house, not a hustle-bro forum -- */
+  --color-ink: #0b0c0e;        /* base background */
+  --color-panel: #16171a;      /* card / raised surface */
+  --color-panel-2: #1d1e22;    /* slightly higher surface */
+  --color-line: #2a2b30;       /* hairline borders */
+  --color-parchment: #f3efe4;  /* primary text, warm off-white */
+  --color-brass: #c9a227;      /* primary accent, aged brass/gold */
+  --color-brass-light: #e3bf55;
+  --color-seal: #7c2430;       /* wax-seal burgundy, secondary accent */
+  --color-seal-light: #a3323f;
+
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-ink);
+  --foreground: var(--color-parchment);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  border-color: var(--color-line);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6.5rem; /* clears the floating pill header */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink);
+  color: var(--color-parchment);
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+/* Gradient text for headings — brass -> brass-light -> parchment sweep */
+.text-gradient-brass {
+  background: linear-gradient(100deg, var(--color-brass) 0%, var(--color-brass-light) 45%, var(--color-parchment) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Large ambient background gradient wash, used behind hero-weight sections */
+.bg-gradient-wash {
+  background:
+    radial-gradient(ellipse 1100px 640px at 15% -10%, rgba(201, 162, 39, 0.22), transparent 60%),
+    radial-gradient(ellipse 900px 560px at 90% 10%, rgba(124, 36, 48, 0.20), transparent 65%),
+    radial-gradient(ellipse 1200px 700px at 50% 120%, rgba(201, 162, 39, 0.10), transparent 70%);
+}
+
+.bg-gradient-wash-soft {
+  background:
+    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(201, 162, 39, 0.14), transparent 70%),
+    radial-gradient(ellipse 700px 420px at 100% 100%, rgba(124, 36, 48, 0.12), transparent 65%);
+}
+
+/* Ledger texture: faint grid used as an ambient background layer, not decoration for its own sake */
+.ledger-grid {
+  background-image:
+    linear-gradient(to right, rgba(201, 162, 39, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(201, 162, 39, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Signature element: the wax-seal stamp used sparingly for verified/locked-in moments */
+.wax-seal {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 30% 30%, var(--color-seal-light), var(--color-seal) 70%);
+  box-shadow: 0 2px 10px rgba(124, 36, 48, 0.5), inset 0 0 0 2px rgba(243, 239, 228, 0.15);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+::selection {
+  background: var(--color-brass);
+  color: var(--color-ink);
+}
+
+/* Floating oval, glassy header */
+.header-glass {
+  background: linear-gradient(180deg, rgba(22, 23, 26, 0.72), rgba(11, 12, 14, 0.6));
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(201, 162, 39, 0.18);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(243, 239, 228, 0.06);
 }
