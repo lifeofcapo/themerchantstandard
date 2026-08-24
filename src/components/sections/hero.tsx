@@ -20,7 +20,7 @@ export function Hero() {
 
         <p className="mt-6 max-w-2xl text-balance text-lg text-parchment/70">
           A private trading house for producers who want to close real deals at real
-          prices. Learn the craft, get a personal AI sales assistant and generate an income now with The Marchant Standard's expert-led training.
+          prices. Learn the craft, get a personal AI sales assistant and generate an income now with The Marchant Standard expert-led training.
         </p>
 
         <div className="mt-10 flex flex-col items-center gap-4">
