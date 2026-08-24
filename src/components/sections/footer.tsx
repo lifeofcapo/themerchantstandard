@@ -18,8 +18,7 @@ export function Footer() {
             </p>
             <p className="mt-2 max-w-sm text-sm leading-relaxed text-parchment/50">
               Everything taught within The Merchant Standard is for educational
-              purposes. It is up to each member to implement the work — we don&apos;t
-              guarantee any income or sales outcomes.
+              purposes. It is up to each student to implement and do the work.
             </p>
           </div>
 
