@@ -42,7 +42,7 @@ function smoothScrollTo(targetY: number, duration = 700) {
 export function Header() {
   const [open, setOpen] = useState(false);
 
-  function handleNavClick(
+function handleNavClick(
   e: React.MouseEvent<HTMLAnchorElement>,
   href: string
 ) {
@@ -50,7 +50,11 @@ export function Header() {
   setOpen(false);
 
   const el = document.querySelector(href);
-  if (!el) return;
+
+  if (!el) {
+    window.location.href = `/${href}`;
+    return;
+  }
 
   const headerOffset = 104;
 
