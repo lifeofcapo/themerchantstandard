@@ -68,11 +68,10 @@ export function AIAssistant() {
             </ul>
 
             <div className="mt-10">
-              <JoinButton label="Get the AI Assistant — $50/mo" />
+              <JoinButton label="Get the AI Assistant — $49/mo" />
             </div>
           </div>
 
-          {/* Mock Discord conversation card — signature visual for this section */}
           <div className="relative rounded-2xl border border-brass/25 bg-panel/80 p-2 shadow-2xl backdrop-blur">
             <div className="rounded-xl border border-line bg-ink/60 p-5">
               <div className="mb-4 flex items-center gap-2 border-b border-line pb-4">

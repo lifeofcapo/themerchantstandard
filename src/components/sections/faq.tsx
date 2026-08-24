@@ -35,8 +35,12 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section id="faq" className="relative overflow-hidden border-b border-line py-20 sm:py-24">
+    <section
+      id="faq"
+      className="relative overflow-hidden border-b border-line py-20 sm:py-24"
+    >
       <div className="ledger-grid absolute inset-0 opacity-50" />
+
       <div
         className="absolute inset-0"
         style={{
@@ -50,10 +54,12 @@ export function FAQ() {
           <span className="wax-seal mb-5 flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
             <ScrollText className="h-5 w-5 text-parchment" />
           </span>
+
           <span className="mb-3 text-xs uppercase tracking-[0.2em] text-brass">
             Still Thinking?
           </span>
-          <h2 className="text-balance font-display text-3xl sm:text-4xl">
+
+          <h2 className="text-balance text-3xl sm:text-4xl">
             Frequently Asked{" "}
             <span className="text-gradient-brass">Questions</span>
           </h2>
@@ -62,14 +68,55 @@ export function FAQ() {
         <Accordion
           type="single"
           collapsible
-          className="w-full overflow-hidden rounded-2xl border border-brass/20 bg-panel/60 px-5 shadow-xl backdrop-blur-sm sm:px-8"
+          className="flex w-full flex-col gap-3"
         >
           {faqs.map((f) => (
-            <AccordionItem key={f.q} value={f.q} className="border-line/70">
-              <AccordionTrigger className="py-5 text-center text-base font-semibold text-parchment hover:text-brass">
-                <span className="mx-auto">{f.q}</span>
+            <AccordionItem
+              key={f.q}
+              value={f.q}
+              className="overflow-hidden rounded-xl border border-line bg-panel/45 backdrop-blur-sm transition-colors duration-200 data-[state=open]:border-brass/40 data-[state=open]:bg-panel/70"
+            >
+              <AccordionTrigger
+                className="
+                  relative
+                  min-h-[68px]
+                  px-6
+                  py-5
+                  pr-16
+                  text-center
+                  text-base
+                  font-semibold
+                  text-parchment
+                  hover:text-brass
+                  sm:min-h-[72px]
+                  sm:px-8
+                  sm:pr-20
+                  sm:text-[17px]
+
+                  [&>span:first-child]:mx-auto
+                  [&>span:first-child]:text-center
+
+                  [&>[data-slot=accordion-trigger-icon]]:absolute
+                  [&>[data-slot=accordion-trigger-icon]]:right-6
+                  [&>[data-slot=accordion-trigger-icon]]:text-brass
+
+                  sm:[&>[data-slot=accordion-trigger-icon]]:right-8
+                "
+              >
+                <span>{f.q}</span>
               </AccordionTrigger>
-              <AccordionContent className="text-center text-parchment/65 leading-relaxed">
+
+              <AccordionContent
+                className="
+                  px-6
+                  text-center
+                  text-sm
+                  leading-7
+                  text-parchment/60
+                  sm:px-12
+                  sm:text-[15px]
+                "
+              >
                 {f.a}
               </AccordionContent>
             </AccordionItem>

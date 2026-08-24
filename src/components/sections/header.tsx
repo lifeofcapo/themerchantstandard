@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { JoinButton } from "@/components/shared/join-button";
+import Image from "next/image";
 
 const links = [
   { href: "#courses", label: "Courses" },
@@ -65,7 +66,7 @@ export function Header() {
 
   return (
     <header className="fixed left-0 right-0 top-4 z-50 bg-transparent px-4">
-      <div className="header-glass relative mx-auto flex h-16 max-w-3xl items-center justify-between gap-3 rounded-full px-4 sm:px-3 sm:pl-4">
+      <div className="header-glass relative mx-auto flex h-16 max-w-4xl items-center justify-between gap-3 rounded-full px-4 sm:px-5">
         <nav className="hidden items-center gap-6 md:flex">
           {links.map((l) => (
             <a
@@ -90,13 +91,21 @@ export function Header() {
 
         <Link
           href="/"
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-display text-sm font-semibold tracking-wide text-parchment sm:text-base"
+          className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+          aria-label="The Merchant Standard"
         >
-          The Merchant <span className="text-gradient-brass">Standard</span>
+          <Image
+            src="/logo1.png"
+            alt="The Merchant Standard"
+            width={1024}
+            height={1024}
+            priority
+            className="h-10 w-10 object-contain sm:h-12 sm:w-12"
+          />
         </Link>
 
         <div className="ml-auto flex items-center md:ml-0">
-          <JoinButton size="sm" label="Join — $50/mo" className="rounded-full" />
+          <JoinButton size="sm" label="Join The Merchant Standard" className="rounded-full" />
         </div>
       </div>
 

@@ -22,7 +22,7 @@ type JoinButtonProps = React.ComponentProps<"button"> &
   };
 
 export function JoinButton({
-  label = "Join The Merchant Standard — $50/mo",
+  label = "Join The Merchant Standard",
   className,
   variant,
   size = "lg",
@@ -98,7 +98,7 @@ export function JoinButton({
               Join The Merchant Standard
             </DialogTitle>
             <DialogDescription>
-              Enter your email to continue to secure checkout — $50/month, cancel
+              Enter your email to continue to secure checkout — $49/month, cancel
               anytime.
             </DialogDescription>
           </DialogHeader>

@@ -36,7 +36,7 @@ export function Plans() {
             The Merchant Standard
           </p>
           <div className="mt-3 flex items-baseline gap-2">
-            <span className="font-display text-6xl text-parchment">$50</span>
+            <span className="font-display text-6xl text-parchment">$49</span>
             <span className="text-parchment/50">/ month</span>
           </div>
 
@@ -50,7 +50,7 @@ export function Plans() {
           </ul>
 
           <div className="mt-10">
-            <JoinButton className="w-full" size="lg" label="Join for $50/mo" />
+            <JoinButton className="w-full" size="lg" label="Join for $49/mo" />
           </div>
           <p className="mt-4 text-center font-mono text-xs text-parchment/40">
             Cancel anytime · No hidden fees

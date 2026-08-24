@@ -12,7 +12,7 @@ export function WorkHard() {
         </h2>
         <p className="mt-6 text-balance leading-relaxed text-parchment/70">
           Selling is a skill, not a personality trait. It can be learned — but the
-          curriculum, the AI assistant, and the community won't send messages for you.
+          curriculum, the AI assistant, and the community won&apos;t send messages for you.
           Every merchant inside The Merchant Standard still has to do the work: reach out,
           hold their price, and follow through on every deal.
         </p>
