@@ -26,9 +26,6 @@ export function Hero() {
 
         <div className="mt-10 flex flex-col items-center gap-4">
           <JoinButton size="lg" />
-          <p className="font-mono text-xs text-parchment/40">
-            Cancel anytime · No long-term contract
-          </p>
         </div>
       </div>
     </section>
