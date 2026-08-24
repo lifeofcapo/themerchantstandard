@@ -13,6 +13,7 @@ import { WorkHard } from "@/components/sections/work-hard";
 import { ExclusiveFeatures } from "@/components/sections/exclusive-features";
 import { FAQ } from "@/components/sections/faq";
 import { Footer } from "@/components/sections/footer";
+import { Reveal } from "@/components/shared/reveal";
 
 export default function Home() {
   return (
@@ -20,17 +21,39 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <Hero />
-        <Reviews />
-        <Plans />
-        <IncomeTransformation />
-        <OurCourses />
-        <AIAssistant />
-        <Comparison />
-        <News />
-        <Wins />
-        <WorkHard />
-        <ExclusiveFeatures />
-        <FAQ />
+        <Reveal>
+          <Reviews />
+        </Reveal>
+        <Reveal>
+          <Plans />
+        </Reveal>
+        <Reveal>
+          <IncomeTransformation />
+        </Reveal>
+        <Reveal>
+          <OurCourses />
+        </Reveal>
+        <Reveal>
+          <AIAssistant />
+        </Reveal>
+        <Reveal>
+          <Comparison />
+        </Reveal>
+        <Reveal>
+          <News />
+        </Reveal>
+        <Reveal>
+          <Wins />
+        </Reveal>
+        <Reveal>
+          <WorkHard />
+        </Reveal>
+        <Reveal>
+          <ExclusiveFeatures />
+        </Reveal>
+        <Reveal>
+          <FAQ />
+        </Reveal>
       </main>
       <Footer />
     </>

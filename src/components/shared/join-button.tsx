@@ -21,15 +21,6 @@ type JoinButtonProps = React.ComponentProps<"button"> &
     label?: string;
   };
 
-/**
- * Drop-in replacement for a plain <Button> used across every section to start
- * checkout. Handles the full flow itself:
- *  1. Opens an email dialog
- *  2. Calls /api/stripe
- *  3. Redirects to Stripe Checkout on success
- *  4. If Stripe isn't configured (or the request fails), shows a
- *     "payments are temporarily unavailable" dialog instead of breaking.
- */
 export function JoinButton({
   label = "Join The Merchant Standard — $50/mo",
   className,
@@ -91,7 +82,7 @@ export function JoinButton({
         size={size}
         className={cn(
           size === "lg" &&
-            "h-14 rounded-full px-8 text-base font-semibold shadow-lg shadow-brass/10",
+            "h-auto min-h-12 rounded-full px-6 py-3 text-center text-sm font-semibold whitespace-normal shadow-lg shadow-brass/10 sm:h-14 sm:px-8 sm:text-base",
           className
         )}
         onClick={() => setEmailOpen(true)}

@@ -28,6 +28,10 @@ export function LegalPageLayout({
             Back to home
           </Link>
 
+          <span className="wax-seal mb-6 flex h-12 w-12 items-center justify-center rounded-full">
+            <ScrollText className="h-5 w-5 text-parchment" />
+          </span>
+
           <h1 className="text-balance font-display text-3xl leading-tight sm:text-4xl">
             {title}
           </h1>

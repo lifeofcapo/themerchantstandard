@@ -5,6 +5,7 @@ const legalLinks = [
   { href: "/subscription-policy", label: "Subscription Policy" },
   { href: "/content-moderation-policy", label: "Content Moderation Policy" },
   { href: "/privacy", label: "Privacy Policy" },
+  { href: "/manage-membership", label: "Manage Membership" },
 ];
 
 export function Footer() {
@@ -37,7 +38,7 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col items-start justify-between gap-4 pt-8 text-xs text-parchment/40 md:flex-row md:items-center">
-          <p>© {new Date().getFullYear()} The Merchant Standard. All rights reserved. All course materials, content, software, branding, logos, trademarks, graphics, designs, videos, documents and other intellectual property made available through this platform are protected by copyright, trademark and other applicable intellectual property laws. No part may be copied, reproduced, distributed, modified, transmitted, displayed, published, sold, licensed or shared without prior written consent.</p>
+          <p>© {new Date().getFullYear()} The Merchant Standard. All rights reserved.</p>
           <p>
             Need support?{" "}
             <a href="mailto:info@merchantstandard.com" className="text-brass hover:underline">
