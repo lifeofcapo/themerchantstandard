@@ -26,12 +26,12 @@ export const metadata: Metadata = {
   title: "The Merchant Standard — Sell Exclusive Beats Like a Merchant",
   description:
     "A private trading house for beat sellers. Learn to close deals with exclusive-rights beats, get a personal AI sales assistant, and trade inside a vetted merchant community. $50/month.",
-  metadataBase: new URL("https://merchantstandard.com"),
+  metadataBase: new URL("https://themerchantstandard.com"),
   openGraph: {
     title: "The Merchant Standard",
     description:
       "A private trading house for beat sellers. Close deals with confidence, at your price.",
-    url: "https://merchantstandard.com",
+    url: "https://themerchantstandard.com",
     siteName: "The Merchant Standard",
     type: "website",
   },

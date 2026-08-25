@@ -198,9 +198,11 @@ h1, h2, h3, h4 {
 }
 
 .header-glass {
-  background: rgba(11, 12, 14, 0.35);
+  background: rgba(11, 12, 14, 0.92);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1.5px solid rgba(201, 162, 39, 0.4);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(243, 239, 228, 0.1);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(243, 239, 228, 0.1);
 }
