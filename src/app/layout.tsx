@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-
+import { Analytics } from "@vercel/analytics/next"
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
@@ -49,6 +49,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-ink text-parchment">
         {children}
+        <Analytics/>
       </body>
     </html>
   );
