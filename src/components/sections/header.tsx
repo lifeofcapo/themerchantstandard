@@ -95,7 +95,7 @@ function handleNavClick(
 
         <Link
           href="/"
-          className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+          className="pointer-events-auto absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center"
           aria-label="The Merchant Standard"
         >
           <Image
@@ -109,7 +109,16 @@ function handleNavClick(
         </Link>
 
         <div className="ml-auto flex items-center md:ml-0">
-          <JoinButton size="sm" label="Join The Merchant Standard" className="rounded-full" />
+          <JoinButton
+            size="sm"
+            label="Join TMS"
+            className="rounded-full px-3 text-xs sm:hidden"
+          />
+          <JoinButton
+            size="sm"
+            label="Join The Merchant Standard"
+            className="hidden rounded-full sm:inline-flex"
+          />
         </div>
       </div>
 
