@@ -21,6 +21,20 @@ type JoinButtonProps = React.ComponentProps<"button"> &
     label?: string;
   };
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+function validateEmail(value: string): string | null {
+  const trimmed = value.trim();
+
+  if (!trimmed) {
+    return "Please enter your email.";
+  }
+  if (!EMAIL_REGEX.test(trimmed)) {
+    return "Please enter a valid email address.";
+  }
+  return null;
+}
+
 export function JoinButton({
   label = "Join The Merchant Standard — $49/mo",
   className,
@@ -37,13 +51,21 @@ export function JoinButton({
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
+
+    const trimmedEmail = email.trim();
+    const validationError = validateEmail(trimmedEmail);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
     setLoading(true);
 
     try {
       const res = await fetch("/api/stripe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email: trimmedEmail }),
       });
 
       const data = await res.json().catch(() => null);
@@ -117,7 +139,11 @@ export function JoinButton({
                   placeholder="you@example.com"
                   className="pl-8"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (error) setError(null);
+                  }}
+                  aria-invalid={Boolean(error)}
                 />
               </div>
               {error && <p className="text-xs text-seal-light">{error}</p>}

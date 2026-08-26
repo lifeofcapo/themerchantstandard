@@ -20,7 +20,7 @@ async function createDiscordInvite(): Promise<string> {
       },
       body: JSON.stringify({
         max_uses: 1,
-        max_age: 259200, // 3 days
+        max_age: 0, 
         unique: true,
       }),
     }
