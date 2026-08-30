@@ -22,9 +22,6 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Reveal>
-          <Reviews />
-        </Reveal>
-        <Reveal>
           <Plans />
         </Reveal>
         <Reveal>
