@@ -4,22 +4,33 @@ import { Bot, ImageUp, MessagesSquare, Sparkles } from "lucide-react";
 const flow = [
   {
     icon: ImageUp,
-    title: "Screenshot the conversation",
-    body: "Send the bot a screenshot of your chat with the buyer — no retyping, no context lost.",
+    step: "01",
+    title: "Screenshot the chat",
+    body: "Drop it in Discord with one line of context. No retyping, no context lost.",
   },
   {
     icon: Sparkles,
-    title: "It reads the deal",
-    body: "The bot reads the tone, the offer, and where the buyer is stalling, grounded in the same pricing standard taught in the curriculum.",
+    step: "02",
+    title: "The AI reads the deal",
+    body: "It reads the tone, the offer, where the buyer is stalling — grounded in the same pricing standard taught in the curriculum.",
   },
   {
     icon: MessagesSquare,
+    step: "03",
     title: "You get the exact reply",
-    body: "A ready-to-send message that moves the buyer off the fence and toward closing — not generic sales-speak.",
+    body: "Ready to send. Closes objections, moves them off the fence, holds the price.",
   },
 ];
 
-export function AIAssistant() {
+const benefits = [
+  "Objections",
+  "Follow-ups",
+  "Closing",
+  "Upsells",
+  "Repeat buyers",
+];
+
+export function MerchantAI() {
   return (
     <section
       id="ai-assistant"
@@ -33,30 +44,29 @@ export function AIAssistant() {
           <div>
             <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-brass/30 bg-brass/5 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-brass">
               <Bot className="h-3.5 w-3.5" />
-              Built Into the Discord
+              Merchant AI · Live Proof
             </span>
 
             <h2 className="text-balance font-display text-3xl leading-[1.1] sm:text-4xl">
-              A bot that does the{" "}
-              <span className="text-gradient-brass">closing</span> for you
+              An AI that{" "}
+              <span className="text-gradient-brass">closes the deal</span> for you
             </h2>
 
-            <p className="mt-6 max-w-lg text-balance leading-relaxed text-parchment/70">
-              Every member gets access to the Merchant AI bot, live inside our Discord.
-              Stuck in a negotiation? Screenshot the chat, describe the situation in a
-              line, and the bot tells you exactly how to move the buyer off &quot;maybe&quot;
-              and into a closed, exclusive-rights sale.
+            <p className="mt-5 max-w-lg text-balance leading-relaxed text-parchment/70">
+              Stuck in a negotiation? Screenshot the chat, drop it in Discord,
+              one line of context. The AI reads the deal and hands you the exact
+              reply.
             </p>
 
             <ul className="mt-8 flex flex-col gap-6">
-              {flow.map((f, i) => (
+              {flow.map((f) => (
                 <li key={f.title} className="flex gap-4">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brass/30 bg-panel text-brass">
-                    <f.icon className="h-4.5 w-4.5" />
+                    <f.icon className="h-4 w-4" />
                   </div>
                   <div>
                     <p className="font-mono text-[11px] uppercase tracking-widest text-seal-light">
-                      Step {i + 1}
+                      Step {f.step}
                     </p>
                     <h3 className="font-display text-lg text-parchment">{f.title}</h3>
                     <p className="mt-1 text-sm leading-relaxed text-parchment/60">
@@ -66,9 +76,24 @@ export function AIAssistant() {
                 </li>
               ))}
             </ul>
+            <div className="mt-8">
+              <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-parchment/35">
+                Ready answers for:
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {benefits.map((b) => (
+                  <span
+                    key={b}
+                    className="rounded-full border border-brass/25 bg-brass/5 px-3 py-1 font-mono text-xs text-brass"
+                  >
+                    {b}
+                  </span>
+                ))}
+              </div>
+            </div>
 
             <div className="mt-10">
-              <JoinButton label="Get the AI Assistant — $49/mo" />
+              <JoinButton label="Get the AI in my corner →" />
             </div>
           </div>
 
@@ -83,6 +108,10 @@ export function AIAssistant() {
                   <p className="font-mono text-[11px] text-parchment/40">
                     #ai-sales-assistant
                   </p>
+                </div>
+                <div className="ml-auto flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                  <span className="font-mono text-[10px] text-parchment/40">Online</span>
                 </div>
               </div>
 
@@ -99,13 +128,13 @@ export function AIAssistant() {
                     They anchored low but haven&apos;t walked away — that&apos;s a soft
                     ceiling, not a hard one.
                   </p>
-                  <p className="mt-2 font-mono text-[10px] uppercase tracking-widest text-brass">
+                  <p className="mt-3 font-mono text-[10px] uppercase tracking-widest text-brass">
                     Send this
                   </p>
                   <p className="mt-1 italic text-parchment/70">
-                    &quot;Totally get it — 80 works for non-exclusive. For full exclusive
+                    &ldquo;Totally get it — 80 works for non-exclusive. For full exclusive
                     rights I&apos;m at 150, but I can hold that price for the next 24
-                    hours.&quot;
+                    hours.&rdquo;
                   </p>
                 </div>
               </div>

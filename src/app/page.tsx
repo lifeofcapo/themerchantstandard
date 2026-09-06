@@ -1,17 +1,20 @@
-
 import { Header } from "@/components/sections/header";
 import { Hero } from "@/components/sections/hero";
-import { Reviews } from "@/components/sections/reviews";
-import { Plans } from "@/components/sections/plans";
-import { IncomeTransformation } from "@/components/sections/income-transformation";
-import { OurCourses } from "@/components/sections/our-courses";
-import { AIAssistant } from "@/components/sections/ai-assistant";
-import { Comparison } from "@/components/sections/comparison";
-import { News } from "@/components/sections/news";
-import { Wins } from "@/components/sections/wins";
-import { WorkHard } from "@/components/sections/work-hard";
-import { ExclusiveFeatures } from "@/components/sections/exclusive-features";
-import { FAQ } from "@/components/sections/faq";
+import { DayAsMerchant } from "@/components/sections/day-as-merchant";
+import { SaltOnWound } from "@/components/sections/salt-on-wound";
+import { Mechanism } from "@/components/sections/mechanism";
+import { MerchantAI } from "@/components/sections/merchant-ai";
+import { MerchantsWinning } from "@/components/sections/merchants-winning";
+import { MarketChanging } from "@/components/sections/market-changing";
+import { WhatYouGet } from "@/components/sections/what-you-get";
+import { TheirWayOurWay } from "@/components/sections/their-way-our-way";
+import { ValueStack } from "@/components/sections/value-stack";
+import { PriceJustification } from "@/components/sections/price-justification";
+import { Guarantee } from "@/components/sections/guarantee";
+import { WhoItsFor } from "@/components/sections/who-its-for"
+import { FAQ } from "@/components/sections/faq"
+import { FinalCTA } from "@/components/sections/final-cta";
+import { PSClosing } from "@/components/sections/ps-closing";
 import { Footer } from "@/components/sections/footer";
 import { Reveal } from "@/components/shared/reveal";
 
@@ -21,35 +24,51 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <Hero />
+
         <Reveal>
-          <Plans />
+          <DayAsMerchant />
         </Reveal>
         <Reveal>
-          <IncomeTransformation />
+          <SaltOnWound />
         </Reveal>
         <Reveal>
-          <OurCourses />
+          <Mechanism />
         </Reveal>
         <Reveal>
-          <AIAssistant />
+          <MerchantAI />
         </Reveal>
         <Reveal>
-          <Comparison />
+          <MerchantsWinning />
         </Reveal>
         <Reveal>
-          <News />
+          <MarketChanging />
         </Reveal>
         <Reveal>
-          <Wins />
+          <WhatYouGet />
         </Reveal>
         <Reveal>
-          <WorkHard />
+          <TheirWayOurWay />
         </Reveal>
         <Reveal>
-          <ExclusiveFeatures />
+          <ValueStack />
+        </Reveal>
+        <Reveal>
+          <PriceJustification />
+        </Reveal>
+        <Reveal>
+          <Guarantee />
+        </Reveal>
+        <Reveal>
+          <WhoItsFor />
         </Reveal>
         <Reveal>
           <FAQ />
+        </Reveal>
+        <Reveal>
+          <FinalCTA />
+        </Reveal>
+        <Reveal>
+          <PSClosing />
         </Reveal>
       </main>
       <Footer />

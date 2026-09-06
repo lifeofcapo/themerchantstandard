@@ -8,28 +8,32 @@ import { ScrollText } from "lucide-react";
 
 const faqs = [
   {
+    q: "Do I need a catalog of beats?",
+    a: "No. Partner Catalog gives you product to sell — you don't need to have made a single beat yourself.",
+  },
+  {
+    q: "Do I need sales experience?",
+    a: "No. Merchant AI writes your closing replies. The curriculum assumes zero prior experience and is built to be learned from scratch.",
+  },
+  {
+    q: "Is this only for producers?",
+    a: "No — it's built for total beginners too. If you want to make money online and are willing to do the outreach, you qualify.",
+  },
+  {
+    q: "What exactly does the AI do?",
+    a: "You paste a conversation or send a screenshot of a chat with a buyer. It reads the deal and gives you the exact reply to close — grounded in the same pricing standard taught in the curriculum.",
+  },
+  {
     q: "How fast will I see results?",
-    a: "It depends on how much you put in. Some members close their first higher-priced deal within a couple of weeks of applying the pricing framework. The Merchant Standard is education — results depend on your own outreach and follow-through.",
-  },
-  {
-    q: "Do I need an existing catalog of beats to join?",
-    a: "No. The curriculum works whether you're producing your own beats or planning to work through the Partner Catalog once you're approved for it.",
-  },
-  {
-    q: "What exactly does the AI assistant do?",
-    a: "You open a private space in our Discord, paste a conversation or send a screenshot of a chat with a buyer, and it gives you a read on the deal, a strategy, and a ready-to-send reply — grounded in the same pricing standard taught in the curriculum.",
-  },
-  {
-    q: "Is this only for experienced producers?",
-    a: "No. New members go through the same onboarding and get matched to a track. The curriculum assumes no prior sales experience — it's built to be learned from zero.",
+    a: "Depends on your effort. Some members close in a matter of weeks. No income guarantees — this is a skill you learn and execute.",
   },
   {
     q: "Can I cancel anytime?",
-    a: "Yes. Your membership is a standard monthly subscription with no lock-in contract. Cancel whenever you like from the Manage Membership page linked in the footer.",
+    a: "Yes. No hidden fees, no lock-in. Cancel with one click from the Manage Membership page in the footer.",
   },
   {
-    q: "Will I lose access to the Discord community if I cancel?",
-    a: "Your membership grants access for as long as it's active. If you cancel, access ends at the close of your current billing period.",
+    q: "Do I keep Discord access if I cancel?",
+    a: "Access is part of membership. When you cancel, access continues until the end of your current billing period, then ends automatically.",
   },
 ];
 
@@ -40,7 +44,6 @@ export function FAQ() {
       className="relative overflow-hidden border-b border-line py-20 sm:py-24"
     >
       <div className="ledger-grid absolute inset-0 opacity-50" />
-
       <div
         className="absolute inset-0"
         style={{
@@ -54,11 +57,9 @@ export function FAQ() {
           <span className="wax-seal mb-5 flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
             <ScrollText className="h-5 w-5 text-parchment" />
           </span>
-
           <span className="mb-3 text-xs uppercase tracking-[0.2em] text-brass">
             Still Thinking?
           </span>
-
           <h2 className="text-balance text-3xl sm:text-4xl">
             Frequently Asked{" "}
             <span className="text-gradient-brass">Questions</span>

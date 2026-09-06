@@ -6,23 +6,23 @@ const points = [
     icon: TrendingDown,
     eyebrow: "The Flood",
     title: "AI-generated beats are flooding every market",
-    body: "Anyone can produce a passable beat in minutes now. The competition on price has never been higher — and it's about to get worse.",
+    body: "Anyone can produce a passable beat in minutes. Competing on price is a race to zero — and it's getting worse.",
   },
   {
     icon: Bot,
     eyebrow: "The Shift",
     title: "Volume is losing to positioning",
-    body: "The producers still closing real money aren't outworking everyone else. They're the ones who know how to sell exclusivity, not just make sound.",
+    body: "The producers still closing real money aren't outworking everyone. They know how to sell exclusivity, not just make sound.",
   },
   {
     icon: Compass,
     eyebrow: "The Move",
     title: "You need a sales standard, not just talent",
-    body: "Talent gets you in the room. A repeatable way to price, negotiate, and close is what actually gets you paid — consistently.",
+    body: "Talent gets you in the room. A repeatable way to price, negotiate and close is what actually gets you paid — consistently.",
   },
 ];
 
-export function News() {
+export function MarketChanging() {
   return (
     <section className="relative overflow-hidden border-b border-line py-24">
       <div className="bg-gradient-wash-soft absolute inset-0 opacity-80" />
@@ -51,7 +51,14 @@ export function News() {
           ))}
         </div>
 
-        <div className="mt-16 flex justify-center">
+        <div className="mt-12 flex flex-col items-center text-center">
+          <p className="font-display text-lg italic text-parchment/60">
+            This is the window. Merchants win the next few years.{" "}
+            <span className="text-parchment">Movers win now.</span>
+          </p>
+        </div>
+
+        <div className="mt-10 flex justify-center">
           <JoinButton label="Get Ahead of It — Join Now" />
         </div>
       </div>

@@ -17,7 +17,7 @@ const ourWay = [
   "A library built from thousands of closed deals",
 ];
 
-export function Comparison() {
+export function TheirWayOurWay() {
   return (
     <section className="border-b border-line bg-panel/40 py-24">
       <div className="mx-auto max-w-5xl px-6">
