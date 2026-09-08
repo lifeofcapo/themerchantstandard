@@ -1,5 +1,3 @@
-import { JoinButton } from "@/components/shared/join-button";
-
 const pains = [
   "You want to make money online but have no idea what to actually sell.",
   "You've got beats sitting on your laptop making you $0.",
@@ -22,7 +20,6 @@ export function SaltOnWound() {
       <div className="ledger-grid absolute inset-0 opacity-40" />
 
       <div className="relative mx-auto max-w-3xl px-6">
-        {/* Eyebrow */}
         <div className="mb-12 flex flex-col items-center text-center">
           <span className="mb-3 text-xs uppercase tracking-[0.2em] text-seal-light">
             Sound Familiar?
@@ -33,7 +30,6 @@ export function SaltOnWound() {
           </h2>
         </div>
 
-        {/* Pain list */}
         <ul className="flex flex-col gap-4">
           {pains.map((p) => (
             <li
@@ -46,7 +42,6 @@ export function SaltOnWound() {
           ))}
         </ul>
 
-        {/* Twist */}
         <div className="mt-10 rounded-xl border border-seal/30 bg-seal/5 px-8 py-7 text-center">
           <p className="font-display text-lg italic text-parchment/70">
             &ldquo;Maybe this online thing just isn&apos;t for me.&rdquo;

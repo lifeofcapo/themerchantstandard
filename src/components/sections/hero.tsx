@@ -30,7 +30,7 @@ export function Hero() {
         </p>
 
         <p className="mt-3 max-w-xl text-balance text-base text-parchment/50">
-          Even if you're starting from zero — no catalog, no experience, no audience.
+          Even if you&apos;re starting from zero — no catalog, no experience, no audience.
         </p>
 
         <p className="mt-2 font-mono text-xs uppercase tracking-widest text-parchment/35">
