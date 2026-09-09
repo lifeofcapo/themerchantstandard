@@ -1,6 +1,6 @@
 import { VslLeadForm } from "@/components/shared/vsl-lead-form";
 
-const YOUTUBE_ID = "YOUR_VIDEO_ID"; // заменить на свой
+const YOUTUBE_ID = "YOUR_VIDEO_ID"; 
 
 export default function JoinPage() {
   return (

@@ -31,6 +31,14 @@ export type PurchaseMinAggregateOutputType = {
   stripeSessionId: string | null
   stripeCustomerId: string | null
   stripeSubscriptionId: string | null
+  ipAddress: string | null
+  billingName: string | null
+  billingLine1: string | null
+  billingLine2: string | null
+  billingCity: string | null
+  billingState: string | null
+  billingPostalCode: string | null
+  billingCountry: string | null
   discordInviteUrl: string | null
   emailSentAt: Date | null
   createdAt: Date | null
@@ -44,6 +52,14 @@ export type PurchaseMaxAggregateOutputType = {
   stripeSessionId: string | null
   stripeCustomerId: string | null
   stripeSubscriptionId: string | null
+  ipAddress: string | null
+  billingName: string | null
+  billingLine1: string | null
+  billingLine2: string | null
+  billingCity: string | null
+  billingState: string | null
+  billingPostalCode: string | null
+  billingCountry: string | null
   discordInviteUrl: string | null
   emailSentAt: Date | null
   createdAt: Date | null
@@ -57,6 +73,14 @@ export type PurchaseCountAggregateOutputType = {
   stripeSessionId: number
   stripeCustomerId: number
   stripeSubscriptionId: number
+  ipAddress: number
+  billingName: number
+  billingLine1: number
+  billingLine2: number
+  billingCity: number
+  billingState: number
+  billingPostalCode: number
+  billingCountry: number
   discordInviteUrl: number
   emailSentAt: number
   createdAt: number
@@ -72,6 +96,14 @@ export type PurchaseMinAggregateInputType = {
   stripeSessionId?: true
   stripeCustomerId?: true
   stripeSubscriptionId?: true
+  ipAddress?: true
+  billingName?: true
+  billingLine1?: true
+  billingLine2?: true
+  billingCity?: true
+  billingState?: true
+  billingPostalCode?: true
+  billingCountry?: true
   discordInviteUrl?: true
   emailSentAt?: true
   createdAt?: true
@@ -85,6 +117,14 @@ export type PurchaseMaxAggregateInputType = {
   stripeSessionId?: true
   stripeCustomerId?: true
   stripeSubscriptionId?: true
+  ipAddress?: true
+  billingName?: true
+  billingLine1?: true
+  billingLine2?: true
+  billingCity?: true
+  billingState?: true
+  billingPostalCode?: true
+  billingCountry?: true
   discordInviteUrl?: true
   emailSentAt?: true
   createdAt?: true
@@ -98,6 +138,14 @@ export type PurchaseCountAggregateInputType = {
   stripeSessionId?: true
   stripeCustomerId?: true
   stripeSubscriptionId?: true
+  ipAddress?: true
+  billingName?: true
+  billingLine1?: true
+  billingLine2?: true
+  billingCity?: true
+  billingState?: true
+  billingPostalCode?: true
+  billingCountry?: true
   discordInviteUrl?: true
   emailSentAt?: true
   createdAt?: true
@@ -184,6 +232,14 @@ export type PurchaseGroupByOutputType = {
   stripeSessionId: string
   stripeCustomerId: string | null
   stripeSubscriptionId: string | null
+  ipAddress: string | null
+  billingName: string | null
+  billingLine1: string | null
+  billingLine2: string | null
+  billingCity: string | null
+  billingState: string | null
+  billingPostalCode: string | null
+  billingCountry: string | null
   discordInviteUrl: string | null
   emailSentAt: Date | null
   createdAt: Date
@@ -218,6 +274,14 @@ export type PurchaseWhereInput = {
   stripeSessionId?: Prisma.StringFilter<"Purchase"> | string
   stripeCustomerId?: Prisma.StringNullableFilter<"Purchase"> | string | null
   stripeSubscriptionId?: Prisma.StringNullableFilter<"Purchase"> | string | null
+  ipAddress?: Prisma.StringNullableFilter<"Purchase"> | string | null
+  billingName?: Prisma.StringNullableFilter<"Purchase"> | string | null
+  billingLine1?: Prisma.StringNullableFilter<"Purchase"> | string | null
+  billingLine2?: Prisma.StringNullableFilter<"Purchase"> | string | null
+  billingCity?: Prisma.StringNullableFilter<"Purchase"> | string | null
+  billingState?: Prisma.StringNullableFilter<"Purchase"> | string | null
+  billingPostalCode?: Prisma.StringNullableFilter<"Purchase"> | string | null
+  billingCountry?: Prisma.StringNullableFilter<"Purchase"> | string | null
   discordInviteUrl?: Prisma.StringNullableFilter<"Purchase"> | string | null
   emailSentAt?: Prisma.DateTimeNullableFilter<"Purchase"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Purchase"> | Date | string
@@ -231,6 +295,14 @@ export type PurchaseOrderByWithRelationInput = {
   stripeSessionId?: Prisma.SortOrder
   stripeCustomerId?: Prisma.SortOrderInput | Prisma.SortOrder
   stripeSubscriptionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  ipAddress?: Prisma.SortOrderInput | Prisma.SortOrder
+  billingName?: Prisma.SortOrderInput | Prisma.SortOrder
+  billingLine1?: Prisma.SortOrderInput | Prisma.SortOrder
+  billingLine2?: Prisma.SortOrderInput | Prisma.SortOrder
+  billingCity?: Prisma.SortOrderInput | Prisma.SortOrder
+  billingState?: Prisma.SortOrderInput | Prisma.SortOrder
+  billingPostalCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  billingCountry?: Prisma.SortOrderInput | Prisma.SortOrder
   discordInviteUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   emailSentAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -247,6 +319,14 @@ export type PurchaseWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumPurchaseStatusFilter<"Purchase"> | $Enums.PurchaseStatus
   stripeCustomerId?: Prisma.StringNullableFilter<"Purchase"> | string | null
   stripeSubscriptionId?: Prisma.StringNullableFilter<"Purchase"> | string | null
+  ipAddress?: Prisma.StringNullableFilter<"Purchase"> | string | null
+  billingName?: Prisma.StringNullableFilter<"Purchase"> | string | null
+  billingLine1?: Prisma.StringNullableFilter<"Purchase"> | string | null
+  billingLine2?: Prisma.StringNullableFilter<"Purchase"> | string | null
+  billingCity?: Prisma.StringNullableFilter<"Purchase"> | string | null
+  billingState?: Prisma.StringNullableFilter<"Purchase"> | string | null
+  billingPostalCode?: Prisma.StringNullableFilter<"Purchase"> | string | null
+  billingCountry?: Prisma.StringNullableFilter<"Purchase"> | string | null
   discordInviteUrl?: Prisma.StringNullableFilter<"Purchase"> | string | null
   emailSentAt?: Prisma.DateTimeNullableFilter<"Purchase"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Purchase"> | Date | string
@@ -260,6 +340,14 @@ export type PurchaseOrderByWithAggregationInput = {
   stripeSessionId?: Prisma.SortOrder
   stripeCustomerId?: Prisma.SortOrderInput | Prisma.SortOrder
   stripeSubscriptionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  ipAddress?: Prisma.SortOrderInput | Prisma.SortOrder
+  billingName?: Prisma.SortOrderInput | Prisma.SortOrder
+  billingLine1?: Prisma.SortOrderInput | Prisma.SortOrder
+  billingLine2?: Prisma.SortOrderInput | Prisma.SortOrder
+  billingCity?: Prisma.SortOrderInput | Prisma.SortOrder
+  billingState?: Prisma.SortOrderInput | Prisma.SortOrder
+  billingPostalCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  billingCountry?: Prisma.SortOrderInput | Prisma.SortOrder
   discordInviteUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   emailSentAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -279,6 +367,14 @@ export type PurchaseScalarWhereWithAggregatesInput = {
   stripeSessionId?: Prisma.StringWithAggregatesFilter<"Purchase"> | string
   stripeCustomerId?: Prisma.StringNullableWithAggregatesFilter<"Purchase"> | string | null
   stripeSubscriptionId?: Prisma.StringNullableWithAggregatesFilter<"Purchase"> | string | null
+  ipAddress?: Prisma.StringNullableWithAggregatesFilter<"Purchase"> | string | null
+  billingName?: Prisma.StringNullableWithAggregatesFilter<"Purchase"> | string | null
+  billingLine1?: Prisma.StringNullableWithAggregatesFilter<"Purchase"> | string | null
+  billingLine2?: Prisma.StringNullableWithAggregatesFilter<"Purchase"> | string | null
+  billingCity?: Prisma.StringNullableWithAggregatesFilter<"Purchase"> | string | null
+  billingState?: Prisma.StringNullableWithAggregatesFilter<"Purchase"> | string | null
+  billingPostalCode?: Prisma.StringNullableWithAggregatesFilter<"Purchase"> | string | null
+  billingCountry?: Prisma.StringNullableWithAggregatesFilter<"Purchase"> | string | null
   discordInviteUrl?: Prisma.StringNullableWithAggregatesFilter<"Purchase"> | string | null
   emailSentAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Purchase"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Purchase"> | Date | string
@@ -292,6 +388,14 @@ export type PurchaseCreateInput = {
   stripeSessionId: string
   stripeCustomerId?: string | null
   stripeSubscriptionId?: string | null
+  ipAddress?: string | null
+  billingName?: string | null
+  billingLine1?: string | null
+  billingLine2?: string | null
+  billingCity?: string | null
+  billingState?: string | null
+  billingPostalCode?: string | null
+  billingCountry?: string | null
   discordInviteUrl?: string | null
   emailSentAt?: Date | string | null
   createdAt?: Date | string
@@ -305,6 +409,14 @@ export type PurchaseUncheckedCreateInput = {
   stripeSessionId: string
   stripeCustomerId?: string | null
   stripeSubscriptionId?: string | null
+  ipAddress?: string | null
+  billingName?: string | null
+  billingLine1?: string | null
+  billingLine2?: string | null
+  billingCity?: string | null
+  billingState?: string | null
+  billingPostalCode?: string | null
+  billingCountry?: string | null
   discordInviteUrl?: string | null
   emailSentAt?: Date | string | null
   createdAt?: Date | string
@@ -318,6 +430,14 @@ export type PurchaseUpdateInput = {
   stripeSessionId?: Prisma.StringFieldUpdateOperationsInput | string
   stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingCity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingPostalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingCountry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   discordInviteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -331,6 +451,14 @@ export type PurchaseUncheckedUpdateInput = {
   stripeSessionId?: Prisma.StringFieldUpdateOperationsInput | string
   stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingCity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingPostalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingCountry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   discordInviteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -344,6 +472,14 @@ export type PurchaseCreateManyInput = {
   stripeSessionId: string
   stripeCustomerId?: string | null
   stripeSubscriptionId?: string | null
+  ipAddress?: string | null
+  billingName?: string | null
+  billingLine1?: string | null
+  billingLine2?: string | null
+  billingCity?: string | null
+  billingState?: string | null
+  billingPostalCode?: string | null
+  billingCountry?: string | null
   discordInviteUrl?: string | null
   emailSentAt?: Date | string | null
   createdAt?: Date | string
@@ -357,6 +493,14 @@ export type PurchaseUpdateManyMutationInput = {
   stripeSessionId?: Prisma.StringFieldUpdateOperationsInput | string
   stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingCity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingPostalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingCountry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   discordInviteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -370,6 +514,14 @@ export type PurchaseUncheckedUpdateManyInput = {
   stripeSessionId?: Prisma.StringFieldUpdateOperationsInput | string
   stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingLine1?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingLine2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingCity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingState?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingPostalCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  billingCountry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   discordInviteUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   emailSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -383,6 +535,14 @@ export type PurchaseCountOrderByAggregateInput = {
   stripeSessionId?: Prisma.SortOrder
   stripeCustomerId?: Prisma.SortOrder
   stripeSubscriptionId?: Prisma.SortOrder
+  ipAddress?: Prisma.SortOrder
+  billingName?: Prisma.SortOrder
+  billingLine1?: Prisma.SortOrder
+  billingLine2?: Prisma.SortOrder
+  billingCity?: Prisma.SortOrder
+  billingState?: Prisma.SortOrder
+  billingPostalCode?: Prisma.SortOrder
+  billingCountry?: Prisma.SortOrder
   discordInviteUrl?: Prisma.SortOrder
   emailSentAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -396,6 +556,14 @@ export type PurchaseMaxOrderByAggregateInput = {
   stripeSessionId?: Prisma.SortOrder
   stripeCustomerId?: Prisma.SortOrder
   stripeSubscriptionId?: Prisma.SortOrder
+  ipAddress?: Prisma.SortOrder
+  billingName?: Prisma.SortOrder
+  billingLine1?: Prisma.SortOrder
+  billingLine2?: Prisma.SortOrder
+  billingCity?: Prisma.SortOrder
+  billingState?: Prisma.SortOrder
+  billingPostalCode?: Prisma.SortOrder
+  billingCountry?: Prisma.SortOrder
   discordInviteUrl?: Prisma.SortOrder
   emailSentAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -409,6 +577,14 @@ export type PurchaseMinOrderByAggregateInput = {
   stripeSessionId?: Prisma.SortOrder
   stripeCustomerId?: Prisma.SortOrder
   stripeSubscriptionId?: Prisma.SortOrder
+  ipAddress?: Prisma.SortOrder
+  billingName?: Prisma.SortOrder
+  billingLine1?: Prisma.SortOrder
+  billingLine2?: Prisma.SortOrder
+  billingCity?: Prisma.SortOrder
+  billingState?: Prisma.SortOrder
+  billingPostalCode?: Prisma.SortOrder
+  billingCountry?: Prisma.SortOrder
   discordInviteUrl?: Prisma.SortOrder
   emailSentAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -444,6 +620,14 @@ export type PurchaseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   stripeSessionId?: boolean
   stripeCustomerId?: boolean
   stripeSubscriptionId?: boolean
+  ipAddress?: boolean
+  billingName?: boolean
+  billingLine1?: boolean
+  billingLine2?: boolean
+  billingCity?: boolean
+  billingState?: boolean
+  billingPostalCode?: boolean
+  billingCountry?: boolean
   discordInviteUrl?: boolean
   emailSentAt?: boolean
   createdAt?: boolean
@@ -457,6 +641,14 @@ export type PurchaseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   stripeSessionId?: boolean
   stripeCustomerId?: boolean
   stripeSubscriptionId?: boolean
+  ipAddress?: boolean
+  billingName?: boolean
+  billingLine1?: boolean
+  billingLine2?: boolean
+  billingCity?: boolean
+  billingState?: boolean
+  billingPostalCode?: boolean
+  billingCountry?: boolean
   discordInviteUrl?: boolean
   emailSentAt?: boolean
   createdAt?: boolean
@@ -470,6 +662,14 @@ export type PurchaseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   stripeSessionId?: boolean
   stripeCustomerId?: boolean
   stripeSubscriptionId?: boolean
+  ipAddress?: boolean
+  billingName?: boolean
+  billingLine1?: boolean
+  billingLine2?: boolean
+  billingCity?: boolean
+  billingState?: boolean
+  billingPostalCode?: boolean
+  billingCountry?: boolean
   discordInviteUrl?: boolean
   emailSentAt?: boolean
   createdAt?: boolean
@@ -483,13 +683,21 @@ export type PurchaseSelectScalar = {
   stripeSessionId?: boolean
   stripeCustomerId?: boolean
   stripeSubscriptionId?: boolean
+  ipAddress?: boolean
+  billingName?: boolean
+  billingLine1?: boolean
+  billingLine2?: boolean
+  billingCity?: boolean
+  billingState?: boolean
+  billingPostalCode?: boolean
+  billingCountry?: boolean
   discordInviteUrl?: boolean
   emailSentAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PurchaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "status" | "stripeSessionId" | "stripeCustomerId" | "stripeSubscriptionId" | "discordInviteUrl" | "emailSentAt" | "createdAt" | "updatedAt", ExtArgs["result"]["purchase"]>
+export type PurchaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "status" | "stripeSessionId" | "stripeCustomerId" | "stripeSubscriptionId" | "ipAddress" | "billingName" | "billingLine1" | "billingLine2" | "billingCity" | "billingState" | "billingPostalCode" | "billingCountry" | "discordInviteUrl" | "emailSentAt" | "createdAt" | "updatedAt", ExtArgs["result"]["purchase"]>
 
 export type $PurchasePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Purchase"
@@ -501,6 +709,14 @@ export type $PurchasePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     stripeSessionId: string
     stripeCustomerId: string | null
     stripeSubscriptionId: string | null
+    ipAddress: string | null
+    billingName: string | null
+    billingLine1: string | null
+    billingLine2: string | null
+    billingCity: string | null
+    billingState: string | null
+    billingPostalCode: string | null
+    billingCountry: string | null
     discordInviteUrl: string | null
     emailSentAt: Date | null
     createdAt: Date
@@ -934,6 +1150,14 @@ export interface PurchaseFieldRefs {
   readonly stripeSessionId: Prisma.FieldRef<"Purchase", 'String'>
   readonly stripeCustomerId: Prisma.FieldRef<"Purchase", 'String'>
   readonly stripeSubscriptionId: Prisma.FieldRef<"Purchase", 'String'>
+  readonly ipAddress: Prisma.FieldRef<"Purchase", 'String'>
+  readonly billingName: Prisma.FieldRef<"Purchase", 'String'>
+  readonly billingLine1: Prisma.FieldRef<"Purchase", 'String'>
+  readonly billingLine2: Prisma.FieldRef<"Purchase", 'String'>
+  readonly billingCity: Prisma.FieldRef<"Purchase", 'String'>
+  readonly billingState: Prisma.FieldRef<"Purchase", 'String'>
+  readonly billingPostalCode: Prisma.FieldRef<"Purchase", 'String'>
+  readonly billingCountry: Prisma.FieldRef<"Purchase", 'String'>
   readonly discordInviteUrl: Prisma.FieldRef<"Purchase", 'String'>
   readonly emailSentAt: Prisma.FieldRef<"Purchase", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Purchase", 'DateTime'>

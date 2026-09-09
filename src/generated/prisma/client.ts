@@ -46,3 +46,13 @@ export { Prisma }
  * 
  */
 export type Purchase = Prisma.PurchaseModel
+/**
+ * Model Lead
+ * 
+ */
+export type Lead = Prisma.LeadModel
+/**
+ * Model Visit
+ * 
+ */
+export type Visit = Prisma.VisitModel

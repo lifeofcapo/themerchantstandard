@@ -9,10 +9,10 @@ export default async function AdminPage() {
 
   return (
     <main className="mx-auto max-w-6xl px-6 py-12 text-parchment">
-      <h1 className="mb-8 font-display text-3xl">Админка</h1>
+      <h1 className="mb-8 font-display text-3xl">Admin page</h1>
 
       <section className="mb-12">
-        <h2 className="mb-3 font-display text-xl">Оплатившие ({purchases.length})</h2>
+        <h2 className="mb-3 font-display text-xl">Paid clients ({purchases.length})</h2>
         <Table
           rows={purchases}
           columns={["email", "status", "billingCountry", "ipAddress", "createdAt"]}

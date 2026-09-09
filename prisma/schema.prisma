@@ -24,6 +24,15 @@ model Purchase {
   stripeCustomerId      String?
   stripeSubscriptionId  String?
 
+  ipAddress             String?
+  billingName           String?
+  billingLine1          String?
+  billingLine2          String?
+  billingCity           String?
+  billingState          String?
+  billingPostalCode     String?
+  billingCountry        String?
+
   discordInviteUrl      String?
   emailSentAt           DateTime?
 

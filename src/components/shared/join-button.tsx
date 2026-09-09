@@ -35,18 +35,6 @@ function validateEmail(value: string): string | null {
   return null;
 }
 
-const [shining, setShining] = React.useState(false);
-const shineTimeout = React.useRef<ReturnType<typeof setTimeout> | null>(null);
-
-function triggerShine() {
-  if (shineTimeout.current) clearTimeout(shineTimeout.current);
-  setShining(false);
-  requestAnimationFrame(() => {
-    setShining(true);
-    shineTimeout.current = setTimeout(() => setShining(false), 900);
-  });
-}
-
 export function JoinButton({
   label = "Join The Merchant Standard — $49/mo",
   className,
@@ -59,7 +47,23 @@ export function JoinButton({
   const [email, setEmail] = React.useState("");
   const [error, setError] = React.useState<string | null>(null);
   const [loading, setLoading] = React.useState(false);
+  const [shining, setShining] = React.useState(false);
+  const shineTimeout = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  function triggerShine() {
+    if (shineTimeout.current) clearTimeout(shineTimeout.current);
+    setShining(false);
+    requestAnimationFrame(() => {
+      setShining(true);
+      shineTimeout.current = setTimeout(() => setShining(false), 900);
+    });
+  }
+
+  React.useEffect(() => {
+    return () => {
+      if (shineTimeout.current) clearTimeout(shineTimeout.current);
+    };
+  }, []);
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);

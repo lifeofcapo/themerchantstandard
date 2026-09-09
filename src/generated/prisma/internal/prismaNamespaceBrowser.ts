@@ -51,7 +51,9 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Purchase: 'Purchase'
+  Purchase: 'Purchase',
+  Lead: 'Lead',
+  Visit: 'Visit'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -77,6 +79,14 @@ export const PurchaseScalarFieldEnum = {
   stripeSessionId: 'stripeSessionId',
   stripeCustomerId: 'stripeCustomerId',
   stripeSubscriptionId: 'stripeSubscriptionId',
+  ipAddress: 'ipAddress',
+  billingName: 'billingName',
+  billingLine1: 'billingLine1',
+  billingLine2: 'billingLine2',
+  billingCity: 'billingCity',
+  billingState: 'billingState',
+  billingPostalCode: 'billingPostalCode',
+  billingCountry: 'billingCountry',
   discordInviteUrl: 'discordInviteUrl',
   emailSentAt: 'emailSentAt',
   createdAt: 'createdAt',
@@ -84,6 +94,36 @@ export const PurchaseScalarFieldEnum = {
 } as const
 
 export type PurchaseScalarFieldEnum = (typeof PurchaseScalarFieldEnum)[keyof typeof PurchaseScalarFieldEnum]
+
+
+export const LeadScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  ipAddress: 'ipAddress',
+  country: 'country',
+  region: 'region',
+  city: 'city',
+  source: 'source',
+  createdAt: 'createdAt'
+} as const
+
+export type LeadScalarFieldEnum = (typeof LeadScalarFieldEnum)[keyof typeof LeadScalarFieldEnum]
+
+
+export const VisitScalarFieldEnum = {
+  id: 'id',
+  path: 'path',
+  ipAddress: 'ipAddress',
+  country: 'country',
+  region: 'region',
+  city: 'city',
+  referrer: 'referrer',
+  createdAt: 'createdAt'
+} as const
+
+export type VisitScalarFieldEnum = (typeof VisitScalarFieldEnum)[keyof typeof VisitScalarFieldEnum]
 
 
 export const SortOrder = {
