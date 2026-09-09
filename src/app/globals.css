@@ -12,8 +12,10 @@
   --color-parchment: #f3efe4;  /* primary text, warm off-white */
   --color-brass: #c9a227;      /* primary accent, aged brass/gold */
   --color-brass-light: #e3bf55;
-  --color-seal: #7c2430;       /* wax-seal burgundy, secondary accent */
-  --color-seal-light: #a3323f;
+  --color-silver: #9a9ba3;     /* secondary accent, brushed silver */
+  --color-silver-light: #c7c8cf;
+  --color-seal: #6f7078;
+  --color-seal-light: #9a9ba3;
 
   --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -66,7 +68,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 6.5rem; /* clears the floating pill header */
+  scroll-padding-top: 6.5rem; 
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -88,7 +90,29 @@ h1, h2, h3, h4 {
 }
 
 .text-gradient-brass {
-  background: linear-gradient(100deg, var(--color-brass) 0%, var(--color-brass-light) 45%, var(--color-parchment) 100%);
+  background: linear-gradient(
+    100deg,
+    #8a6d1a 0%,
+    var(--color-brass) 30%,
+    var(--color-brass-light) 55%,
+    var(--color-brass) 80%,
+    #8a6d1a 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-silver {
+  background: linear-gradient(
+    100deg,
+    #6d6e75 0%,
+    var(--color-silver) 30%,
+    var(--color-silver-light) 55%,
+    var(--color-silver) 80%,
+    #6d6e75 100%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -98,14 +122,14 @@ h1, h2, h3, h4 {
 .bg-gradient-wash {
   background:
     radial-gradient(ellipse 1100px 640px at 15% -10%, rgba(201, 162, 39, 0.22), transparent 60%),
-    radial-gradient(ellipse 900px 560px at 90% 10%, rgba(124, 36, 48, 0.20), transparent 65%),
+    radial-gradient(ellipse 900px 560px at 90% 10%, rgba(154, 155, 163, 0.16), transparent 65%),
     radial-gradient(ellipse 1200px 700px at 50% 120%, rgba(201, 162, 39, 0.10), transparent 70%);
 }
 
 .bg-gradient-wash-soft {
   background:
     radial-gradient(ellipse 900px 500px at 50% -10%, rgba(201, 162, 39, 0.14), transparent 70%),
-    radial-gradient(ellipse 700px 420px at 100% 100%, rgba(124, 36, 48, 0.12), transparent 65%);
+    radial-gradient(ellipse 700px 420px at 100% 100%, rgba(154, 155, 163, 0.10), transparent 65%);
 }
 
 .ledger-grid {
@@ -120,8 +144,8 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at 30% 30%, var(--color-seal-light), var(--color-seal) 70%);
-  box-shadow: 0 2px 10px rgba(124, 36, 48, 0.5), inset 0 0 0 2px rgba(243, 239, 228, 0.15);
+  background: radial-gradient(circle at 30% 30%, var(--color-brass-light), var(--color-brass) 70%);
+  box-shadow: 0 2px 10px rgba(201, 162, 39, 0.4), inset 0 0 0 2px rgba(243, 239, 228, 0.15);
 }
 
 .text-balance {

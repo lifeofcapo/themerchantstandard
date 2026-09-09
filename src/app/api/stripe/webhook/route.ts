@@ -44,12 +44,24 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
     return;
   }
 
+  const address = session.customer_details?.address;
+  const ipFromMetadata = session.metadata?.ip_address;
+
   const purchase = await prisma.purchase.upsert({
     where: { stripeSessionId: session.id },
     update: {
       status: "PAID",
       stripeCustomerId: (session.customer as string) ?? undefined,
       stripeSubscriptionId: (session.subscription as string) ?? undefined,
+      billingName: session.customer_details?.name ?? undefined,
+      billingLine1: address?.line1 ?? undefined,
+      billingLine2: address?.line2 ?? undefined,
+      billingCity: address?.city ?? undefined,
+      billingState: address?.state ?? undefined,
+      billingPostalCode: address?.postal_code ?? undefined,
+      billingCountry: address?.country ?? undefined,
+      ipAddress:
+        ipFromMetadata && ipFromMetadata !== "unknown" ? ipFromMetadata : undefined,
     },
     create: {
       email,
@@ -57,6 +69,15 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
       stripeCustomerId: (session.customer as string) ?? undefined,
       stripeSubscriptionId: (session.subscription as string) ?? undefined,
       status: "PAID",
+      billingName: session.customer_details?.name ?? undefined,
+      billingLine1: address?.line1 ?? undefined,
+      billingLine2: address?.line2 ?? undefined,
+      billingCity: address?.city ?? undefined,
+      billingState: address?.state ?? undefined,
+      billingPostalCode: address?.postal_code ?? undefined,
+      billingCountry: address?.country ?? undefined,
+      ipAddress:
+        ipFromMetadata && ipFromMetadata !== "unknown" ? ipFromMetadata : undefined,
     },
   });
 
