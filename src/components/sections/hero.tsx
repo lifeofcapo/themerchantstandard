@@ -11,7 +11,7 @@ export function Hero() {
           For Anyone Who Wants to Make Money Online — No Beats, No Sales Experience
         </span>
 
-        <h1 className="text-balance font-display text-5xl leading-[1.05] text-parchment sm:text-6xl md:text-7xl">
+        <h1 className="text-balance font-display text-[2.5rem] leading-[1.08] text-parchment sm:text-6xl md:text-7xl">
           Start an online business
           <br />
           selling music products —

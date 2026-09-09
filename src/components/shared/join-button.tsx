@@ -35,6 +35,18 @@ function validateEmail(value: string): string | null {
   return null;
 }
 
+const [shining, setShining] = React.useState(false);
+const shineTimeout = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+
+function triggerShine() {
+  if (shineTimeout.current) clearTimeout(shineTimeout.current);
+  setShining(false);
+  requestAnimationFrame(() => {
+    setShining(true);
+    shineTimeout.current = setTimeout(() => setShining(false), 900);
+  });
+}
+
 export function JoinButton({
   label = "Join The Merchant Standard — $49/mo",
   className,
@@ -105,7 +117,7 @@ export function JoinButton({
         className={cn(
           "btn-shine",
           size === "lg" &&
-            "h-auto min-h-12 rounded-full px-6 py-3 text-center text-sm font-semibold whitespace-normal shadow-lg shadow-brass/10 sm:h-14 sm:px-8 sm:text-base",
+            "h-auto min-h-14 rounded-full px-8 py-4 text-center text-base font-semibold whitespace-normal shadow-lg shadow-brass/10 sm:min-h-14 sm:px-8 sm:py-3 sm:text-base",
           className
         )}
         onClick={() => setEmailOpen(true)}

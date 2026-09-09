@@ -32,3 +32,27 @@ model Purchase {
 
   @@index([email])
 }
+
+model Lead {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  ipAddress String?
+  country   String?
+  region    String?
+  city      String?
+  source    String   @default("vsl")
+  createdAt DateTime @default(now())
+}
+
+model Visit {
+  id        String   @id @default(cuid())
+  path      String
+  ipAddress String?
+  country   String?
+  region    String?
+  city      String?
+  referrer  String?
+  createdAt DateTime @default(now())
+}

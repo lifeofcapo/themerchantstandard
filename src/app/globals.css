@@ -199,15 +199,12 @@ h1, h2, h3, h4 {
   );
   transform: translateX(-130%);
   pointer-events: none;
+  transition: transform 0.01s;
 }
 
-.btn-shine:hover::after {
+.btn-shine.btn-shine-active::after {
   transform: translateX(130%);
   transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.btn-shine::after {
-  transition: transform 0.01s;
 }
 
 @media (prefers-reduced-motion: reduce) {
