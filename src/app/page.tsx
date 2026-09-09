@@ -47,9 +47,6 @@ export default function Home() {
           <WhatYouGet />
         </Reveal>
         <Reveal>
-          <TheirWayOurWay />
-        </Reveal>
-        <Reveal>
           <ValueStack />
         </Reveal>
         <Reveal>
