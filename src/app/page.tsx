@@ -7,7 +7,6 @@ import { MerchantAI } from "@/components/sections/merchant-ai";
 import { MerchantsWinning } from "@/components/sections/merchants-winning";
 import { MarketChanging } from "@/components/sections/market-changing";
 import { WhatYouGet } from "@/components/sections/what-you-get";
-import { TheirWayOurWay } from "@/components/sections/their-way-our-way";
 import { ValueStack } from "@/components/sections/value-stack";
 import { PriceJustification } from "@/components/sections/price-justification";
 import { Guarantee } from "@/components/sections/guarantee";
