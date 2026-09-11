@@ -4,9 +4,15 @@ import { PrismaClient } from "@/generated/prisma/client";
 
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
+function buildConnectionString(raw: string) {
+  const url = new URL(raw);
+  url.searchParams.delete("sslmode"); 
+  return url.toString();
+}
+
 function createPrismaClient() {
   const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
+    connectionString: buildConnectionString(process.env.DATABASE_URL!),
     ssl: { rejectUnauthorized: false },
   });
   const adapter = new PrismaPg(pool);
