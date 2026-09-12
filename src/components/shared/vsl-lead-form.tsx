@@ -1,7 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { Loader2, User } from "lucide-react";
+import { Loader2, ShieldCheck } from "lucide-react";
+import { COUNTRIES } from "@/lib/countries";
+import { Country } from "@/lib/countries";
 import {
   Dialog,
   DialogContent,
@@ -11,23 +13,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const COUNTRIES = [
-  { code: "US", dial: "1", flag: "🇺🇸" },
-  { code: "RU", dial: "7", flag: "🇷🇺" },
-  { code: "KZ", dial: "7", flag: "🇰🇿" },
-  { code: "UA", dial: "380", flag: "🇺🇦" },
-  { code: "GB", dial: "44", flag: "🇬🇧" },
-  { code: "DE", dial: "49", flag: "🇩🇪" },
-  { code: "FR", dial: "33", flag: "🇫🇷" },
-  { code: "ES", dial: "34", flag: "🇪🇸" },
-] as const;
-
-type Country = (typeof COUNTRIES)[number];
-
 function detectDefaultCountry(): Country {
   if (typeof navigator === "undefined") return COUNTRIES[0];
-  const locale = navigator.language || "en-US";
-  const region = locale.split("-")[1]?.toUpperCase();
+  const region = (navigator.language || "en-US").split("-")[1]?.toUpperCase();
   return COUNTRIES.find((c) => c.code === region) ?? COUNTRIES[0];
 }
 
@@ -58,7 +46,7 @@ export function VslLeadForm({ open, onOpenChange }: VslLeadFormProps) {
     if (!EMAIL_REGEX.test(email.trim())) next.email = "Введите корректный e-mail";
     const digits = phone.replace(/\D/g, "");
     if (digits.length < 6 || digits.length > 14) next.phone = "Введите корректный номер телефона";
-    if (!agreed) next.agreed = "Нужно согласие на обработку данных";
+    if (!agreed) next.agreed = "Нужно согласие с условиями";
     setErrors(next);
     return Object.keys(next).length === 0;
   }
@@ -93,112 +81,130 @@ export function VslLeadForm({ open, onOpenChange }: VslLeadFormProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md overflow-hidden rounded-3xl border border-line bg-ink p-0">
-        <div className="bg-gradient-to-r from-sky-500 to-blue-500 px-6 py-3 text-center text-sm font-semibold text-white">
-          $100 to 1Mill Challenge
-        </div>
+      <DialogContent className="max-w-md overflow-hidden rounded-2xl border border-line bg-ink p-0">
+        <div className="relative px-6 pb-8 pt-8">
+          <div className="ledger-grid absolute inset-0 opacity-30" />
 
-        <div className="px-6 pb-8 pt-6">
-          <DialogHeader className="mb-2 text-center">
-            <DialogTitle className="text-balance font-display text-2xl text-parchment">
-              Join 100to1mil FREE circle community
-            </DialogTitle>
-          </DialogHeader>
-          <p className="mb-6 flex items-center justify-center gap-2 text-sm text-parchment/60">
-            <User className="h-4 w-4" /> Hosted by Alex Gonzalez
-          </p>
-
-          {done ? (
-            <p className="rounded-xl border border-brass/30 bg-brass/5 px-6 py-4 text-center text-parchment">
-              Заявка принята — мы свяжемся с вами в ближайшее время.
+          <div className="relative">
+            <DialogHeader className="mb-1 text-center">
+              <span className="wax-seal mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full">
+                <ShieldCheck className="h-5 w-5 text-parchment" />
+              </span>
+              <DialogTitle className="text-balance font-display text-2xl text-parchment">
+                Заявка на вход в{" "}
+                <span className="text-gradient-brass">The Merchant Standard</span>
+              </DialogTitle>
+            </DialogHeader>
+            <p className="mb-6 text-center text-sm text-parchment/55">
+              Оставьте контакты — мы свяжемся с вами и расскажем следующий шаг.
             </p>
-          ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-              <div>
-                <input
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Jane Smith"
-                  className="w-full rounded-xl border border-line bg-panel px-4 py-3 text-parchment placeholder:text-parchment/40 focus:border-brass focus:outline-none"
-                />
-                {errors.name && <p className="mt-1 text-xs text-seal-light">{errors.name}</p>}
-              </div>
 
-              <div>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="email@gmail.com"
-                  className="w-full rounded-xl border border-line bg-panel px-4 py-3 text-parchment placeholder:text-parchment/40 focus:border-brass focus:outline-none"
-                />
-                {errors.email && <p className="mt-1 text-xs text-seal-light">{errors.email}</p>}
-              </div>
-
-              <div>
-                <div className="flex gap-2">
-                  <select
-                    value={`${country.code}`}
-                    onChange={(e) => {
-                      const next = COUNTRIES.find((c) => c.code === e.target.value);
-                      if (next) setCountry(next);
-                    }}
-                    className="rounded-xl border border-line bg-panel px-3 py-3 text-parchment focus:border-brass focus:outline-none"
-                  >
-                    {COUNTRIES.map((c) => (
-                      <option key={c.code} value={c.code}>
-                        {c.flag} +{c.dial}
-                      </option>
-                    ))}
-                  </select>
+            {done ? (
+              <p className="rounded-xl border border-brass/30 bg-brass/5 px-6 py-4 text-center text-parchment">
+                Заявка принята — мы свяжемся с вами в ближайшее время.
+              </p>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                <div>
                   <input
-                    type="tel"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="Phone number"
-                    className="flex-1 rounded-xl border border-line bg-panel px-4 py-3 text-parchment placeholder:text-parchment/40 focus:border-brass focus:outline-none"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Имя"
+                    className="w-full rounded-xl border border-line bg-panel px-4 py-3 text-parchment placeholder:text-parchment/40 focus:border-brass focus:outline-none"
                   />
+                  {errors.name && <p className="mt-1 text-xs text-seal-light">{errors.name}</p>}
                 </div>
-                {errors.phone && <p className="mt-1 text-xs text-seal-light">{errors.phone}</p>}
-              </div>
 
-              {errors.form && <p className="text-xs text-seal-light">{errors.form}</p>}
+                <div>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Почта"
+                    className="w-full rounded-xl border border-line bg-panel px-4 py-3 text-parchment placeholder:text-parchment/40 focus:border-brass focus:outline-none"
+                  />
+                  {errors.email && <p className="mt-1 text-xs text-seal-light">{errors.email}</p>}
+                </div>
 
-              <Button
-                type="submit"
-                disabled={loading}
-                className="mt-2 h-14 rounded-full bg-gradient-to-r from-sky-500 to-emerald-400 text-base font-bold text-ink hover:opacity-90"
-              >
-                {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : "Secure Your Spot"}
-              </Button>
+                <div>
+                  <div className="flex gap-2">
+                    <select
+                      value={country.code}
+                      onChange={(e) => {
+                        const next = COUNTRIES.find((c) => c.code === e.target.value);
+                        if (next) {
+                          setCountry(next);
+                        }
+                      }}
+                      className="w-[105px] shrink-0 rounded-xl border border-line bg-panel px-3 py-3 text-parchment focus:border-brass focus:outline-none"
+                    >
+                      {COUNTRIES.map((c) => (
+                        <option key={c.code} value={c.code}>
+                          {c.flag} +{c.dial}
+                        </option>
+                      ))}
+                    </select>
 
-              <label className="mt-2 flex items-start gap-3 text-xs text-parchment/60">
-                <input
-                  type="checkbox"
-                  checked={agreed}
-                  onChange={(e) => setAgreed(e.target.checked)}
-                  className={cn(
-                    "mt-0.5 h-4 w-4 shrink-0 rounded border-line bg-panel",
-                    errors.agreed && "border-seal-light"
+                    <div className="flex min-w-0 flex-1 overflow-hidden rounded-xl border border-line bg-panel focus-within:border-brass">
+                      <span className="flex shrink-0 items-center pl-4 text-parchment/70">
+                        +{country.dial}
+                      </span>
+
+                      <input
+                        type="tel"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="Телефон"
+                        className="min-w-0 flex-1 bg-transparent px-2 py-3 pr-4 text-parchment placeholder:text-parchment/40 focus:outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  {errors.phone && (
+                    <p className="mt-1 text-xs text-seal-light">
+                      {errors.phone}
+                    </p>
                   )}
-                />
-                <span>
-                  By signing up via SMS, you agree to receive recurring automated marketing messages
-                  to the phone number you provided, including shopping cart reminders. Consent is not
-                  a condition of purchase. See our{" "}
-                  <a href="/privacy" className="underline hover:text-parchment">
-                    Privacy Policy
-                  </a>{" "}
-                  and{" "}
-                  <a href="/terms" className="underline hover:text-parchment">
-                    Terms of Service
-                  </a>
-                  . Reply STOP to unsubscribe.
-                </span>
-              </label>
-              {errors.agreed && <p className="text-xs text-seal-light">{errors.agreed}</p>}
-            </form>
-          )}
+                </div>
+
+
+                {errors.form && <p className="text-xs text-seal-light">{errors.form}</p>}
+
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className="btn-shine mt-2 h-14 rounded-full bg-gradient-to-r from-brass to-brass-light text-base font-bold text-ink"
+                >
+                  {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : "Отправить заявку"}
+                </Button>
+
+                <label className="mt-2 flex items-start gap-3 text-xs text-parchment/55">
+                  <input
+                    type="checkbox"
+                    checked={agreed}
+                    onChange={(e) => setAgreed(e.target.checked)}
+                    className={cn(
+                      "mt-0.5 h-4 w-4 shrink-0 rounded border-line bg-panel",
+                      errors.agreed && "border-seal-light"
+                    )}
+                  />
+                  <span>
+                    Отправляя заявку, вы соглашаетесь на обработку данных и получение
+                    сообщений по email/телефону в рамках заявки. См.{" "}
+                    <a href="/privacy" className="underline hover:text-parchment">
+                      Политику конфиденциальности
+                    </a>{" "}
+                    и{" "}
+                    <a href="/terms" className="underline hover:text-parchment">
+                      Условия использования
+                    </a>
+                    .
+                  </span>
+                </label>
+                {errors.agreed && <p className="text-xs text-seal-light">{errors.agreed}</p>}
+              </form>
+            )}
+          </div>
         </div>
       </DialogContent>
     </Dialog>
