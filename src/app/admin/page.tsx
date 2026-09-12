@@ -3,10 +3,9 @@ export const dynamic = "force-dynamic";
 import { prisma } from "@/lib/prisma";
 
 export default async function AdminPage() {
-  const [leads, purchases, visits] = await Promise.all([
+  const [leads, purchases] = await Promise.all([
     prisma.lead.findMany({ orderBy: { createdAt: "desc" }, take: 200 }),
     prisma.purchase.findMany({ orderBy: { createdAt: "desc" }, take: 200 }),
-    prisma.visit.findMany({ orderBy: { createdAt: "desc" }, take: 300 }),
   ]);
 
   return (
@@ -22,18 +21,10 @@ export default async function AdminPage() {
       </section>
 
       <section className="mb-12">
-        <h2 className="mb-3 font-display text-xl">Заявки с /join ({leads.length})</h2>
+        <h2 className="mb-3 font-display text-xl">Заявки с /free-training ({leads.length})</h2>
         <Table
           rows={leads}
           columns={["name", "email", "phone", "country", "region", "city", "ipAddress", "createdAt"]}
-        />
-      </section>
-
-      <section>
-        <h2 className="mb-3 font-display text-xl">Посещения сайта ({visits.length})</h2>
-        <Table
-          rows={visits}
-          columns={["path", "country", "region", "city", "ipAddress", "createdAt"]}
         />
       </section>
     </main>

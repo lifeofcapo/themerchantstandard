@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     q: "How fast will I see results?",
-    a: "Depends on your effort. Some members close in a matter of weeks. No income guarantees — this is a skill you learn and execute.",
+    a: "Depends on your effort. Some members close in a matter of a few days. This is a skill you learn and execute.",
   },
   {
     q: "Can I cancel anytime?",
