@@ -272,3 +272,7 @@ export const COUNTRIES = [
 ] as const;
 
 export type Country = (typeof COUNTRIES)[number];
+export function getCountryByCode( code: string | undefined ): Country | undefined { 
+    if (!code) 
+        return undefined; 
+    return COUNTRIES.find( (country) => country.code === code.toUpperCase() ); }

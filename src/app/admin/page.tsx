@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import { prisma } from "@/lib/prisma";
+import { AdminDataTable } from "@/components/admin/admin-data-table";
 
 export default async function AdminPage() {
   const [leads, purchases] = await Promise.all([
@@ -10,52 +11,42 @@ export default async function AdminPage() {
 
   return (
     <main className="mx-auto max-w-6xl px-6 py-12 text-parchment">
-      <h1 className="mb-8 font-display text-3xl">Admin page</h1>
+      <h1 className="mb-8 font-display text-3xl">Admin Page</h1>
 
-      <section className="mb-12">
-        <h2 className="mb-3 font-display text-xl">Paid clients ({purchases.length})</h2>
-        <Table
+      <section className="mb-14">
+        <AdminDataTable
+          title="Paid cliens"
           rows={purchases}
-          columns={["email", "status", "billingCountry", "ipAddress", "createdAt"]}
+          emailKey="email"
+          fileName="purchases"
+          columns={[
+            { key: "email", label: "Email" },
+            { key: "status", label: "Статус" },
+            { key: "billingCountry", label: "Страна" },
+            { key: "ipAddress", label: "IP" },
+            { key: "createdAt", label: "Дата" },
+          ]}
         />
       </section>
 
-      <section className="mb-12">
-        <h2 className="mb-3 font-display text-xl">Заявки с /free-training ({leads.length})</h2>
-        <Table
+      <section>
+        <AdminDataTable
+          title="Заявки с /join"
           rows={leads}
-          columns={["name", "email", "phone", "country", "region", "city", "ipAddress", "createdAt"]}
+          emailKey="email"
+          fileName="leads"
+          columns={[
+            { key: "name", label: "Имя" },
+            { key: "email", label: "Email" },
+            { key: "phone", label: "Телефон" },
+            { key: "country", label: "Страна" },
+            { key: "region", label: "Регион" },
+            { key: "city", label: "Город" },
+            { key: "ipAddress", label: "IP" },
+            { key: "createdAt", label: "Дата" },
+          ]}
         />
       </section>
     </main>
-  );
-}
-
-function Table<T extends Record<string, unknown>>({ rows, columns }: { rows: T[]; columns: (keyof T)[] }) {
-  return (
-    <div className="overflow-x-auto rounded-lg border border-line">
-      <table className="w-full text-left text-sm">
-        <thead className="bg-panel-2">
-          <tr>
-            {columns.map((c) => (
-              <th key={String(c)} className="px-3 py-2 font-mono text-xs uppercase text-parchment/50">
-                {String(c)}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, i) => (
-            <tr key={i} className="border-t border-line">
-              {columns.map((c) => (
-                <td key={String(c)} className="px-3 py-2 text-parchment/80">
-                  {row[c] instanceof Date ? (row[c] as Date).toLocaleString() : String(row[c] ?? "—")}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
   );
 }

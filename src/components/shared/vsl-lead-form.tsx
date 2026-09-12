@@ -2,8 +2,12 @@
 
 import * as React from "react";
 import { Loader2, ShieldCheck } from "lucide-react";
-import { COUNTRIES } from "@/lib/countries";
-import { Country } from "@/lib/countries";
+import { AsYouType, parsePhoneNumberFromString } from "libphonenumber-js";
+import {
+  COUNTRIES,
+  getCountryByCode,
+  type Country,
+} from "@/lib/countries";
 import {
   Dialog,
   DialogContent,
@@ -27,9 +31,11 @@ type VslLeadFormProps = {
 };
 
 export function VslLeadForm({ open, onOpenChange }: VslLeadFormProps) {
-  const [country, setCountry] = React.useState<Country>(COUNTRIES[0]);
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [country, setCountry] = React.useState<Country>(
+    COUNTRIES.find((c) => c.code === "US") ?? COUNTRIES[0]
+  );
   const [phone, setPhone] = React.useState("");
   const [agreed, setAgreed] = React.useState(false);
   const [errors, setErrors] = React.useState<Record<string, string>>({});
@@ -49,6 +55,21 @@ export function VslLeadForm({ open, onOpenChange }: VslLeadFormProps) {
     if (!agreed) next.agreed = "Нужно согласие с условиями";
     setErrors(next);
     return Object.keys(next).length === 0;
+  }
+
+  function handlePhoneChange(value: string) {
+    setPhone(value);
+
+    const formatted = new AsYouType().input(value);
+    const detectedCode = new AsYouType().getCountry();
+
+    const detectedCountry = getCountryByCode(detectedCode);
+
+    if (detectedCountry) {
+      setCountry(detectedCountry);
+    }
+
+    setPhone(formatted);
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -125,39 +146,30 @@ export function VslLeadForm({ open, onOpenChange }: VslLeadFormProps) {
                   />
                   {errors.email && <p className="mt-1 text-xs text-seal-light">{errors.email}</p>}
                 </div>
-
                 <div>
                   <div className="flex gap-2">
-                    <select
-                      value={country.code}
-                      onChange={(e) => {
-                        const next = COUNTRIES.find((c) => c.code === e.target.value);
-                        if (next) {
-                          setCountry(next);
-                        }
-                      }}
-                      className="w-[105px] shrink-0 rounded-xl border border-line bg-panel px-3 py-3 text-parchment focus:border-brass focus:outline-none"
+                    <div
+                      className={cn(
+                        "flex h-[50px] w-[82px] shrink-0 items-center justify-center",
+                        "rounded-xl border border-line bg-panel",
+                        "text-sm text-parchment"
+                      )}
                     >
-                      {COUNTRIES.map((c) => (
-                        <option key={c.code} value={c.code}>
-                          {c.flag} +{c.dial}
-                        </option>
-                      ))}
-                    </select>
-
-                    <div className="flex min-w-0 flex-1 overflow-hidden rounded-xl border border-line bg-panel focus-within:border-brass">
-                      <span className="flex shrink-0 items-center pl-4 text-parchment/70">
+                      <span className="text-lg">{country.flag}</span>
+                      <span className="ml-1 text-parchment/70">
                         +{country.dial}
                       </span>
-
-                      <input
-                        type="tel"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        placeholder="Телефон"
-                        className="min-w-0 flex-1 bg-transparent px-2 py-3 pr-4 text-parchment placeholder:text-parchment/40 focus:outline-none"
-                      />
                     </div>
+
+                    <input
+                      type="tel"
+                      value={phone}
+                      onChange={(e) => handlePhoneChange(e.target.value)}
+                      placeholder="+7 999 123-45-67"
+                      className="min-w-0 flex-1 rounded-xl border border-line bg-panel px-4 py-3 text-parchment placeholder:text-parchment/40 focus:border-brass focus:outline-none"
+                      autoComplete="tel"
+                      inputMode="tel"
+                    />
                   </div>
 
                   {errors.phone && (
@@ -166,6 +178,7 @@ export function VslLeadForm({ open, onOpenChange }: VslLeadFormProps) {
                     </p>
                   )}
                 </div>
+
 
 
                 {errors.form && <p className="text-xs text-seal-light">{errors.form}</p>}
