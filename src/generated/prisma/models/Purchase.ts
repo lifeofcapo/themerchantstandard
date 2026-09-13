@@ -28,6 +28,7 @@ export type PurchaseMinAggregateOutputType = {
   id: string | null
   email: string | null
   status: $Enums.PurchaseStatus | null
+  plan: string | null
   stripeSessionId: string | null
   stripeCustomerId: string | null
   stripeSubscriptionId: string | null
@@ -49,6 +50,7 @@ export type PurchaseMaxAggregateOutputType = {
   id: string | null
   email: string | null
   status: $Enums.PurchaseStatus | null
+  plan: string | null
   stripeSessionId: string | null
   stripeCustomerId: string | null
   stripeSubscriptionId: string | null
@@ -70,6 +72,7 @@ export type PurchaseCountAggregateOutputType = {
   id: number
   email: number
   status: number
+  plan: number
   stripeSessionId: number
   stripeCustomerId: number
   stripeSubscriptionId: number
@@ -93,6 +96,7 @@ export type PurchaseMinAggregateInputType = {
   id?: true
   email?: true
   status?: true
+  plan?: true
   stripeSessionId?: true
   stripeCustomerId?: true
   stripeSubscriptionId?: true
@@ -114,6 +118,7 @@ export type PurchaseMaxAggregateInputType = {
   id?: true
   email?: true
   status?: true
+  plan?: true
   stripeSessionId?: true
   stripeCustomerId?: true
   stripeSubscriptionId?: true
@@ -135,6 +140,7 @@ export type PurchaseCountAggregateInputType = {
   id?: true
   email?: true
   status?: true
+  plan?: true
   stripeSessionId?: true
   stripeCustomerId?: true
   stripeSubscriptionId?: true
@@ -229,6 +235,7 @@ export type PurchaseGroupByOutputType = {
   id: string
   email: string
   status: $Enums.PurchaseStatus
+  plan: string
   stripeSessionId: string
   stripeCustomerId: string | null
   stripeSubscriptionId: string | null
@@ -271,6 +278,7 @@ export type PurchaseWhereInput = {
   id?: Prisma.StringFilter<"Purchase"> | string
   email?: Prisma.StringFilter<"Purchase"> | string
   status?: Prisma.EnumPurchaseStatusFilter<"Purchase"> | $Enums.PurchaseStatus
+  plan?: Prisma.StringFilter<"Purchase"> | string
   stripeSessionId?: Prisma.StringFilter<"Purchase"> | string
   stripeCustomerId?: Prisma.StringNullableFilter<"Purchase"> | string | null
   stripeSubscriptionId?: Prisma.StringNullableFilter<"Purchase"> | string | null
@@ -292,6 +300,7 @@ export type PurchaseOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  plan?: Prisma.SortOrder
   stripeSessionId?: Prisma.SortOrder
   stripeCustomerId?: Prisma.SortOrderInput | Prisma.SortOrder
   stripeSubscriptionId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -317,6 +326,7 @@ export type PurchaseWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.PurchaseWhereInput | Prisma.PurchaseWhereInput[]
   email?: Prisma.StringFilter<"Purchase"> | string
   status?: Prisma.EnumPurchaseStatusFilter<"Purchase"> | $Enums.PurchaseStatus
+  plan?: Prisma.StringFilter<"Purchase"> | string
   stripeCustomerId?: Prisma.StringNullableFilter<"Purchase"> | string | null
   stripeSubscriptionId?: Prisma.StringNullableFilter<"Purchase"> | string | null
   ipAddress?: Prisma.StringNullableFilter<"Purchase"> | string | null
@@ -337,6 +347,7 @@ export type PurchaseOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  plan?: Prisma.SortOrder
   stripeSessionId?: Prisma.SortOrder
   stripeCustomerId?: Prisma.SortOrderInput | Prisma.SortOrder
   stripeSubscriptionId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -364,6 +375,7 @@ export type PurchaseScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Purchase"> | string
   email?: Prisma.StringWithAggregatesFilter<"Purchase"> | string
   status?: Prisma.EnumPurchaseStatusWithAggregatesFilter<"Purchase"> | $Enums.PurchaseStatus
+  plan?: Prisma.StringWithAggregatesFilter<"Purchase"> | string
   stripeSessionId?: Prisma.StringWithAggregatesFilter<"Purchase"> | string
   stripeCustomerId?: Prisma.StringNullableWithAggregatesFilter<"Purchase"> | string | null
   stripeSubscriptionId?: Prisma.StringNullableWithAggregatesFilter<"Purchase"> | string | null
@@ -385,6 +397,7 @@ export type PurchaseCreateInput = {
   id?: string
   email: string
   status?: $Enums.PurchaseStatus
+  plan?: string
   stripeSessionId: string
   stripeCustomerId?: string | null
   stripeSubscriptionId?: string | null
@@ -406,6 +419,7 @@ export type PurchaseUncheckedCreateInput = {
   id?: string
   email: string
   status?: $Enums.PurchaseStatus
+  plan?: string
   stripeSessionId: string
   stripeCustomerId?: string | null
   stripeSubscriptionId?: string | null
@@ -427,6 +441,7 @@ export type PurchaseUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumPurchaseStatusFieldUpdateOperationsInput | $Enums.PurchaseStatus
+  plan?: Prisma.StringFieldUpdateOperationsInput | string
   stripeSessionId?: Prisma.StringFieldUpdateOperationsInput | string
   stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -448,6 +463,7 @@ export type PurchaseUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumPurchaseStatusFieldUpdateOperationsInput | $Enums.PurchaseStatus
+  plan?: Prisma.StringFieldUpdateOperationsInput | string
   stripeSessionId?: Prisma.StringFieldUpdateOperationsInput | string
   stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -469,6 +485,7 @@ export type PurchaseCreateManyInput = {
   id?: string
   email: string
   status?: $Enums.PurchaseStatus
+  plan?: string
   stripeSessionId: string
   stripeCustomerId?: string | null
   stripeSubscriptionId?: string | null
@@ -490,6 +507,7 @@ export type PurchaseUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumPurchaseStatusFieldUpdateOperationsInput | $Enums.PurchaseStatus
+  plan?: Prisma.StringFieldUpdateOperationsInput | string
   stripeSessionId?: Prisma.StringFieldUpdateOperationsInput | string
   stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -511,6 +529,7 @@ export type PurchaseUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumPurchaseStatusFieldUpdateOperationsInput | $Enums.PurchaseStatus
+  plan?: Prisma.StringFieldUpdateOperationsInput | string
   stripeSessionId?: Prisma.StringFieldUpdateOperationsInput | string
   stripeCustomerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stripeSubscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -532,6 +551,7 @@ export type PurchaseCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  plan?: Prisma.SortOrder
   stripeSessionId?: Prisma.SortOrder
   stripeCustomerId?: Prisma.SortOrder
   stripeSubscriptionId?: Prisma.SortOrder
@@ -553,6 +573,7 @@ export type PurchaseMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  plan?: Prisma.SortOrder
   stripeSessionId?: Prisma.SortOrder
   stripeCustomerId?: Prisma.SortOrder
   stripeSubscriptionId?: Prisma.SortOrder
@@ -574,6 +595,7 @@ export type PurchaseMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  plan?: Prisma.SortOrder
   stripeSessionId?: Prisma.SortOrder
   stripeCustomerId?: Prisma.SortOrder
   stripeSubscriptionId?: Prisma.SortOrder
@@ -617,6 +639,7 @@ export type PurchaseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   id?: boolean
   email?: boolean
   status?: boolean
+  plan?: boolean
   stripeSessionId?: boolean
   stripeCustomerId?: boolean
   stripeSubscriptionId?: boolean
@@ -638,6 +661,7 @@ export type PurchaseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   email?: boolean
   status?: boolean
+  plan?: boolean
   stripeSessionId?: boolean
   stripeCustomerId?: boolean
   stripeSubscriptionId?: boolean
@@ -659,6 +683,7 @@ export type PurchaseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   email?: boolean
   status?: boolean
+  plan?: boolean
   stripeSessionId?: boolean
   stripeCustomerId?: boolean
   stripeSubscriptionId?: boolean
@@ -680,6 +705,7 @@ export type PurchaseSelectScalar = {
   id?: boolean
   email?: boolean
   status?: boolean
+  plan?: boolean
   stripeSessionId?: boolean
   stripeCustomerId?: boolean
   stripeSubscriptionId?: boolean
@@ -697,7 +723,7 @@ export type PurchaseSelectScalar = {
   updatedAt?: boolean
 }
 
-export type PurchaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "status" | "stripeSessionId" | "stripeCustomerId" | "stripeSubscriptionId" | "ipAddress" | "billingName" | "billingLine1" | "billingLine2" | "billingCity" | "billingState" | "billingPostalCode" | "billingCountry" | "discordInviteUrl" | "emailSentAt" | "createdAt" | "updatedAt", ExtArgs["result"]["purchase"]>
+export type PurchaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "status" | "plan" | "stripeSessionId" | "stripeCustomerId" | "stripeSubscriptionId" | "ipAddress" | "billingName" | "billingLine1" | "billingLine2" | "billingCity" | "billingState" | "billingPostalCode" | "billingCountry" | "discordInviteUrl" | "emailSentAt" | "createdAt" | "updatedAt", ExtArgs["result"]["purchase"]>
 
 export type $PurchasePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Purchase"
@@ -706,6 +732,7 @@ export type $PurchasePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     id: string
     email: string
     status: $Enums.PurchaseStatus
+    plan: string
     stripeSessionId: string
     stripeCustomerId: string | null
     stripeSubscriptionId: string | null
@@ -1147,6 +1174,7 @@ export interface PurchaseFieldRefs {
   readonly id: Prisma.FieldRef<"Purchase", 'String'>
   readonly email: Prisma.FieldRef<"Purchase", 'String'>
   readonly status: Prisma.FieldRef<"Purchase", 'PurchaseStatus'>
+  readonly plan: Prisma.FieldRef<"Purchase", 'String'>
   readonly stripeSessionId: Prisma.FieldRef<"Purchase", 'String'>
   readonly stripeCustomerId: Prisma.FieldRef<"Purchase", 'String'>
   readonly stripeSubscriptionId: Prisma.FieldRef<"Purchase", 'String'>

@@ -19,6 +19,7 @@ import type { VariantProps } from "class-variance-authority";
 type JoinButtonProps = React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     label?: string;
+    plan?: "monthly" | "yearly";
   };
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -37,6 +38,7 @@ function validateEmail(value: string): string | null {
 
 export function JoinButton({
   label = "Join The Merchant Standard — $49/mo",
+  plan = "monthly",
   className,
   variant,
   size = "lg",
@@ -81,7 +83,7 @@ export function JoinButton({
       const res = await fetch("/api/stripe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: trimmedEmail }),
+        body: JSON.stringify({ email: trimmedEmail, plan }),
       });
 
       const data = await res.json().catch(() => null);

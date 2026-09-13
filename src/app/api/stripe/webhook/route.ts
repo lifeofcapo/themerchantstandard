@@ -51,6 +51,7 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
     where: { stripeSessionId: session.id },
     update: {
       status: "PAID",
+      plan: session.metadata?.plan === "yearly" ? "yearly" : "monthly",
       stripeCustomerId: (session.customer as string) ?? undefined,
       stripeSubscriptionId: (session.subscription as string) ?? undefined,
       billingName: session.customer_details?.name ?? undefined,
@@ -65,6 +66,7 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
     },
     create: {
       email,
+      plan: session.metadata?.plan === "yearly" ? "yearly" : "monthly",
       stripeSessionId: session.id,
       stripeCustomerId: (session.customer as string) ?? undefined,
       stripeSubscriptionId: (session.subscription as string) ?? undefined,
@@ -78,6 +80,7 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
       billingCountry: address?.country ?? undefined,
       ipAddress:
         ipFromMetadata && ipFromMetadata !== "unknown" ? ipFromMetadata : undefined,
+        
     },
   });
 

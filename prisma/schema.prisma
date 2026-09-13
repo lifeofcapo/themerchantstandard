@@ -19,6 +19,7 @@ model Purchase {
   id                    String         @id @default(cuid())
   email                 String
   status                PurchaseStatus @default(PENDING)
+  plan                  String         @default("monthly")
 
   stripeSessionId       String         @unique
   stripeCustomerId      String?

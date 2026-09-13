@@ -76,6 +76,7 @@ export const PurchaseScalarFieldEnum = {
   id: 'id',
   email: 'email',
   status: 'status',
+  plan: 'plan',
   stripeSessionId: 'stripeSessionId',
   stripeCustomerId: 'stripeCustomerId',
   stripeSubscriptionId: 'stripeSubscriptionId',

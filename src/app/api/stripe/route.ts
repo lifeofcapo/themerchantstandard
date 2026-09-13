@@ -1,18 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { getStripe, isStripeConfigured, MERCHANT_STANDARD_PRICE_ID } from "@/lib/stripe";
+import { getStripe, isStripeConfigured, priceIdForPlan } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 
 const bodySchema = z.object({
   email: z.string().email(),
+  plan: z.enum(["monthly", "yearly"]).default("monthly"),
 });
 
 function getClientIp(req: NextRequest): string | null {
-  // Vercel/most proxies set x-forwarded-for as "client, proxy1, proxy2"
   const forwardedFor = req.headers.get("x-forwarded-for");
-  if (forwardedFor) {
-    return forwardedFor.split(",")[0].trim();
-  }
+  if (forwardedFor) return forwardedFor.split(",")[0].trim();
   const realIp = req.headers.get("x-real-ip");
   if (realIp) return realIp;
   return null;
@@ -21,10 +19,7 @@ function getClientIp(req: NextRequest): string | null {
 export async function POST(req: NextRequest) {
   if (!isStripeConfigured) {
     return NextResponse.json(
-      {
-        error: "unavailable",
-        message: "Payments are temporarily unavailable. Please try again later.",
-      },
+      { error: "unavailable", message: "Payments are temporarily unavailable. Please try again later." },
       { status: 503 }
     );
   }
@@ -36,7 +31,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Please enter a valid email." }, { status: 400 });
   }
 
-  const { email } = parsed.data;
+  const { email, plan } = parsed.data;
   const origin = req.headers.get("origin") ?? process.env.NEXT_PUBLIC_SITE_URL;
   const ipAddress = getClientIp(req);
 
@@ -45,7 +40,7 @@ export async function POST(req: NextRequest) {
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
       customer_email: email,
-      line_items: [{ price: MERCHANT_STANDARD_PRICE_ID, quantity: 1 }],
+      line_items: [{ price: priceIdForPlan(plan), quantity: 1 }],
       payment_method_types: ["card", "paypal"],
       billing_address_collection: "required",
       success_url: `${origin}/welcome?session_id={CHECKOUT_SESSION_ID}`,
@@ -53,6 +48,7 @@ export async function POST(req: NextRequest) {
       allow_promotion_codes: true,
       metadata: {
         ip_address: ipAddress ?? "unknown",
+        plan,
       },
     });
 
@@ -66,6 +62,7 @@ export async function POST(req: NextRequest) {
           email,
           stripeSessionId: session.id,
           status: "PENDING",
+          plan,
           ipAddress: ipAddress ?? undefined,
         },
       });
@@ -77,10 +74,7 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     console.error("Stripe checkout session creation failed:", err);
     return NextResponse.json(
-      {
-        error: "unavailable",
-        message: "Payments are temporarily unavailable. Please try again later.",
-      },
+      { error: "unavailable", message: "Payments are temporarily unavailable. Please try again later." },
       { status: 503 }
     );
   }

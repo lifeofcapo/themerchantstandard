@@ -1,7 +1,9 @@
 import Stripe from "stripe";
 
 export const isStripeConfigured = Boolean(
-  process.env.STRIPE_SECRET_KEY && process.env.STRIPE_PRICE_ID
+  process.env.STRIPE_SECRET_KEY &&
+    process.env.STRIPE_PRICE_ID &&
+    process.env.STRIPE_PRICE_ID_YEARLY
 );
 
 let stripeClient: Stripe | null = null;
@@ -19,3 +21,11 @@ export function getStripe(): Stripe {
 }
 
 export const MERCHANT_STANDARD_PRICE_ID = process.env.STRIPE_PRICE_ID ?? "";
+export const MERCHANT_STANDARD_PRICE_ID_YEARLY =
+  process.env.STRIPE_PRICE_ID_YEARLY ?? "";
+
+export type BillingPlan = "monthly" | "yearly";
+
+export function priceIdForPlan(plan: BillingPlan) {
+  return plan === "yearly" ? MERCHANT_STANDARD_PRICE_ID_YEARLY : MERCHANT_STANDARD_PRICE_ID;
+}
