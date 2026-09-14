@@ -14,14 +14,14 @@ export function SaltOnWound() {
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(ellipse 900px 500px at 50% -10%, rgba(124,36,48,0.18), transparent 70%)",
+            "radial-gradient(ellipse 900px 500px at 50% -10%, rgba(201,162,39,0.10), transparent 70%)",
         }}
       />
       <div className="ledger-grid absolute inset-0 opacity-40" />
 
       <div className="relative mx-auto max-w-3xl px-6">
         <div className="mb-12 flex flex-col items-center text-center">
-          <span className="mb-3 text-xs uppercase tracking-[0.2em] text-seal-light">
+          <span className="mb-3 text-xs uppercase tracking-[0.2em] text-brass">
             Sound Familiar?
           </span>
           <h2 className="font-display text-3xl text-parchment sm:text-4xl">
@@ -42,7 +42,7 @@ export function SaltOnWound() {
           ))}
         </ul>
 
-        <div className="mt-10 rounded-xl border border-seal/30 bg-seal/5 px-8 py-7 text-center">
+        <div className="mt-10 rounded-xl border border-line bg-panel/60 px-8 py-7 text-center">
           <p className="font-display text-lg italic text-parchment/70">
             &ldquo;Maybe this online thing just isn&apos;t for me.&rdquo;
           </p>

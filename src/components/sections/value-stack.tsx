@@ -17,7 +17,7 @@ export function ValueStack() {
   const [plan, setPlan] = React.useState<"monthly" | "yearly">("monthly");
 
   return (
-    <section className="relative overflow-hidden border-b border-line py-24">
+    <section id="price" className="relative overflow-hidden border-b border-line py-24">
       <div className="ledger-grid absolute inset-0 opacity-40" />
       <div
         aria-hidden
@@ -106,7 +106,10 @@ export function ValueStack() {
                   </>
                 ) : (
                   <>
-                    <p className="text-gradient-brass font-display text-4xl">$490</p>
+                    <div className="flex items-baseline justify-end gap-2">
+                      <span className="font-mono text-base text-parchment/35 line-through">$588</span>
+                      <p className="text-gradient-brass font-display text-4xl">$490</p>
+                    </div>
                     <p className="font-mono text-xs text-parchment/40">
                       / year <span className="text-brass">· 2 months free</span>
                     </p>
