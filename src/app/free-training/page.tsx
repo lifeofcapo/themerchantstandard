@@ -1,11 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { Play, ShieldCheck, Check, X, Lock, ArrowRight } from "lucide-react";
+import { Play, ShieldCheck, Check, X, Lock } from "lucide-react";
 import { Reveal } from "@/components/shared/reveal";
 import { Footer } from "@/components/sections/footer";
 import { VslLeadForm } from "@/components/shared/vsl-lead-form";
-import { JoinButton } from "@/components/shared/join-button";
+import { VslCtaButton } from "@/components/shared/vsl-cta-button";
 
 const pillars = [
   { title: "The Product", desc: "A ready Partner Catalog of real music products — you don't make a single one." },
@@ -20,18 +20,9 @@ const proofStats = [
 ];
 
 const reasons = [
-  {
-    title: "You never knew what to sell",
-    desc: "Every model needed money, a skill, or an audience you didn't have — so you bounced between dropshipping, crypto, whatever, and none of it stuck.",
-  },
-  {
-    title: "You had no product of your own",
-    desc: "Making the product is the hardest, slowest part. Most people quit right there.",
-  },
-  {
-    title: "You froze on what to say",
-    desc: "Someone finally showed interest, lowballed you, and you sat there overthinking the reply — or caved and gave it away for scraps.",
-  },
+  { title: "You never knew what to sell", desc: "Every model needed money, a skill, or an audience you didn't have — so you bounced between dropshipping, crypto, whatever, and none of it stuck." },
+  { title: "You had no product of your own", desc: "Making the product is the hardest, slowest part. Most people quit right there." },
+  { title: "You froze on what to say", desc: "Someone finally showed interest, lowballed you, and you sat there overthinking the reply — or caved and gave it away for scraps." },
 ];
 
 const everyoneElse = [
@@ -54,6 +45,10 @@ export default function FreeTrainingPage() {
   const [leadFormOpen, setLeadFormOpen] = React.useState(false);
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = React.useState(false);
+
+  function openForm() {
+    setLeadFormOpen(true);
+  }
 
   function handlePlay() {
     videoRef.current?.play();
@@ -88,13 +83,7 @@ export default function FreeTrainingPage() {
             </p>
           </Reveal>
 
-          <Reveal delay={190}>
-            <p className="mt-3 font-mono text-xs uppercase tracking-widest text-parchment/40">
-              This is a free 12-minute training. Watch to the end — I&apos;ll show you exactly how to start.
-            </p>
-          </Reveal>
-
-          <Reveal delay={240}>
+          <Reveal delay={200}>
             <div className="relative mx-auto mt-10 aspect-video w-full max-w-2xl overflow-hidden rounded-2xl border border-line bg-panel shadow-2xl shadow-black/40">
               <video
                 ref={videoRef}
@@ -117,6 +106,12 @@ export default function FreeTrainingPage() {
                   </span>
                 </button>
               )}
+            </div>
+          </Reveal>
+
+          <Reveal delay={250}>
+            <div className="mt-10">
+              <VslCtaButton label="Get Access — Apply Now" onClick={openForm} />
             </div>
           </Reveal>
         </div>
@@ -153,6 +148,12 @@ export default function FreeTrainingPage() {
               </Reveal>
             ))}
           </div>
+
+          <Reveal delay={280}>
+            <div className="mt-12 flex justify-center px-6 sm:px-0">
+              <VslCtaButton label="I'm Ready — Apply Now" onClick={openForm} />
+            </div>
+          </Reveal>
         </div>
       </section>
       <section className="border-b border-line py-20">
@@ -183,8 +184,15 @@ export default function FreeTrainingPage() {
               </Reveal>
             ))}
           </div>
+
+          <Reveal delay={280}>
+            <div className="mt-12 flex justify-center px-6 sm:px-0">
+              <VslCtaButton label="Get These Results — Apply Now" onClick={openForm} />
+            </div>
+          </Reveal>
         </div>
       </section>
+
       <section className="border-b border-line bg-panel/40 py-20">
         <div className="mx-auto max-w-2xl px-6 text-center">
           <Reveal>
@@ -202,8 +210,15 @@ export default function FreeTrainingPage() {
               a system, and an AI in their corner.
             </p>
           </Reveal>
+
+          <Reveal delay={200}>
+            <div className="mt-10 flex justify-center px-6 sm:px-0">
+              <VslCtaButton label="See It For Yourself — Apply Now" onClick={openForm} />
+            </div>
+          </Reveal>
         </div>
       </section>
+
       <section className="border-b border-line py-20">
         <div className="mx-auto max-w-2xl px-6">
           <Reveal>
@@ -235,8 +250,15 @@ export default function FreeTrainingPage() {
               It&apos;s not you. It&apos;s the setup. Change the setup, and everything changes.
             </p>
           </Reveal>
+
+          <Reveal delay={320}>
+            <div className="mt-8 flex justify-center px-6 sm:px-0">
+              <VslCtaButton label="Fix The Setup — Apply Now" onClick={openForm} />
+            </div>
+          </Reveal>
         </div>
       </section>
+
       <section className="border-b border-line bg-panel/40 py-20">
         <div className="mx-auto max-w-2xl px-6 text-center">
           <Reveal>
@@ -256,7 +278,7 @@ export default function FreeTrainingPage() {
           </Reveal>
 
           <Reveal delay={150}>
-            <div className="mx-auto mt-10 max-w-md rounded-xl border border-line bg-ink/60 px-6 py-6">
+            <div className="mx-auto mt-10 max-w-md rounded-xl border border-line bg-ink/60 px-6 py-6 text-left">
               <p className="font-mono text-xs uppercase tracking-widest text-brass">
                 Why Now
               </p>
@@ -269,8 +291,15 @@ export default function FreeTrainingPage() {
               </p>
             </div>
           </Reveal>
+
+          <Reveal delay={220}>
+            <div className="mt-10 flex justify-center px-6 sm:px-0">
+              <VslCtaButton label="Move First — Apply Now" onClick={openForm} />
+            </div>
+          </Reveal>
         </div>
       </section>
+
       <section className="border-b border-line py-20">
         <div className="mx-auto max-w-2xl px-6 text-center">
           <Reveal>
@@ -289,8 +318,15 @@ export default function FreeTrainingPage() {
               to an AI.
             </p>
           </Reveal>
+
+          <Reveal delay={200}>
+            <div className="mt-10 flex justify-center px-6 sm:px-0">
+              <VslCtaButton label="Learn From Us — Apply Now" onClick={openForm} />
+            </div>
+          </Reveal>
         </div>
       </section>
+
       <section className="border-b border-line bg-panel/40 py-20">
         <div className="mx-auto max-w-3xl px-6">
           <Reveal>
@@ -343,8 +379,15 @@ export default function FreeTrainingPage() {
               </p>
             </div>
           </Reveal>
+
+          <Reveal delay={400}>
+            <div className="mt-10 flex justify-center px-6 sm:px-0">
+              <VslCtaButton label="Get The Full Mechanism — Apply Now" onClick={openForm} />
+            </div>
+          </Reveal>
         </div>
       </section>
+
       <section className="relative overflow-hidden border-b border-line py-24">
         <div className="bg-gradient-wash absolute inset-0 opacity-80" />
         <div className="ledger-grid absolute inset-0 opacity-50" />
@@ -391,19 +434,16 @@ export default function FreeTrainingPage() {
           </Reveal>
 
           <Reveal delay={260}>
-            <div className="mt-10 text-center">
-              <JoinButton
-                size="lg"
-                label="JOIN THE MERCHANT STANDARD → $49/mo"
-                className="mx-auto"
-              />
-              <p className="mt-3 flex items-center justify-center gap-2 font-mono text-xs uppercase tracking-widest text-parchment/35">
-                <Lock className="h-3 w-3" /> Cancel anytime
-              </p>
+            <div className="mt-10 flex justify-center px-6 sm:px-0">
+              <VslCtaButton label="Skip The Struggle — Apply Now" onClick={openForm} />
             </div>
+            <p className="mt-3 flex items-center justify-center gap-2 font-mono text-xs uppercase tracking-widest text-parchment/35">
+              <Lock className="h-3 w-3" /> Your data is safe with us
+            </p>
           </Reveal>
         </div>
       </section>
+
       <section className="py-24">
         <div className="mx-auto max-w-xl px-6 text-center">
           <Reveal>
@@ -445,21 +485,12 @@ export default function FreeTrainingPage() {
           </Reveal>
 
           <Reveal delay={220}>
-            <div className="mt-8">
-              <JoinButton size="lg" label="🔥 JOIN THE MERCHANT STANDARD → $49/mo" />
+            <div className="mt-8 flex justify-center px-6 sm:px-0">
+              <VslCtaButton label="🔥 Apply Now" onClick={openForm} />
             </div>
             <p className="mt-4 font-display text-xl italic text-brass-light">
               Exit the default. Set your standard.
             </p>
-          </Reveal>
-
-          <Reveal delay={280}>
-            <button
-              onClick={() => setLeadFormOpen(true)}
-              className="mt-10 inline-flex items-center gap-1.5 text-sm text-parchment/45 underline-offset-4 hover:text-parchment/70 hover:underline"
-            >
-              Not ready yet? Get the details by email <ArrowRight className="h-3.5 w-3.5" />
-            </button>
           </Reveal>
         </div>
       </section>

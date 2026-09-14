@@ -1,13 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { Loader2, ShieldCheck } from "lucide-react";
-import { AsYouType, parsePhoneNumberFromString } from "libphonenumber-js";
+import Image from "next/image";
+import { Loader2 } from "lucide-react";
 import {
-  COUNTRIES,
-  getCountryByCode,
-  type Country,
-} from "@/lib/countries";
+  AsYouType,
+  parsePhoneNumberFromString,
+  type CountryCode,
+} from "libphonenumber-js";
+import { COUNTRIES, getCountryByCode, type Country } from "@/lib/countries";
 import {
   Dialog,
   DialogContent,
@@ -48,28 +49,27 @@ export function VslLeadForm({ open, onOpenChange }: VslLeadFormProps) {
 
   function validate() {
     const next: Record<string, string> = {};
-    if (!name.trim()) next.name = "Введите имя";
-    if (!EMAIL_REGEX.test(email.trim())) next.email = "Введите корректный e-mail";
+    if (!name.trim()) next.name = "Type your name";
+    if (!EMAIL_REGEX.test(email.trim())) next.email = "Type correct e-mail";
     const digits = phone.replace(/\D/g, "");
-    if (digits.length < 6 || digits.length > 14) next.phone = "Введите корректный номер телефона";
-    if (!agreed) next.agreed = "Нужно согласие с условиями";
+    if (digits.length < 6 || digits.length > 14) next.phone = "Type correct phone number";
+    if (!agreed) next.agreed = "Agreement to the terms is required.";
     setErrors(next);
     return Object.keys(next).length === 0;
   }
 
   function handlePhoneChange(value: string) {
-    setPhone(value);
-
-    const formatted = new AsYouType().input(value);
-    const detectedCode = new AsYouType().getCountry();
-
-    const detectedCountry = getCountryByCode(detectedCode);
-
-    if (detectedCountry) {
-      setCountry(detectedCountry);
-    }
-
+    const formatter = new AsYouType();
+    const formatted = formatter.input(value);
     setPhone(formatted);
+
+    if (value.trim().startsWith("+")) {
+      const detectedCode = formatter.getCountry();
+      const detectedCountry = getCountryByCode(detectedCode);
+      if (detectedCountry) {
+        setCountry(detectedCountry);
+      }
+    }
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -78,23 +78,43 @@ export function VslLeadForm({ open, onOpenChange }: VslLeadFormProps) {
 
     setLoading(true);
     try {
+      const rawDigits = phone.replace(/\D/g, "");
+      const candidate = phone.trim().startsWith("+")
+        ? phone
+        : `+${country.dial}${rawDigits}`;
+
+      let finalPhone = candidate;
+      try {
+        const parsed = parsePhoneNumberFromString(
+          candidate,
+          country.code as CountryCode
+        );
+        if (parsed?.isValid()) {
+          finalPhone = parsed.number;
+        }
+      } catch {
+      }
+
       const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: name.trim(),
           email: email.trim(),
-          phone: `+${country.dial}${phone.replace(/\D/g, "")}`,
+          phone: finalPhone,
+          country: country.code,
+          countryDial: country.dial,
+          countryFlag: country.flag,
         }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => null);
-        setErrors({ form: data?.error ?? "Что-то пошло не так, попробуйте ещё раз." });
+        setErrors({ form: data?.error ?? "Something went wrong. Try again." });
         return;
       }
       setDone(true);
     } catch {
-      setErrors({ form: "Что-то пошло не так, попробуйте ещё раз." });
+      setErrors({ form: "Something went wrong. Try again." });
     } finally {
       setLoading(false);
     }
@@ -102,36 +122,42 @@ export function VslLeadForm({ open, onOpenChange }: VslLeadFormProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md overflow-hidden rounded-2xl border border-line bg-ink p-0">
-        <div className="relative px-6 pb-8 pt-8">
+      <DialogContent className="max-h-[90vh] w-[calc(100vw-2rem)] max-w-md overflow-y-auto rounded-2xl border border-line bg-ink p-0 sm:w-full">
+        <div className="relative px-5 pb-6 pt-6 sm:px-6 sm:pb-8 sm:pt-8">
           <div className="ledger-grid absolute inset-0 opacity-30" />
 
           <div className="relative">
             <DialogHeader className="mb-1 text-center">
-              <span className="wax-seal mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full">
-                <ShieldCheck className="h-5 w-5 text-parchment" />
+              <span className="wax-seal mx-auto mb-3 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full sm:mb-4">
+                <Image
+                  src="/logo1.png"
+                  alt="The Merchant Standard"
+                  width={32}
+                  height={32}
+                  className="h-8 w-8 object-contain"
+                />
               </span>
-              <DialogTitle className="text-balance font-display text-2xl text-parchment">
-                Заявка на вход в{" "}
+              <DialogTitle className="text-balance font-display text-xl text-parchment sm:text-2xl">
+                application for entry into{" "}
                 <span className="text-gradient-brass">The Merchant Standard</span>
               </DialogTitle>
             </DialogHeader>
-            <p className="mb-6 text-center text-sm text-parchment/55">
-              Оставьте контакты — мы свяжемся с вами и расскажем следующий шаг.
+            <p className="mb-5 text-center text-xs text-parchment/55 sm:mb-6 sm:text-sm">
+              Leave your contact details — we&rsquo;ll get in touch and explain the next step.
             </p>
 
             {done ? (
               <p className="rounded-xl border border-brass/30 bg-brass/5 px-6 py-4 text-center text-parchment">
-                Заявка принята — мы свяжемся с вами в ближайшее время.
+                Your request has been received — we will contact you shortly.
               </p>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-2.5 sm:gap-3">
                 <div>
                   <input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Имя"
-                    className="w-full rounded-xl border border-line bg-panel px-4 py-3 text-parchment placeholder:text-parchment/40 focus:border-brass focus:outline-none"
+                    placeholder="Jane Smith"
+                    className="w-full rounded-xl border border-line bg-panel px-4 py-2.5 text-sm text-parchment placeholder:text-parchment/40 focus:border-brass focus:outline-none sm:py-3 sm:text-base"
                   />
                   {errors.name && <p className="mt-1 text-xs text-seal-light">{errors.name}</p>}
                 </div>
@@ -141,24 +167,24 @@ export function VslLeadForm({ open, onOpenChange }: VslLeadFormProps) {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Почта"
-                    className="w-full rounded-xl border border-line bg-panel px-4 py-3 text-parchment placeholder:text-parchment/40 focus:border-brass focus:outline-none"
+                    placeholder="email@gmail.com"
+                    className="w-full rounded-xl border border-line bg-panel px-4 py-2.5 text-sm text-parchment placeholder:text-parchment/40 focus:border-brass focus:outline-none sm:py-3 sm:text-base"
                   />
                   {errors.email && <p className="mt-1 text-xs text-seal-light">{errors.email}</p>}
                 </div>
+
                 <div>
                   <div className="flex gap-2">
                     <div
                       className={cn(
-                        "flex h-[50px] w-[82px] shrink-0 items-center justify-center",
+                        "flex h-[42px] w-[74px] shrink-0 items-center justify-center gap-1",
                         "rounded-xl border border-line bg-panel",
-                        "text-sm text-parchment"
+                        "text-sm text-parchment",
+                        "sm:h-[50px] sm:w-[82px]"
                       )}
                     >
                       <span className="text-lg">{country.flag}</span>
-                      <span className="ml-1 text-parchment/70">
-                        +{country.dial}
-                      </span>
+                      <span className="text-parchment/70">+{country.dial}</span>
                     </div>
 
                     <input
@@ -166,32 +192,25 @@ export function VslLeadForm({ open, onOpenChange }: VslLeadFormProps) {
                       value={phone}
                       onChange={(e) => handlePhoneChange(e.target.value)}
                       placeholder="+7 999 123-45-67"
-                      className="min-w-0 flex-1 rounded-xl border border-line bg-panel px-4 py-3 text-parchment placeholder:text-parchment/40 focus:border-brass focus:outline-none"
+                      className="min-w-0 flex-1 rounded-xl border border-line bg-panel px-4 py-2.5 text-sm text-parchment placeholder:text-parchment/40 focus:border-brass focus:outline-none sm:py-3 sm:text-base"
                       autoComplete="tel"
                       inputMode="tel"
                     />
                   </div>
-
-                  {errors.phone && (
-                    <p className="mt-1 text-xs text-seal-light">
-                      {errors.phone}
-                    </p>
-                  )}
+                  {errors.phone && <p className="mt-1 text-xs text-seal-light">{errors.phone}</p>}
                 </div>
-
-
 
                 {errors.form && <p className="text-xs text-seal-light">{errors.form}</p>}
 
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="btn-shine mt-2 h-14 rounded-full bg-gradient-to-r from-brass to-brass-light text-base font-bold text-ink"
+                  className="btn-shine mt-1 h-12 rounded-full bg-gradient-to-r from-brass to-brass-light text-sm font-bold text-ink sm:mt-2 sm:h-14 sm:text-base"
                 >
-                  {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : "Отправить заявку"}
+                  {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : "Submit a request"}
                 </Button>
 
-                <label className="mt-2 flex items-start gap-3 text-xs text-parchment/55">
+                <label className="mt-2 flex items-start gap-3 text-[11px] leading-relaxed text-parchment/55 sm:text-xs">
                   <input
                     type="checkbox"
                     checked={agreed}
@@ -202,14 +221,14 @@ export function VslLeadForm({ open, onOpenChange }: VslLeadFormProps) {
                     )}
                   />
                   <span>
-                    Отправляя заявку, вы соглашаетесь на обработку данных и получение
-                    сообщений по email/телефону в рамках заявки. См.{" "}
+                    By submitting the application, you agree to the processing of data and receiving
+                    messages via email/phone within the scope of the application. See{" "}
                     <a href="/privacy" className="underline hover:text-parchment">
-                      Политику конфиденциальности
+                      Privacy Policy
                     </a>{" "}
-                    и{" "}
+                    and{" "}
                     <a href="/terms" className="underline hover:text-parchment">
-                      Условия использования
+                      Terms of Use
                     </a>
                     .
                   </span>

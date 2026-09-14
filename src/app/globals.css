@@ -227,3 +227,27 @@ h1, h2, h3, h4 {
     0 16px 40px rgba(0, 0, 0, 0.65),
     inset 0 1px 0 rgba(243, 239, 228, 0.1);
 }
+
+@keyframes cta-pulse-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(201, 162, 39, 0.4),
+      0 8px 28px -8px rgba(201, 162, 39, 0.5);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(201, 162, 39, 0.65),
+      0 8px 38px -6px rgba(201, 162, 39, 0.85);
+  }
+}
+
+.btn-cta-glow {
+  animation: cta-pulse-glow 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-cta-glow {
+    animation: none;
+  }
+}
