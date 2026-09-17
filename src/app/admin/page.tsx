@@ -4,10 +4,10 @@ import { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { AdminDataTable } from "@/components/admin/admin-data-table";
 
-export const metadata: Metadata = {
-  title: "...",
-  robots: { index: false, follow: false },
-};
+//export const metadata: Metadata = {
+//  title: "...",
+//  robots: { index: false, follow: false },
+//};
 
 export default async function AdminPage() {
   const [leads, purchases] = await Promise.all([
