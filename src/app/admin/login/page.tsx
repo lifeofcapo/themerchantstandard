@@ -2,6 +2,12 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "...",
+  robots: { index: false, follow: false },
+};
 
 export default function AdminLoginPage() {
   const [password, setPassword] = React.useState("");
