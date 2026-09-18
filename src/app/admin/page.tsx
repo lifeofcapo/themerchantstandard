@@ -5,10 +5,20 @@ import { AdminDataTable } from "@/components/admin/admin-data-table";
 import { fullCountryName } from "@/lib/country-name";
 
 export default async function AdminPage() {
-  const [leads, purchases] = await Promise.all([
+  const [leadsRaw, purchasesRaw] = await Promise.all([
     prisma.lead.findMany({ orderBy: { createdAt: "desc" }, take: 200 }),
     prisma.purchase.findMany({ orderBy: { createdAt: "desc" }, take: 200 }),
   ]);
+
+  const purchases = purchasesRaw.map((p) => ({
+    ...p,
+    billingCountry: fullCountryName(p.billingCountry),
+  }));
+
+  const leads = leadsRaw.map((l) => ({
+    ...l,
+    country: fullCountryName(l.country),
+  }));
 
   return (
     <main className="mx-auto max-w-6xl px-6 py-12 text-parchment">
@@ -24,7 +34,7 @@ export default async function AdminPage() {
             { key: "email", label: "Email" },
             { key: "status", label: "Status" },
             { key: "plan", label: "Plan" },
-            { key: "billingCountry", label: "Country", format: fullCountryName },
+            { key: "billingCountry", label: "Country" },
             { key: "billingState", label: "Region" },
             { key: "billingCity", label: "City" },
             { key: "ipAddress", label: "IP" },
@@ -43,7 +53,7 @@ export default async function AdminPage() {
             { key: "name", label: "Name" },
             { key: "email", label: "Email" },
             { key: "phone", label: "Phone" },
-            { key: "country", label: "Country", format: fullCountryName },
+            { key: "country", label: "Country" },
             { key: "ipAddress", label: "IP" },
             { key: "createdAt", label: "Date" },
           ]}

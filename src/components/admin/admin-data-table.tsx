@@ -7,7 +7,6 @@ import * as XLSX from "xlsx";
 type Column<T> = {
   key: keyof T;
   label: string;
-  format?: (value: T[keyof T]) => string;
 };
 
 function sanitizeForExcel(value: string): string {
@@ -16,7 +15,6 @@ function sanitizeForExcel(value: string): string {
 
 function getDisplay<T extends Record<string, unknown>>(row: T, col: Column<T>): string {
   const raw = row[col.key];
-  if (col.format) return col.format(raw);
   return raw instanceof Date ? raw.toLocaleString() : String(raw ?? "—");
 }
 
