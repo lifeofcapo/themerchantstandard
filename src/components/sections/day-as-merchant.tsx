@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import { JoinButton } from "@/components/shared/join-button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -10,18 +11,24 @@ const slides = [
     emoji: "📲",
     headline: "Wakes up, checks Discord.",
     body: "Three new artist replies overnight. While everyone else was asleep, the pipeline was working.",
+    accent: "from-slate-700/40 via-slate-900/60 to-ink",
+    image: "/images/day-in-standard/01-morning.jpg",
   },
   {
     step: "02",
     emoji: "📦",
     headline: "Opens Partner Catalog, picks the products.",
     body: "Finds the right fit for each artist — didn't make a single beat himself.",
+    accent: "from-amber-900/30 via-slate-900/60 to-ink",
+    image: "/images/day-in-standard/02-catalog.jpg",
   },
   {
     step: "03",
     emoji: "🤖",
     headline: "Buyer lowballs.",
     body: "Screenshots the chat, drops it in Discord. Merchant AI hands him the exact reply to send.",
+    accent: "from-sky-900/30 via-slate-900/60 to-ink",
+    image: "/images/day-in-standard/03-negotiation.jpg",
   },
   {
     step: "04",
@@ -29,26 +36,39 @@ const slides = [
     headline: "Deal closed. $1,150 exclusive.",
     body: "Sends the file, logs the payment. One conversation, one standard held.",
     highlight: true,
+    accent: "from-brass/25 via-slate-900/60 to-ink",
+    image: "/images/day-in-standard/04-closed.jpg",
   },
   {
     step: "05",
     emoji: "🏆",
     headline: "Drops the win in #wins.",
     body: "The room reacts. He's not doing this alone — and the next deal's already in the pipeline.",
+    accent: "from-emerald-900/25 via-slate-900/60 to-ink",
+    image: "/images/day-in-standard/05-community.jpg",
   },
   {
     step: "06",
     emoji: "🔒",
     headline: "Closes the laptop by noon.",
     body: "That's the job. Six months ago he'd never sold anything.",
+    accent: "from-slate-800/35 via-slate-900/60 to-ink",
+    image: "/images/day-in-standard/06-done.jpg",
   },
 ];
 
 export function DayAsMerchant() {
   const [active, setActive] = React.useState(0);
+  const [imageOk, setImageOk] = React.useState(true);
 
-  const prev = () => setActive((i) => (i === 0 ? slides.length - 1 : i - 1));
-  const next = () => setActive((i) => (i === slides.length - 1 ? 0 : i + 1));
+  const prev = () => {
+    setImageOk(true);
+    setActive((i) => (i === 0 ? slides.length - 1 : i - 1));
+  };
+  const next = () => {
+    setImageOk(true);
+    setActive((i) => (i === slides.length - 1 ? 0 : i + 1));
+  };
 
   const slide = slides[active];
 
@@ -66,32 +86,47 @@ export function DayAsMerchant() {
             A normal day for a{" "}
             <span className="text-gradient-brass">merchant inside The Standard</span>
           </h2>
-          <p className="mt-4 font-display text-base italic text-parchment/50">
+          <p className="mt-4 font-accent text-base italic text-parchment/50">
             Six months ago he&apos;d never sold anything. Here&apos;s his Tuesday now 👇
           </p>
         </div>
+
         <div className="relative mx-auto max-w-2xl">
           <div
             className={[
-              "relative overflow-hidden rounded-2xl border bg-panel p-10 text-center transition-all duration-300",
+              "relative overflow-hidden rounded-2xl border bg-panel text-center transition-all duration-300",
               slide.highlight
                 ? "border-brass/50 shadow-[0_0_60px_-10px_rgba(201,162,39,0.35)]"
                 : "border-line",
             ].join(" ")}
           >
+            {imageOk && (
+              <div className="absolute inset-0">
+                <Image
+                  src={slide.image}
+                  alt=""
+                  fill
+                  className="object-cover opacity-25"
+                  onError={() => setImageOk(false)}
+                />
+              </div>
+            )}
+            <div
+              className={`absolute inset-0 bg-gradient-to-b ${slide.accent}`}
+            />
             {slide.highlight && (
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0"
                 style={{
                   background:
-                    "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,162,39,0.12), transparent 70%)",
+                    "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,162,39,0.18), transparent 70%)",
                 }}
               />
             )}
 
-            <div className="relative">
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-parchment/30">
+            <div className="relative px-10 py-12">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-parchment/40">
                 Step {slide.step}
               </p>
               <div className="mt-4 text-5xl">{slide.emoji}</div>
@@ -103,11 +138,12 @@ export function DayAsMerchant() {
               >
                 {slide.headline}
               </h3>
-              <p className="mt-4 text-base leading-relaxed text-parchment/60">
+              <p className="mt-4 text-base leading-relaxed text-parchment/70">
                 {slide.body}
               </p>
             </div>
           </div>
+
           <div className="mt-8 flex items-center justify-center gap-6">
             <button
               onClick={prev}
@@ -120,18 +156,18 @@ export function DayAsMerchant() {
               {slides.map((_, i) => (
                 <button
                   key={i}
-                  onClick={() => setActive(i)}
+                  onClick={() => {
+                    setImageOk(true);
+                    setActive(i);
+                  }}
                   aria-label={`Go to slide ${i + 1}`}
                   className={[
                     "h-1.5 rounded-full transition-all duration-300",
-                    i === active
-                      ? "w-6 bg-brass"
-                      : "w-1.5 bg-parchment/20 hover:bg-parchment/40",
+                    i === active ? "w-6 bg-brass" : "w-1.5 bg-parchment/20 hover:bg-parchment/40",
                   ].join(" ")}
                 />
               ))}
             </div>
-
             <button
               onClick={next}
               aria-label="Next"
@@ -140,9 +176,10 @@ export function DayAsMerchant() {
               <ChevronRight className="h-4 w-4" />
             </button>
           </div>
-        </div>
-        <div className="mt-14 flex justify-center">
-          <JoinButton label="I want that → Join" />
+
+          <div className="mt-8 flex justify-center px-6 sm:px-0">
+            <JoinButton label="Get This Life — Join Now" />
+          </div>
         </div>
       </div>
     </section>

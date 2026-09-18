@@ -121,7 +121,7 @@ export function JoinButton({
         variant={variant}
         size={size}
         className={cn(
-          "btn-shine",
+          "btn-shine", "btn-shine btn-cta-glow",
           shining && "btn-shine-active",
           size === "lg" &&
             "h-auto min-h-14 rounded-full px-8 py-4 text-center text-base font-semibold whitespace-normal shadow-lg shadow-brass/10 sm:min-h-14 sm:px-8 sm:py-3 sm:text-base",

@@ -1,25 +1,31 @@
 import type { Metadata } from "next";
-import { Fraunces, Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Manrope } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "900"],
-  style: ["normal", "italic"],
-});
 
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-inter",
-  subsets: ["latin"],
+const manrope = Manrope({
+  variable: "--font-fraunces", 
+  subsets: ["latin"],         
   weight: ["400", "500", "600", "700", "800"],
 });
 
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+const rivieraNights = localFont({
+  variable: "--font-inter", 
+  src: [
+    { path: "../../public/fonts/RivieraNightsTrial-Regular.otf", weight: "400", style: "normal" },
+    { path: "../../public/fonts/RivieraNightsTrial-Medium.otf", weight: "500", style: "normal" },
+    { path: "../../public/fonts/RivieraNightsTrial-Bold.otf", weight: "700", style: "normal" },
+  ],
+});
+
+const moisette = localFont({
+  variable: "--font-accent",
+  src: [
+    { path: "../../public/fonts/Moisette-Regular.otf", weight: "400", style: "normal" },
+    { path: "../../public/fonts/Moisette-Italic.otf", weight: "400", style: "italic" },
+  ],
 });
 
 const SITE_URL = "https://themerchantstandard.com";
@@ -91,7 +97,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${jakarta.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${manrope.variable} ${rivieraNights.variable} ${moisette.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-ink text-parchment">
         <script
