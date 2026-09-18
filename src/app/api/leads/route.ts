@@ -2,11 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { getClientIp, getGeo } from "@/lib/request-info";
+import { validateLeadInput } from "@/lib/lead-validation";
 
 const bodySchema = z.object({
   name: z.string().min(1).max(120),
-  email: z.string().email(),
-  phone: z.string().min(5).max(30),
+  email: z.string().min(1).max(200),
+  phone: z.string().min(1).max(40),
 });
 
 export async function POST(req: NextRequest) {
@@ -14,7 +15,12 @@ export async function POST(req: NextRequest) {
   const parsed = bodySchema.safeParse(body);
 
   if (!parsed.success) {
-    return NextResponse.json({ error: "Проверьте правильность введённых данных." }, { status: 400 });
+    return NextResponse.json({ error: "Please check your input." }, { status: 400 });
+  }
+
+  const validationError = validateLeadInput(parsed.data);
+  if (validationError) {
+    return NextResponse.json({ error: validationError }, { status: 400 });
   }
 
   const { name, email, phone } = parsed.data;
@@ -24,9 +30,9 @@ export async function POST(req: NextRequest) {
   try {
     await prisma.lead.create({
       data: {
-        name,
-        email,
-        phone,
+        name: name.trim(),
+        email: email.trim().toLowerCase(),
+        phone: phone.trim(),
         ipAddress: ipAddress ?? undefined,
         country: geo.country ?? undefined,
         region: geo.region ?? undefined,

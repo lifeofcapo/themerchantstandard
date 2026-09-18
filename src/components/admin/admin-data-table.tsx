@@ -7,7 +7,18 @@ import * as XLSX from "xlsx";
 type Column<T> = {
   key: keyof T;
   label: string;
+  format?: (value: T[keyof T]) => string;
 };
+
+function sanitizeForExcel(value: string): string {
+  return /^[=+\-@]/.test(value) ? `'${value}` : value;
+}
+
+function getDisplay<T extends Record<string, unknown>>(row: T, col: Column<T>): string {
+  const raw = row[col.key];
+  if (col.format) return col.format(raw);
+  return raw instanceof Date ? raw.toLocaleString() : String(raw ?? "—");
+}
 
 type AdminDataTableProps<T extends Record<string, unknown>> = {
   title: string;
@@ -33,7 +44,7 @@ export function AdminDataTable<T extends Record<string, unknown>>({
       setCopiedCell(cellId);
       setTimeout(() => setCopiedCell((c) => (c === cellId ? null : c)), 1200);
     } catch {
-      // clipboard недоступен (например, не https) — молча игнорируем
+      // clipboard недоступен — молча игнорируем
     }
   }
 
@@ -50,15 +61,12 @@ export function AdminDataTable<T extends Record<string, unknown>>({
     }
   }
 
+  // Теперь эта функция — внутри компонента, у неё есть доступ
+  // к rows/columns/title/fileName из пропсов.
   function exportToExcel() {
     const data = rows.map((row) =>
       Object.fromEntries(
-        columns.map((c) => [
-          c.label,
-          row[c.key] instanceof Date
-            ? (row[c.key] as Date).toLocaleString()
-            : String(row[c.key] ?? ""),
-        ])
+        columns.map((c) => [c.label, sanitizeForExcel(getDisplay(row, c))])
       )
     );
     const worksheet = XLSX.utils.json_to_sheet(data);
@@ -119,10 +127,8 @@ export function AdminDataTable<T extends Record<string, unknown>>({
               return (
                 <tr key={rowId} className="border-t border-line">
                   {columns.map((c) => {
-                    const raw = row[c.key];
-                    const display =
-                      raw instanceof Date ? raw.toLocaleString() : String(raw ?? "—");
-                    const isEmail = c.key === emailKey && raw;
+                    const display = getDisplay(row, c);
+                    const isEmail = c.key === emailKey && row[c.key];
                     const cellId = `${rowId}-${String(c.key)}`;
 
                     if (isEmail) {

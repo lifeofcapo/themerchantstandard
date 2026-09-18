@@ -1,13 +1,8 @@
 export const dynamic = "force-dynamic";
-import { Metadata } from "next";
 
 import { prisma } from "@/lib/prisma";
 import { AdminDataTable } from "@/components/admin/admin-data-table";
-
-//export const metadata: Metadata = {
-//  title: "...",
-//  robots: { index: false, follow: false },
-//};
+import { fullCountryName } from "@/lib/country-name";
 
 export default async function AdminPage() {
   const [leads, purchases] = await Promise.all([
@@ -21,35 +16,36 @@ export default async function AdminPage() {
 
       <section className="mb-14">
         <AdminDataTable
-          title="Paid cliens"
+          title="Paid clients"
           rows={purchases}
           emailKey="email"
           fileName="purchases"
           columns={[
             { key: "email", label: "Email" },
-            { key: "status", label: "Статус" },
-            { key: "billingCountry", label: "Страна" },
+            { key: "status", label: "Status" },
+            { key: "plan", label: "Plan" },
+            { key: "billingCountry", label: "Country", format: fullCountryName },
+            { key: "billingState", label: "Region" },
+            { key: "billingCity", label: "City" },
             { key: "ipAddress", label: "IP" },
-            { key: "createdAt", label: "Дата" },
+            { key: "createdAt", label: "Date" },
           ]}
         />
       </section>
 
       <section>
         <AdminDataTable
-          title="Заявки с /join"
+          title="Applications from /free-training"
           rows={leads}
           emailKey="email"
           fileName="leads"
           columns={[
-            { key: "name", label: "Имя" },
+            { key: "name", label: "Name" },
             { key: "email", label: "Email" },
-            { key: "phone", label: "Телефон" },
-            { key: "country", label: "Страна" },
-            { key: "region", label: "Регион" },
-            { key: "city", label: "Город" },
+            { key: "phone", label: "Phone" },
+            { key: "country", label: "Country", format: fullCountryName },
             { key: "ipAddress", label: "IP" },
-            { key: "createdAt", label: "Дата" },
+            { key: "createdAt", label: "Date" },
           ]}
         />
       </section>
