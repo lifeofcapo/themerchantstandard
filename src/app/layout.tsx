@@ -22,7 +22,7 @@ const plexMono = IBM_Plex_Mono({
   weight: ["400", "500", "600"],
 });
 
-const SITE_URL = "https://themerchantstandard.vercel.app";
+const SITE_URL = "https://themerchantstandard.com";
 const SITE_NAME = "TheMerchantStandard";
 const DEFAULT_DESCRIPTION =
   "A private trading house for beat sellers. Get a ready product catalog, an AI that closes deals with you, and the exact system to sell music products online — no beats required. $49/month.";

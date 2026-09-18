@@ -22,8 +22,8 @@ export default function WelcomePage() {
       </p>
       <p className="mt-2 max-w-md text-sm text-parchment/40">
         Didn&apos;t get it after 10 minutes? Check spam, or email us at{" "}
-        <a href="mailto:info@merchantstandard.com" className="text-brass hover:underline">
-          info@merchantstandard.com
+        <a href="mailto:info@themerchantstandard.com" className="text-brass hover:underline">
+          info@themerchantstandard.com
         </a>
         .
       </p>

@@ -65,7 +65,7 @@ export default function ContentModerationPolicyPage() {
         <p>
           If you see content that violates this policy, report it to a moderator in
           the Discord or email{" "}
-          <a href="mailto:info@merchantstandard.com">info@merchantstandard.com</a>. We
+          <a href="mailto:info@themerchantstandard.com">info@themerchantstandard.com</a>. We
           review reports as promptly as we can.
         </p>
       </section>

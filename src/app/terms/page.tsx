@@ -123,7 +123,7 @@ export default function TermsPage() {
         <h2>10. Contact</h2>
         <p>
           Questions about these Terms? Email us at{" "}
-          <a href="mailto:info@merchantstandard.com">info@merchantstandard.com</a>.
+          <a href="mailto:info@themerchantstandard.com">info@themerchantstandard.com</a>.
         </p>
       </section>
     </LegalPageLayout>
