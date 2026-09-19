@@ -111,9 +111,9 @@ export function FAQ() {
                 className="
                   px-6
                   text-center
-                  text-sm
+                  text-base
                   leading-7
-                  text-parchment/60
+                  text-parchment/80
                   sm:px-12
                   sm:text-[15px]
                 "

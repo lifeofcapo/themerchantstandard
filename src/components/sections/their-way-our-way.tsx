@@ -32,11 +32,11 @@ export function TheirWayOurWay() {
 
         <div className="grid gap-6 md:grid-cols-2">
           <div className="rounded-md border border-line bg-ink p-8">
-            <h3 className="font-display text-xl text-parchment/50">Their Way</h3>
+            <h3 className="font-display text-xl text-parchment/65">Their Way</h3>
             <ul className="mt-6 flex flex-col gap-4">
               {theirWay.map((t) => (
-                <li key={t} className="flex items-start gap-3 text-sm text-parchment/40">
-                  <X className="mt-0.5 h-4 w-4 shrink-0 text-parchment/30" />
+                <li key={t} className="flex items-start gap-3 text-base text-parchment/65">
+                  <X className="mt-0.5 h-4 w-4 shrink-0 text-parchment/50" />
                   {t}
                 </li>
               ))}
@@ -47,7 +47,7 @@ export function TheirWayOurWay() {
             <h3 className="font-display text-xl text-brass">The Merchant Standard</h3>
             <ul className="mt-6 flex flex-col gap-4">
               {ourWay.map((t) => (
-                <li key={t} className="flex items-start gap-3 text-sm text-parchment/80">
+                <li key={t} className="flex items-start gap-3 text-base text-parchment/80">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-brass" />
                   {t}
                 </li>

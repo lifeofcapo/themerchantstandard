@@ -18,7 +18,7 @@ export function Guarantee() {
           <span className="text-gradient-brass">no lock-in.</span>
         </h2>
 
-        <p className="mt-6 text-base leading-relaxed text-parchment/65">
+        <p className="mt-6 text-base leading-relaxed text-parchment/80">
           Come in, use the system, take what you learn. If it&apos;s not for you,
           you&apos;re one click from cancelling.{" "}
           <span className="font-semibold text-parchment">
@@ -26,7 +26,7 @@ export function Guarantee() {
           </span>
         </p>
 
-        <p className="mt-5 font-mono text-xs text-parchment/35 uppercase tracking-widest">
+        <p className="mt-5 font-mono text-xs text-parchment/50 uppercase tracking-widest">
           We don&apos;t promise income. We give you the system — the work is yours.
         </p>
 

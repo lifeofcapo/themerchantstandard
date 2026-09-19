@@ -33,13 +33,13 @@ export function FinalCTA() {
         </h2>
 
         <div className="mt-10 rounded-xl border border-line bg-ink/60 px-8 py-6 text-left">
-          <p className="text-sm leading-relaxed text-parchment/45">
+          <p className="text-base leading-relaxed text-parchment/65">
             Close this page and stay exactly where you are — same scroll, same{" "}
             <em>&ldquo;I&apos;ll start later,&rdquo;</em> same six months you&apos;ve already lived.
           </p>
         </div>
 
-        <p className="my-5 font-mono text-xs uppercase tracking-widest text-parchment/30">
+        <p className="my-5 font-mono text-xs uppercase tracking-widest text-parchment/50">
           or
         </p>
 
@@ -49,14 +49,14 @@ export function FinalCTA() {
           </p>
           <ul className="flex flex-col gap-3">
             {included.map((item) => (
-              <li key={item} className="flex items-center gap-3 text-sm text-parchment/80">
+              <li key={item} className="flex items-center gap-3 text-base text-parchment/80">
                 <Check className="h-4 w-4 shrink-0 text-brass" />
                 {item}
               </li>
             ))}
           </ul>
         </div>
-        <p className="mt-10 text-base text-parchment/60">
+        <p className="mt-10 text-base text-parchment/80">
           The product&apos;s ready. The AI&apos;s ready. The room&apos;s ready.
         </p>
 
@@ -67,7 +67,7 @@ export function FinalCTA() {
           />
         </div>
 
-        <p className="mt-4 font-mono text-xs text-parchment/30 uppercase tracking-widest">
+        <p className="mt-4 font-mono text-xs text-parchment/50 uppercase tracking-widest">
           Product + AI closer + system + brotherhood · cancel anytime
         </p>
 

@@ -83,7 +83,7 @@ export function AdminDataTable<T extends Record<string, unknown>>({
         <div className="flex gap-2">
           <button
             onClick={copyAllEmails}
-            className="flex items-center gap-1.5 rounded-lg border border-line bg-panel px-3 py-1.5 text-xs text-parchment/70 transition-colors hover:border-brass hover:text-parchment"
+            className="flex items-center gap-1.5 rounded-lg border border-line bg-panel px-3 py-1.5 text-xs text-parchment/80 transition-colors hover:border-brass hover:text-parchment"
           >
             {copiedAll ? (
               <>
@@ -98,7 +98,7 @@ export function AdminDataTable<T extends Record<string, unknown>>({
 
           <button
             onClick={exportToExcel}
-            className="flex items-center gap-1.5 rounded-lg border border-line bg-panel px-3 py-1.5 text-xs text-parchment/70 transition-colors hover:border-brass hover:text-parchment"
+            className="flex items-center gap-1.5 rounded-lg border border-line bg-panel px-3 py-1.5 text-xs text-parchment/80 transition-colors hover:border-brass hover:text-parchment"
           >
             <FileSpreadsheet className="h-3.5 w-3.5" /> Экспорт в Excel
           </button>
@@ -106,13 +106,13 @@ export function AdminDataTable<T extends Record<string, unknown>>({
       </div>
 
       <div className="overflow-x-auto rounded-lg border border-line">
-        <table className="w-full text-left text-sm">
+        <table className="w-full text-left text-base">
           <thead className="bg-panel-2">
             <tr>
               {columns.map((c) => (
                 <th
                   key={String(c.key)}
-                  className="px-3 py-2 font-mono text-xs uppercase text-parchment/50"
+                  className="px-3 py-2 font-mono text-xs uppercase text-parchment/65"
                 >
                   {c.label}
                 </th>

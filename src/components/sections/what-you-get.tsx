@@ -45,7 +45,7 @@ export function WhatYouGet() {
         <div className="overflow-hidden rounded-2xl border border-line">
           <div className="grid grid-cols-2 border-b border-line">
             <div className="border-r border-line bg-ink px-6 py-4">
-              <h3 className="font-display text-base text-parchment/40">Their Way</h3>
+              <h3 className="font-display text-base text-parchment/65">Their Way</h3>
             </div>
             <div className="bg-panel px-6 py-4">
               <h3 className="font-display text-base text-brass">
@@ -64,11 +64,11 @@ export function WhatYouGet() {
             >
               <div className="flex items-start gap-3 border-r border-line bg-ink px-6 py-4">
                 <X className="mt-0.5 h-4 w-4 shrink-0 text-parchment/25" />
-                <p className="text-sm text-parchment/40">{r.them}</p>
+                <p className="text-base text-parchment/65">{r.them}</p>
               </div>
               <div className="flex items-start gap-3 bg-panel px-6 py-4">
                 <Check className="mt-0.5 h-4 w-4 shrink-0 text-brass" />
-                <p className="text-sm text-parchment/80">{r.us}</p>
+                <p className="text-base text-parchment/80">{r.us}</p>
               </div>
             </div>
           ))}

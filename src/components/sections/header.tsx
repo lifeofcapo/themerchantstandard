@@ -77,7 +77,7 @@ function handleNavClick(
               key={l.href}
               href={l.href}
               onClick={(e) => handleNavClick(e, l.href)}
-              className="text-sm font-medium text-parchment/70 transition-colors hover:text-brass"
+              className="text-base font-medium text-parchment/80 transition-colors hover:text-brass"
             >
               {l.label}
             </a>
@@ -130,7 +130,7 @@ function handleNavClick(
                 key={l.href}
                 href={l.href}
                 onClick={(e) => handleNavClick(e, l.href)}
-                className="text-sm font-medium text-parchment/70"
+                className="text-base font-medium text-parchment/80"
               >
                 {l.label}
               </a>

@@ -23,17 +23,17 @@ export function Hero() {
           without making a single beat.
         </h1>
 
-        <p className="mt-8 max-w-2xl text-balance text-lg text-parchment/70">
+        <p className="mt-8 max-w-2xl text-balance text-lg text-parchment/80">
           We hand you the product, an AI that closes deals for you, and the
           exact system.{" "}
           <span className="font-semibold text-parchment">$49/month. Cancel anytime.</span>
         </p>
 
-        <p className="mt-3 max-w-xl text-balance text-base text-parchment/50">
+        <p className="mt-3 max-w-xl text-balance text-base text-parchment/65">
           Even if you&apos;re starting from zero — no catalog, no experience, no audience.
         </p>
 
-        <p className="mt-2 font-mono text-xs uppercase tracking-widest text-parchment/35">
+        <p className="mt-2 font-mono text-xs uppercase tracking-widest text-parchment/50">
           Cancel anytime · No hidden fees · One closed deal pays for months
         </p>
 

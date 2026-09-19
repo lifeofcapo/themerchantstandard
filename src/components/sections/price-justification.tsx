@@ -13,9 +13,9 @@ export function PriceJustification() {
           </p>
           <div className="mt-4 flex items-baseline justify-center gap-2">
             <span className="text-gradient-brass font-display text-7xl">$49</span>
-            <span className="text-parchment/40">/ month</span>
+            <span className="text-parchment/65">/ month</span>
           </div>
-          <p className="mt-3 font-mono text-xs text-parchment/35 uppercase tracking-widest">
+          <p className="mt-3 font-mono text-xs text-parchment/50 uppercase tracking-widest">
             Cancel anytime · No hidden fees
           </p>
         </div>
@@ -23,7 +23,7 @@ export function PriceJustification() {
         <h2 className="font-display text-2xl text-parchment sm:text-3xl">
           Why so low?
         </h2>
-        <p className="mt-5 text-base leading-relaxed text-parchment/65">
+        <p className="mt-5 text-base leading-relaxed text-parchment/80">
           Because we want you actually selling — the more merchants closing real
           deals, the stronger the whole standard gets. That&apos;s less than one night
           out. And a single closed deal{" "}

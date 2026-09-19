@@ -44,8 +44,8 @@ export function ValueStack() {
             <button
               onClick={() => setPlan("monthly")}
               className={cn(
-                "rounded-full px-5 py-2 text-sm font-semibold transition-colors",
-                plan === "monthly" ? "bg-brass text-ink" : "text-parchment/60 hover:text-parchment"
+                "rounded-full px-5 py-2 text-base font-semibold transition-colors",
+                plan === "monthly" ? "bg-brass text-ink" : "text-parchment/80 hover:text-parchment"
               )}
             >
               Monthly
@@ -53,8 +53,8 @@ export function ValueStack() {
             <button
               onClick={() => setPlan("yearly")}
               className={cn(
-                "flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold transition-colors",
-                plan === "yearly" ? "bg-brass text-ink" : "text-parchment/60 hover:text-parchment"
+                "flex items-center gap-2 rounded-full px-5 py-2 text-base font-semibold transition-colors",
+                plan === "yearly" ? "bg-brass text-ink" : "text-parchment/80 hover:text-parchment"
               )}
             >
               Yearly
@@ -79,15 +79,15 @@ export function ValueStack() {
                 i < stackItems.length - 1 && "border-b border-line"
               )}
             >
-              <p className="text-sm text-parchment/65">{item.label}</p>
-              <p className="shrink-0 font-mono text-sm text-parchment/40">{item.value}</p>
+              <p className="text-base text-parchment/80">{item.label}</p>
+              <p className="shrink-0 font-mono text-sm text-parchment/65">{item.value}</p>
             </div>
           ))}
 
           <div className="border-t-2 border-brass/30 bg-panel-2 px-7 py-5">
             <div className="flex items-center justify-between">
-              <p className="text-sm font-semibold text-parchment/60">Separately</p>
-              <p className="font-mono text-sm font-semibold text-parchment/60 line-through">
+              <p className="text-base font-semibold text-parchment/80">Separately</p>
+              <p className="font-mono text-sm font-semibold text-parchment/80 line-through">
                 $1,300+/mo
               </p>
             </div>
@@ -102,15 +102,15 @@ export function ValueStack() {
                 {plan === "monthly" ? (
                   <>
                     <p className="text-gradient-brass font-display text-4xl">$49</p>
-                    <p className="font-mono text-xs text-parchment/40">/ month</p>
+                    <p className="font-mono text-xs text-parchment/65">/ month</p>
                   </>
                 ) : (
                   <>
                     <div className="flex items-baseline justify-end gap-2">
-                      <span className="font-mono text-base text-parchment/35 line-through">$588</span>
+                      <span className="font-mono text-sm text-parchment/50 line-through">$588</span>
                       <p className="text-gradient-brass font-display text-4xl">$490</p>
                     </div>
-                    <p className="font-mono text-xs text-parchment/40">
+                    <p className="font-mono text-xs text-parchment/65">
                       / year <span className="text-brass">· 2 months free</span>
                     </p>
                   </>

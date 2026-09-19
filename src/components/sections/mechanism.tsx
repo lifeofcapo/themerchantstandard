@@ -30,7 +30,7 @@ export function Mechanism() {
             You don&apos;t make the product.{" "}
             <span className="text-gradient-brass">You trade it.</span>
           </h2>
-          <p className="mt-5 max-w-xl text-base text-parchment/60">
+          <p className="mt-5 max-w-xl text-base text-parchment/80">
             Producers create. Merchants get paid. You&apos;re going to be a merchant.
           </p>
         </div>
@@ -42,10 +42,10 @@ export function Mechanism() {
                 <div className="flex h-8 w-8 items-center justify-center rounded-full border border-brass/40 bg-panel font-mono text-xs text-brass">
                   {String(i + 1).padStart(2, "0")}
                 </div>
-                <p className="mt-3 max-w-[120px] text-sm font-semibold text-parchment">
+                <p className="mt-3 max-w-[120px] text-base font-semibold text-parchment">
                   {s.label}
                 </p>
-                <p className="mt-1 max-w-[120px] font-mono text-[10px] uppercase tracking-widest text-parchment/40">
+                <p className="mt-1 max-w-[120px] font-mono text-[10px] uppercase tracking-widest text-parchment/65">
                   {s.sub}
                 </p>
               </div>
@@ -56,7 +56,7 @@ export function Mechanism() {
           ))}
         </div>
         <div className="mx-auto max-w-2xl rounded-2xl border border-line bg-panel p-8">
-          <p className="mb-6 text-center font-mono text-xs uppercase tracking-widest text-parchment/40">
+          <p className="mb-6 text-center font-mono text-xs uppercase tracking-widest text-parchment/65">
             You do NOT need:
           </p>
           <ul className="flex flex-col gap-4">
@@ -65,11 +65,11 @@ export function Mechanism() {
                 <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-seal/40 bg-seal/10">
                   <X className="h-3 w-3 text-seal-light" />
                 </div>
-                <div className="text-sm">
+                <div className="text-base">
                   <span className="font-semibold text-parchment/80 line-through decoration-seal-light/60">
                     {n.text}
                   </span>
-                  <span className="ml-2 text-parchment/45">— {n.reason}</span>
+                  <span className="ml-2 text-parchment/65">— {n.reason}</span>
                 </div>
               </li>
             ))}

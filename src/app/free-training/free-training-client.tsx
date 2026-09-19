@@ -486,7 +486,7 @@ export default function FreeTrainingClient() {
 
           <Reveal delay={220}>
             <div className="mt-8 flex justify-center px-6 sm:px-0">
-              <VslCtaButton label="🔥 Apply Now" onClick={openForm} />
+              <VslCtaButton label="Apply Now" onClick={openForm} />
             </div>
             <p className="mt-4 font-display text-xl italic text-brass-light">
               Exit the default. Set your standard.

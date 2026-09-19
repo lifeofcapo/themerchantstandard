@@ -83,18 +83,18 @@ export function MerchantsWinning() {
 
               <CardContent className="flex flex-col items-center px-5 pb-7 pt-5">
                 <p className="text-gradient-brass font-display text-2xl">{w.stat}</p>
-                <p className="mt-1 text-xs text-parchment/50">{w.label}</p>
-                <p className="mt-4 text-xs leading-relaxed text-parchment/40 italic">
+                <p className="mt-1 text-xs text-parchment/65">{w.label}</p>
+                <p className="mt-4 text-xs leading-relaxed text-parchment/65 italic">
                   {w.story}
                 </p>
-                <p className="mt-4 font-mono text-xs text-parchment/30">{w.name}</p>
+                <p className="mt-4 font-mono text-xs text-parchment/50">{w.name}</p>
               </CardContent>
             </Card>
           ))}
         </div>
 
         <div className="mx-auto mt-12 max-w-2xl rounded-xl border border-brass/25 bg-brass/5 px-8 py-6 text-center">
-          <p className="text-sm leading-relaxed text-parchment/70">
+          <p className="text-base leading-relaxed text-parchment/80">
             What they share: they didn&apos;t just{" "}
             <span className="italic">&ldquo;learn.&rdquo;</span> They stepped into a system
             with{" "}

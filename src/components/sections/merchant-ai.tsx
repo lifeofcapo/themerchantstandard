@@ -52,7 +52,7 @@ export function MerchantAI() {
               <span className="text-gradient-brass">closes the deal</span> for you
             </h2>
 
-            <p className="mt-5 max-w-lg text-balance leading-relaxed text-parchment/70">
+            <p className="mt-5 max-w-lg text-balance leading-relaxed text-parchment/80">
               Stuck in a negotiation? Screenshot the chat, drop it in Discord,
               one line of context. The AI reads the deal and hands you the exact
               reply.
@@ -69,7 +69,7 @@ export function MerchantAI() {
                       Step {f.step}
                     </p>
                     <h3 className="font-display text-lg text-parchment">{f.title}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-parchment/60">
+                    <p className="mt-1 text-base leading-relaxed text-parchment/80">
                       {f.body}
                     </p>
                   </div>
@@ -77,7 +77,7 @@ export function MerchantAI() {
               ))}
             </ul>
             <div className="mt-8">
-              <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-parchment/35">
+              <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-parchment/50">
                 Ready answers for:
               </p>
               <div className="flex flex-wrap gap-2">
@@ -104,23 +104,23 @@ export function MerchantAI() {
                   AI
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-parchment">Merchant AI</p>
-                  <p className="font-mono text-[11px] text-parchment/40">
+                  <p className="text-base font-semibold text-parchment">Merchant AI</p>
+                  <p className="font-mono text-[11px] text-parchment/65">
                     #ai-sales-assistant
                   </p>
                 </div>
                 <div className="ml-auto flex items-center gap-1.5">
                   <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                  <span className="font-mono text-[10px] text-parchment/40">Online</span>
+                  <span className="font-mono text-[10px] text-parchment/65">Online</span>
                 </div>
               </div>
 
               <div className="flex flex-col gap-3">
-                <div className="ml-auto max-w-[85%] rounded-2xl rounded-tr-sm bg-brass/15 px-4 py-2.5 text-sm text-parchment/90">
+                <div className="ml-auto max-w-[85%] rounded-2xl rounded-tr-sm bg-brass/15 px-4 py-2.5 text-base text-parchment/90">
                   [screenshot attached] they said 80 is their max, what do I say
                 </div>
 
-                <div className="max-w-[90%] rounded-2xl rounded-tl-sm border border-brass/20 bg-panel-2 px-4 py-3 text-sm leading-relaxed text-parchment/80">
+                <div className="max-w-[90%] rounded-2xl rounded-tl-sm border border-brass/20 bg-panel-2 px-4 py-3 text-base leading-relaxed text-parchment/80">
                   <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-brass">
                     Read
                   </p>
@@ -131,7 +131,7 @@ export function MerchantAI() {
                   <p className="mt-3 font-mono text-[10px] uppercase tracking-widest text-brass">
                     Send this
                   </p>
-                  <p className="mt-1 italic text-parchment/70">
+                  <p className="mt-1 italic text-parchment/80">
                     &ldquo;Totally get it — 80 works for non-exclusive. For full exclusive
                     rights I&apos;m at 150, but I can hold that price for the next 24
                     hours.&rdquo;

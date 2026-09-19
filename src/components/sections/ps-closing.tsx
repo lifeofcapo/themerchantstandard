@@ -11,7 +11,7 @@ export function PSClosing() {
             <p className="mb-2 font-mono text-xs uppercase tracking-widest text-brass">
               P.S.
             </p>
-            <p className="text-sm leading-relaxed text-parchment/65">
+            <p className="text-base leading-relaxed text-parchment/80">
               Remember — this isn&apos;t info you can just Google. It&apos;s a product handed
               to you, an AI that closes the deal with you, and a room that holds
               the same price standard. That combination doesn&apos;t exist anywhere
@@ -26,7 +26,7 @@ export function PSClosing() {
             <p className="mb-2 font-mono text-xs uppercase tracking-widest text-seal-light">
               P.P.S.
             </p>
-            <p className="text-sm leading-relaxed text-parchment/65">
+            <p className="text-base leading-relaxed text-parchment/80">
               The shift is happening{" "}
               <span className="font-semibold text-parchment">now.</span> AI made
               &ldquo;just making beats&rdquo; worthless, and the merchants who move first
@@ -36,7 +36,7 @@ export function PSClosing() {
           </div>
 
           <div className="flex flex-col items-center gap-3 pt-2">
-            <p className="font-display text-base italic text-parchment/50">
+            <p className="font-display text-base italic text-parchment/65">
               Your call 👇
             </p>
             <JoinButton size="lg" label="JOIN NOW → $49/mo" />

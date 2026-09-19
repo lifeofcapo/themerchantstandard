@@ -22,7 +22,7 @@ export function LegalPageLayout({
         <div className="relative mx-auto max-w-3xl px-6 py-20 sm:py-28">
           <Link
             href="/"
-            className="mb-10 inline-flex items-center gap-2 text-sm text-parchment/50 transition-colors hover:text-brass"
+            className="mb-10 inline-flex items-center gap-2 text-base text-parchment/65 transition-colors hover:text-brass"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             Back to home
@@ -35,14 +35,14 @@ export function LegalPageLayout({
           <h1 className="text-balance font-display text-3xl leading-tight sm:text-4xl">
             {title}
           </h1>
-          <p className="mt-3 font-mono text-xs uppercase tracking-widest text-parchment/40">
+          <p className="mt-3 font-mono text-xs uppercase tracking-widest text-parchment/65">
             Last updated {updated}
           </p>
 
           <div
             className="
               mt-12 flex flex-col gap-8
-              text-sm leading-relaxed text-parchment/75
+              text-base leading-relaxed text-parchment/75
               [&_h2]:font-display [&_h2]:text-xl [&_h2]:text-parchment [&_h2]:mb-3
               [&_p]:leading-relaxed
               [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-2 [&_ul]:pl-5 [&_ul]:list-disc [&_ul]:marker:text-brass

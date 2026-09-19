@@ -86,7 +86,7 @@ export function DayAsMerchant() {
             A normal day for a{" "}
             <span className="text-gradient-brass">merchant inside The Standard</span>
           </h2>
-          <p className="mt-4 flex items-center justify-center gap-2 font-accent text-base italic text-parchment/50">
+          <p className="mt-4 flex items-center justify-center gap-2 font-accent text-base italic text-parchment/65">
             Six months ago he&apos;d never sold anything. Here&apos;s his Tuesday now
             <ChevronDown className="h-4 w-4 not-italic" />
           </p>
@@ -127,7 +127,7 @@ export function DayAsMerchant() {
             )}
 
             <div className="relative px-10 py-12">
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-parchment/40">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-parchment/65">
                 Step {slide.step}
               </p>
               <div className="mt-4 flex justify-center"><slide.icon className="h-10 w-10 text-brass" strokeWidth={1.5} /></div>
@@ -139,7 +139,7 @@ export function DayAsMerchant() {
                 >
                   {slide.headline}
                 </h3>
-                <p className="mt-4 text-base leading-relaxed text-parchment/70">
+                <p className="mt-4 text-base leading-relaxed text-parchment/80">
                   {slide.body}
                 </p>
             </div>
@@ -149,7 +149,7 @@ export function DayAsMerchant() {
             <button
               onClick={prev}
               aria-label="Previous"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-panel text-parchment/60 transition-colors hover:border-brass/40 hover:text-brass"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-panel text-parchment/80 transition-colors hover:border-brass/40 hover:text-brass"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
@@ -172,7 +172,7 @@ export function DayAsMerchant() {
             <button
               onClick={next}
               aria-label="Next"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-panel text-parchment/60 transition-colors hover:border-brass/40 hover:text-brass"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-panel text-parchment/80 transition-colors hover:border-brass/40 hover:text-brass"
             >
               <ChevronRight className="h-4 w-4" />
             </button>

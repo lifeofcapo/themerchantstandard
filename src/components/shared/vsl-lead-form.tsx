@@ -124,15 +124,15 @@ export function VslLeadForm({ open, onOpenChange }: VslLeadFormProps) {
 
           <div className="relative">
             <DialogHeader className="mb-1 text-center">
-              <span className="wax-seal mx-auto mb-3 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full sm:mb-4">
-                <Image src="/logo1.png" alt="The Merchant Standard" width={32} height={32} className="h-8 w-8 object-contain" />
-              </span>
+              <div className="mx-auto mb-3 flex justify-center sm:mb-4">
+                <Image src="/logo1.png" alt="The Merchant Standard" width={48} height={48} className="h-12 w-12 object-contain" />
+              </div>
               <DialogTitle className="text-balance font-display text-xl text-parchment sm:text-2xl">
-                application for entry into{" "}
+                Application for entry into{" "}
                 <span className="text-gradient-brass">The Merchant Standard</span>
               </DialogTitle>
             </DialogHeader>
-            <p className="mb-5 text-center text-xs text-parchment/55 sm:mb-6 sm:text-sm">
+            <p className="mb-5 text-center text-xs text-parchment/45 sm:mb-6 sm:text-base">
               Leave your contact details — we&rsquo;ll get in touch and explain the next step.
             </p>
 
@@ -148,7 +148,7 @@ export function VslLeadForm({ open, onOpenChange }: VslLeadFormProps) {
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Jane Smith"
                     maxLength={60}
-                    className="w-full rounded-xl border border-line bg-panel px-4 py-2.5 text-sm text-parchment placeholder:text-parchment/40 focus:border-brass focus:outline-none sm:py-3 sm:text-base"
+                    className="w-full rounded-xl border border-line bg-panel px-4 py-2.5 text-base text-parchment placeholder:text-parchment/65 focus:border-brass focus:outline-none sm:py-3 sm:text-base"
                   />
                   {errors.name && <p className="mt-1 text-xs text-seal-light">{errors.name}</p>}
                 </div>
@@ -160,16 +160,16 @@ export function VslLeadForm({ open, onOpenChange }: VslLeadFormProps) {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="email@gmail.com"
                     maxLength={200}
-                    className="w-full rounded-xl border border-line bg-panel px-4 py-2.5 text-sm text-parchment placeholder:text-parchment/40 focus:border-brass focus:outline-none sm:py-3 sm:text-base"
+                    className="w-full rounded-xl border border-line bg-panel px-4 py-2.5 text-base text-parchment placeholder:text-parchment/45 focus:border-brass focus:outline-none sm:py-3 sm:text-base"
                   />
                   {errors.email && <p className="mt-1 text-xs text-seal-light">{errors.email}</p>}
                 </div>
 
                 <div>
                   <div className="flex gap-2">
-                    <div className="flex h-[42px] w-[74px] shrink-0 items-center justify-center gap-1 rounded-xl border border-line bg-panel text-sm text-parchment sm:h-[50px] sm:w-[82px]">
+                    <div className="flex h-[42px] w-[74px] shrink-0 items-center justify-center gap-1 rounded-xl border border-line bg-panel text-base text-parchment sm:h-[50px] sm:w-[82px]">
                       <span className="text-lg">{country.flag}</span>
-                      <span className="text-parchment/70">+{country.dial}</span>
+                      <span className="text-parchment/80">+{country.dial}</span>
                     </div>
                     <input
                       type="tel"
@@ -177,7 +177,7 @@ export function VslLeadForm({ open, onOpenChange }: VslLeadFormProps) {
                       onChange={(e) => handlePhoneChange(e.target.value)}
                       placeholder="+7 999 123-45-67"
                       maxLength={20}
-                      className="min-w-0 flex-1 rounded-xl border border-line bg-panel px-4 py-2.5 text-sm text-parchment placeholder:text-parchment/40 focus:border-brass focus:outline-none sm:py-3 sm:text-base"
+                      className="min-w-0 flex-1 rounded-xl border border-line bg-panel px-4 py-2.5 text-base text-parchment placeholder:text-parchment/65 focus:border-brass focus:outline-none sm:py-3 sm:text-base"
                       autoComplete="tel"
                       inputMode="tel"
                     />
@@ -190,7 +190,7 @@ export function VslLeadForm({ open, onOpenChange }: VslLeadFormProps) {
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="btn-shine mt-1 h-12 rounded-full bg-gradient-to-r from-brass to-brass-light text-sm font-bold text-ink sm:mt-2 sm:h-14 sm:text-base"
+                  className="btn-shine mt-1 h-12 rounded-full bg-gradient-to-r from-brass to-brass-light text-base font-bold text-ink sm:mt-2 sm:h-14 sm:text-base"
                 >
                   {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : "Submit a request"}
                 </Button>

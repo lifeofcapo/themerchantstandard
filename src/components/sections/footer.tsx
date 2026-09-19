@@ -16,18 +16,18 @@ export function Footer() {
             <p className="font-display text-lg text-parchment">
               The Merchant <span className="text-brass">Standard</span>
             </p>
-            <p className="mt-2 max-w-sm text-sm leading-relaxed text-parchment/50">
+            <p className="mt-2 max-w-sm text-base leading-relaxed text-parchment/65">
               Everything taught within The Merchant Standard is for educational
               purposes. It is up to each student to implement and do the work.
             </p>
           </div>
 
-          <div className="flex flex-col gap-2 text-sm">
+          <div className="flex flex-col gap-2 text-base">
             {legalLinks.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className="text-parchment/60 transition-colors hover:text-brass"
+                className="text-parchment/80 transition-colors hover:text-brass"
               >
                 {l.label}
               </Link>
@@ -35,7 +35,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col items-start justify-between gap-4 pt-8 text-xs text-parchment/40 md:flex-row md:items-center">
+        <div className="flex flex-col items-start justify-between gap-4 pt-8 text-xs text-parchment/65 md:flex-row md:items-center">
           <p>© {new Date().getFullYear()} The Merchant Standard. All rights reserved. All course materials, content, software, branding, logos, trademarks, graphics, designs, videos, documents and other intellectual property made available through this platform are protected by copyright, trademark and other applicable intellectual property laws. No part may be copied, reproduced, distributed, modified, transmitted, displayed, published, sold, licensed or shared without prior written consent.</p>
           <p>
             Need support? <span className="text-parchment">Contact Us</span>{" "} 

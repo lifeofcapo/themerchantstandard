@@ -34,19 +34,19 @@ export function SaltOnWound() {
           {pains.map((p) => (
           <li
             key={p}
-            className="flex items-start gap-4 rounded-xl border border-line bg-panel/60 px-6 py-4 text-sm leading-relaxed text-parchment/70"
+            className="flex items-start gap-4 rounded-xl border border-line bg-panel/60 px-6 py-4 text-base leading-relaxed text-parchment/80"
           >
-            <Frown className="mt-0.5 h-4 w-4 shrink-0 text-parchment/30" strokeWidth={1.5} />
+            <Frown className="mt-0.5 h-4 w-4 shrink-0 text-parchment/50" strokeWidth={1.5} />
             {p}
           </li>
           ))}
         </ul>
 
         <div className="mt-10 rounded-xl border border-line bg-panel/60 px-8 py-7 text-center">
-          <p className="font-display text-lg italic text-parchment/70">
+          <p className="font-display text-lg italic text-parchment/80">
             &ldquo;Maybe this online thing just isn&apos;t for me.&rdquo;
           </p>
-          <p className="mt-5 text-sm leading-relaxed text-parchment/60">
+          <p className="mt-5 text-base leading-relaxed text-parchment/80">
             It&apos;s not you. Every one of those is a{" "}
             <span className="font-semibold text-parchment">broken setup</span> — no
             product, no system, no one closing with you.

@@ -35,7 +35,7 @@ export function WhoItsFor() {
             </h3>
             <ul className="flex flex-col gap-4">
               {forYou.map((t) => (
-                <li key={t} className="flex items-start gap-3 text-sm text-parchment/80">
+                <li key={t} className="flex items-start gap-3 text-base text-parchment/80">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-brass" />
                   {t}
                 </li>
@@ -43,12 +43,12 @@ export function WhoItsFor() {
             </ul>
           </div>
           <div className="rounded-2xl border border-line bg-ink p-8">
-            <h3 className="mb-6 flex items-center gap-2 font-display text-xl text-parchment/40">
+            <h3 className="mb-6 flex items-center gap-2 font-display text-xl text-parchment/65">
               <X className="h-5 w-5" /> This is NOT for you if:
             </h3>
             <ul className="flex flex-col gap-4">
               {notForYou.map((t) => (
-                <li key={t} className="flex items-start gap-3 text-sm text-parchment/40">
+                <li key={t} className="flex items-start gap-3 text-base text-parchment/65">
                   <X className="mt-0.5 h-4 w-4 shrink-0 text-parchment/25" />
                   {t}
                 </li>
@@ -57,7 +57,7 @@ export function WhoItsFor() {
           </div>
         </div>
 
-        <p className="mt-10 text-center font-display text-base italic text-parchment/50">
+        <p className="mt-10 text-center font-display text-base italic text-parchment/65">
           Money-making is a skill. It can be learned — the speed depends on the
           effort you put in and the room you learn it in.
         </p>

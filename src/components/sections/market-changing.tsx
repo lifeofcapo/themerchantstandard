@@ -46,13 +46,13 @@ export function MarketChanging() {
                 {p.eyebrow}
               </p>
               <h3 className="mt-2 font-display text-xl text-parchment">{p.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-parchment/60">{p.body}</p>
+              <p className="mt-3 text-base leading-relaxed text-parchment/80">{p.body}</p>
             </div>
           ))}
         </div>
 
         <div className="mt-12 flex flex-col items-center text-center">
-          <p className="font-display text-lg italic text-parchment/60">
+          <p className="font-display text-lg italic text-parchment/80">
             This is the window. Merchants win the next few years.{" "}
             <span className="text-parchment">Movers win now.</span>
           </p>

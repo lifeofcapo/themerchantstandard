@@ -37,7 +37,7 @@ export function IncomeTransformation() {
             <div key={s.step} className="relative">
               <div className="mb-4 font-mono text-sm text-brass">{s.step}</div>
               <h3 className="font-display text-xl text-parchment">{s.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-parchment/60">{s.body}</p>
+              <p className="mt-3 text-base leading-relaxed text-parchment/80">{s.body}</p>
               {i < steps.length - 1 && (
                 <div
                   className="absolute right-[-16px] top-2 hidden h-px w-8 md:block"
