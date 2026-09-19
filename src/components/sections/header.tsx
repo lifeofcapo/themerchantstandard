@@ -42,35 +42,35 @@ function smoothScrollTo(targetY: number, duration = 700) {
 export function Header() {
   const [open, setOpen] = useState(false);
 
-function handleNavClick(
-  e: React.MouseEvent<HTMLAnchorElement>,
-  href: string
-) {
-  e.preventDefault();
-  setOpen(false);
+  function handleNavClick(
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) {
+    e.preventDefault();
+    setOpen(false);
 
-  const el = document.querySelector(href);
+    const el = document.querySelector(href);
 
-  if (!el) {
-    window.location.href = `/${href}`;
-    return;
+    if (!el) {
+      window.location.href = `/${href}`;
+      return;
+    }
+
+    const headerOffset = 104;
+
+    const targetY =
+      el.getBoundingClientRect().top +
+      window.scrollY -
+      headerOffset;
+
+    smoothScrollTo(targetY, 700);
+
+    history.pushState(null, "", href);
   }
 
-  const headerOffset = 104;
-
-  const targetY =
-    el.getBoundingClientRect().top +
-    window.scrollY -
-    headerOffset;
-
-  smoothScrollTo(targetY, 700);
-
-  history.pushState(null, "", href);
-}
-
   return (
-<header className="fixed left-0 right-0 top-0 z-50 bg-transparent px-3 sm:top-4 sm:px-4">
-  <div className="header-glass relative mx-auto flex h-16 max-w-4xl items-center justify-between gap-3 rounded-full px-4 sm:px-5">
+    <header className="absolute inset-x-0 top-0 z-50 bg-transparent px-3 sm:sticky sm:top-4 sm:px-4">
+      <div className="header-glass relative mx-auto flex h-16 max-w-4xl items-center justify-between gap-3 rounded-full px-4 sm:px-5">
         <nav className="hidden items-center gap-6 md:flex">
           {links.map((l) => (
             <a
@@ -90,7 +90,11 @@ function handleNavClick(
           aria-label="Toggle menu"
           aria-expanded={open}
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {open ? (
+            <X className="h-5 w-5" />
+          ) : (
+            <Menu className="h-5 w-5" />
+          )}
         </button>
 
         <Link
@@ -114,6 +118,7 @@ function handleNavClick(
             label="Join TMS"
             className="rounded-full px-3 text-xs sm:hidden"
           />
+
           <JoinButton
             size="sm"
             label="Join The Merchant Standard"
