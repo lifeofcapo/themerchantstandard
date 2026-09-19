@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { MobileStickyCta } from "@/components/shared/mobile-sticky-cta";
+import { JoinNotifications } from "@/components/shared/join-notifications";
 
 const manrope = Manrope({
   variable: "--font-fraunces", 
@@ -105,6 +107,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <MobileStickyCta />
+        <JoinNotifications />
         <Analytics />
         <SpeedInsights />
       </body>

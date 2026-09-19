@@ -49,23 +49,7 @@ export function JoinButton({
   const [email, setEmail] = React.useState("");
   const [error, setError] = React.useState<string | null>(null);
   const [loading, setLoading] = React.useState(false);
-  const [shining, setShining] = React.useState(false);
-  const shineTimeout = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  function triggerShine() {
-    if (shineTimeout.current) clearTimeout(shineTimeout.current);
-    setShining(false);
-    requestAnimationFrame(() => {
-      setShining(true);
-      shineTimeout.current = setTimeout(() => setShining(false), 900);
-    });
-  }
-
-  React.useEffect(() => {
-    return () => {
-      if (shineTimeout.current) clearTimeout(shineTimeout.current);
-    };
-  }, []);
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
@@ -116,23 +100,21 @@ export function JoinButton({
 
   return (
     <>
-      <Button
-        type="button"
-        variant={variant}
-        size={size}
-        className={cn(
-          "btn-shine", "btn-shine btn-cta-glow",
-          shining && "btn-shine-active",
-          size === "lg" &&
-            "h-auto min-h-14 rounded-full px-8 py-4 text-center text-base font-semibold whitespace-normal shadow-lg shadow-brass/10 sm:min-h-14 sm:px-8 sm:py-3 sm:text-base",
-          className
-        )}
-        onPointerDown={triggerShine}
-        onClick={() => setEmailOpen(true)}
-        {...props}
-      >
-        <span className="relative z-10">{label}</span>
-      </Button>
+    <Button
+      type="button"
+      variant={variant}
+      size={size}
+      className={cn(
+        "btn-shine btn-cta-glow bg-gradient-to-r from-brass to-brass-light font-bold text-ink hover:opacity-90",
+        size === "lg" &&
+          "h-auto min-h-14 rounded-full px-8 py-4 text-center text-base font-semibold whitespace-normal shadow-lg shadow-brass/10 sm:min-h-14 sm:px-8 sm:py-3 sm:text-base",
+        className
+      )}
+      onClick={() => setEmailOpen(true)}
+      {...props}
+    >
+      <span className="relative z-10">{label}</span>
+    </Button>
 
       <Dialog open={emailOpen} onOpenChange={setEmailOpen}>
         <DialogContent className="bg-[rgba(11,12,14,0.94)] backdrop-blur-2xl border-[rgba(201,162,39,0.4)]">
