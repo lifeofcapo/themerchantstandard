@@ -4,7 +4,6 @@ import { DayAsMerchant } from "@/components/sections/day-as-merchant";
 import { SaltOnWound } from "@/components/sections/salt-on-wound";
 import { Mechanism } from "@/components/sections/mechanism";
 import { MerchantAI } from "@/components/sections/merchant-ai";
-import { MerchantsWinning } from "@/components/sections/merchants-winning";
 import { MarketChanging } from "@/components/sections/market-changing";
 import { WhatYouGet } from "@/components/sections/what-you-get";
 import { ValueStack } from "@/components/sections/value-stack";
@@ -35,9 +34,6 @@ export default function Home() {
         </Reveal>
         <Reveal>
           <MerchantAI />
-        </Reveal>
-        <Reveal>
-          <MerchantsWinning />
         </Reveal>
         <Reveal>
           <MarketChanging />

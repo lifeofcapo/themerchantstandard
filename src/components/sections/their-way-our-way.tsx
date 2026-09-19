@@ -26,7 +26,7 @@ export function TheirWayOurWay() {
             Two Paths
           </span>
           <h2 className="font-display text-3xl text-parchment sm:text-4xl">
-            Their Way vs. <span className="text-gradient-brass">Our Way</span>
+            Their Way vs <span className="text-gradient-brass">Our Way</span>
           </h2>
         </div>
 
