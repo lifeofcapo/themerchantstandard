@@ -30,8 +30,8 @@ export function WhoItsFor() {
 
         <div className="grid gap-6 md:grid-cols-2">
           <div className="rounded-2xl border border-brass/30 bg-panel p-8">
-            <h3 className="mb-6 font-display text-xl text-brass">
-              ✅ This is for you if:
+            <h3 className="mb-6 flex items-center gap-2 font-display text-xl text-brass">
+              <Check className="h-5 w-5" /> This is for you if:
             </h3>
             <ul className="flex flex-col gap-4">
               {forYou.map((t) => (
@@ -43,8 +43,8 @@ export function WhoItsFor() {
             </ul>
           </div>
           <div className="rounded-2xl border border-line bg-ink p-8">
-            <h3 className="mb-6 font-display text-xl text-parchment/40">
-              ❌ This is NOT for you if:
+            <h3 className="mb-6 flex items-center gap-2 font-display text-xl text-parchment/40">
+              <X className="h-5 w-5" /> This is NOT for you if:
             </h3>
             <ul className="flex flex-col gap-4">
               {notForYou.map((t) => (

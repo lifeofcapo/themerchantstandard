@@ -5,7 +5,7 @@ const pains = [
   "You give away exclusive rights for $30 because you're scared to lose it.",
   'Every "model" out there needs money, a skill, or luck you don\'t have.',
 ];
-
+import { Frown } from "lucide-react";
 export function SaltOnWound() {
   return (
     <section className="relative overflow-hidden border-b border-line py-24">
@@ -32,13 +32,13 @@ export function SaltOnWound() {
 
         <ul className="flex flex-col gap-4">
           {pains.map((p) => (
-            <li
-              key={p}
-              className="flex items-start gap-4 rounded-xl border border-line bg-panel/60 px-6 py-4 text-sm leading-relaxed text-parchment/70"
-            >
-              <span className="mt-0.5 shrink-0 text-base">😞</span>
-              {p}
-            </li>
+          <li
+            key={p}
+            className="flex items-start gap-4 rounded-xl border border-line bg-panel/60 px-6 py-4 text-sm leading-relaxed text-parchment/70"
+          >
+            <Frown className="mt-0.5 h-4 w-4 shrink-0 text-parchment/30" strokeWidth={1.5} />
+            {p}
+          </li>
           ))}
         </ul>
 

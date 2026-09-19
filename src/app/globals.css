@@ -102,6 +102,7 @@ h1, h2, h3, h4 {
   -webkit-background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
+  padding-right: 0.12em;
 }
 
 .text-gradient-silver {

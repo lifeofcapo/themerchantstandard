@@ -3,6 +3,11 @@ export const dynamic = "force-dynamic";
 import { prisma } from "@/lib/prisma";
 import { AdminDataTable } from "@/components/admin/admin-data-table";
 import { fullCountryName } from "@/lib/country-name";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Admin",
+  robots: { index: false, follow: false },
+};
 
 export default async function AdminPage() {
   const [leadsRaw, purchasesRaw] = await Promise.all([

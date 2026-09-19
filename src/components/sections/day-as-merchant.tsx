@@ -3,12 +3,12 @@
 import * as React from "react";
 import Image from "next/image";
 import { JoinButton } from "@/components/shared/join-button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Smartphone, Package, Bot, DollarSign, Trophy, Lock, ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
 
 const slides = [
   {
     step: "01",
-    emoji: "📲",
+    icon: Smartphone,
     headline: "Wakes up, checks Discord.",
     body: "Three new artist replies overnight. While everyone else was asleep, the pipeline was working.",
     accent: "from-slate-700/40 via-slate-900/60 to-ink",
@@ -16,7 +16,7 @@ const slides = [
   },
   {
     step: "02",
-    emoji: "📦",
+    icon: Package,
     headline: "Opens Partner Catalog, picks the products.",
     body: "Finds the right fit for each artist — didn't make a single beat himself.",
     accent: "from-amber-900/30 via-slate-900/60 to-ink",
@@ -24,7 +24,7 @@ const slides = [
   },
   {
     step: "03",
-    emoji: "🤖",
+    icon: Bot,
     headline: "Buyer lowballs.",
     body: "Screenshots the chat, drops it in Discord. Merchant AI hands him the exact reply to send.",
     accent: "from-sky-900/30 via-slate-900/60 to-ink",
@@ -32,7 +32,7 @@ const slides = [
   },
   {
     step: "04",
-    emoji: "💰",
+    icon: DollarSign,
     headline: "Deal closed. $1,150 exclusive.",
     body: "Sends the file, logs the payment. One conversation, one standard held.",
     highlight: true,
@@ -41,7 +41,7 @@ const slides = [
   },
   {
     step: "05",
-    emoji: "🏆",
+    icon: Trophy,
     headline: "Drops the win in #wins.",
     body: "The room reacts. He's not doing this alone — and the next deal's already in the pipeline.",
     accent: "from-emerald-900/25 via-slate-900/60 to-ink",
@@ -49,7 +49,7 @@ const slides = [
   },
   {
     step: "06",
-    emoji: "🔒",
+    icon: Lock,
     headline: "Closes the laptop by noon.",
     body: "That's the job. Six months ago he'd never sold anything.",
     accent: "from-slate-800/35 via-slate-900/60 to-ink",
@@ -86,8 +86,9 @@ export function DayAsMerchant() {
             A normal day for a{" "}
             <span className="text-gradient-brass">merchant inside The Standard</span>
           </h2>
-          <p className="mt-4 font-accent text-base italic text-parchment/50">
-            Six months ago he&apos;d never sold anything. Here&apos;s his Tuesday now 👇
+          <p className="mt-4 flex items-center justify-center gap-2 font-accent text-base italic text-parchment/50">
+            Six months ago he&apos;d never sold anything. Here&apos;s his Tuesday now
+            <ChevronDown className="h-4 w-4 not-italic" />
           </p>
         </div>
 
@@ -129,18 +130,18 @@ export function DayAsMerchant() {
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-parchment/40">
                 Step {slide.step}
               </p>
-              <div className="mt-4 text-5xl">{slide.emoji}</div>
-              <h3
-                className={[
-                  "mt-5 font-display text-2xl",
-                  slide.highlight ? "text-gradient-brass" : "text-parchment",
-                ].join(" ")}
-              >
-                {slide.headline}
-              </h3>
-              <p className="mt-4 text-base leading-relaxed text-parchment/70">
-                {slide.body}
-              </p>
+              <div className="mt-4 flex justify-center"><slide.icon className="h-10 w-10 text-brass" strokeWidth={1.5} /></div>
+                <h3
+                  className={[
+                    "mt-5 font-display text-2xl",
+                    slide.highlight ? "text-gradient-brass" : "text-parchment",
+                  ].join(" ")}
+                >
+                  {slide.headline}
+                </h3>
+                <p className="mt-4 text-base leading-relaxed text-parchment/70">
+                  {slide.body}
+                </p>
             </div>
           </div>
 
