@@ -39,7 +39,7 @@ export function PSClosing() {
             <p className="font-display text-base italic text-parchment/50">
               Your call 👇
             </p>
-            <JoinButton size="lg" label="🔥 JOIN NOW → $49/mo" />
+            <JoinButton size="lg" label="JOIN NOW → $49/mo" />
           </div>
         </div>
       </div>

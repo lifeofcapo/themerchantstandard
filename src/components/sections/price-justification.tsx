@@ -37,7 +37,7 @@ export function PriceJustification() {
         </p>
 
         <div className="mt-10">
-          <JoinButton size="lg" label="🔥 JOIN FOR $49/mo →" />
+          <JoinButton size="lg" label="JOIN FOR $49/mo →" />
         </div>
       </div>
     </section>

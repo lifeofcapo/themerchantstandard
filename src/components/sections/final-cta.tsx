@@ -63,7 +63,7 @@ export function FinalCTA() {
         <div className="mt-6">
           <JoinButton
             size="lg"
-            label="🔥 JOIN THE MERCHANT STANDARD → $49/mo"
+            label="JOIN THE MERCHANT STANDARD → $49/mo"
           />
         </div>
 
