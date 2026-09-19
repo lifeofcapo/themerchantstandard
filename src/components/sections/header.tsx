@@ -69,8 +69,8 @@ function handleNavClick(
 }
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 bg-transparent px-0 sm:top-4 sm:px-4">
-      <div className="header-glass relative mx-auto flex h-16 max-w-4xl items-center justify-between gap-3 rounded-none px-4 sm:h-16 sm:rounded-full sm:px-5">
+<header className="fixed left-0 right-0 top-0 z-50 bg-transparent px-3 sm:top-4 sm:px-4">
+  <div className="header-glass relative mx-auto flex h-16 max-w-4xl items-center justify-between gap-3 rounded-full px-4 sm:px-5">
         <nav className="hidden items-center gap-6 md:flex">
           {links.map((l) => (
             <a
