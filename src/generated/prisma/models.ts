@@ -11,4 +11,5 @@
 export type * from './models/Purchase'
 export type * from './models/Lead'
 export type * from './models/Visit'
+export type * from './models/NewsletterSubscriber'
 export type * from './commonInputTypes'

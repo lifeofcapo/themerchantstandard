@@ -32,3 +32,8 @@ export type Lead = Prisma.LeadModel
  * 
  */
 export type Visit = Prisma.VisitModel
+/**
+ * Model NewsletterSubscriber
+ * 
+ */
+export type NewsletterSubscriber = Prisma.NewsletterSubscriberModel

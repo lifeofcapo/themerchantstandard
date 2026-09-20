@@ -10,9 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminPage() {
-  const [leadsRaw, purchasesRaw] = await Promise.all([
+  const [leadsRaw, purchasesRaw,subscribers] = await Promise.all([
     prisma.lead.findMany({ orderBy: { createdAt: "desc" }, take: 200 }),
     prisma.purchase.findMany({ orderBy: { createdAt: "desc" }, take: 200 }),
+    prisma.newsletterSubscriber.findMany({ orderBy: { createdAt: "desc" }, take: 200 }),
   ]);
 
   const purchases = purchasesRaw.map((p) => ({
@@ -35,6 +36,7 @@ export default async function AdminPage() {
           rows={purchases}
           emailKey="email"
           fileName="purchases"
+          resource="purchase"
           columns={[
             { key: "email", label: "Email" },
             { key: "status", label: "Status" },
@@ -54,11 +56,27 @@ export default async function AdminPage() {
           rows={leads}
           emailKey="email"
           fileName="leads"
+          resource="lead"
           columns={[
             { key: "name", label: "Name" },
             { key: "email", label: "Email" },
             { key: "phone", label: "Phone" },
             { key: "country", label: "Country" },
+            { key: "ipAddress", label: "IP" },
+            { key: "createdAt", label: "Date" },
+          ]}
+        />
+      </section>
+
+      <section className="mt-14">
+        <AdminDataTable
+          title="Newsletter subscribers"
+          rows={subscribers}
+          emailKey="email"
+          fileName="newsletter"
+          resource="newsletter"
+          columns={[
+            { key: "email", label: "Email" },
             { key: "ipAddress", label: "IP" },
             { key: "createdAt", label: "Date" },
           ]}

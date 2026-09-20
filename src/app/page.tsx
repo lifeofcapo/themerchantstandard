@@ -15,6 +15,7 @@ import { FinalCTA } from "@/components/sections/final-cta";
 import { PSClosing } from "@/components/sections/ps-closing";
 import { Footer } from "@/components/sections/footer";
 import { Reveal } from "@/components/shared/reveal";
+import { NewsletterSection } from "@/components/shared/news-letter-section";
 
 export default function Home() {
   return (
@@ -61,6 +62,9 @@ export default function Home() {
         </Reveal>
         <Reveal>
           <PSClosing />
+        </Reveal>
+        <Reveal>
+          <NewsletterSection />
         </Reveal>
       </main>
       <Footer />

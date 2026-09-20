@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Copy, Check, FileSpreadsheet, ClipboardList } from "lucide-react";
+import { Copy, Check, FileSpreadsheet, ClipboardList, Trash2, Loader2 } from "lucide-react";
 import * as XLSX from "xlsx";
 
 type Column<T> = {
@@ -18,23 +18,29 @@ function getDisplay<T extends Record<string, unknown>>(row: T, col: Column<T>): 
   return raw instanceof Date ? raw.toLocaleString() : String(raw ?? "—");
 }
 
+type Resource = "purchase" | "lead" | "newsletter";
+
 type AdminDataTableProps<T extends Record<string, unknown>> = {
   title: string;
   rows: T[];
   columns: Column<T>[];
   emailKey: keyof T;
   fileName: string;
+  resource: Resource;
 };
 
 export function AdminDataTable<T extends Record<string, unknown>>({
   title,
-  rows,
+  rows: initialRows,
   columns,
   emailKey,
   fileName,
+  resource,
 }: AdminDataTableProps<T>) {
+  const [rows, setRows] = React.useState(initialRows);
   const [copiedCell, setCopiedCell] = React.useState<string | null>(null);
   const [copiedAll, setCopiedAll] = React.useState(false);
+  const [deletingId, setDeletingId] = React.useState<string | null>(null);
 
   async function copyValue(value: string, cellId: string) {
     try {
@@ -59,18 +65,43 @@ export function AdminDataTable<T extends Record<string, unknown>>({
     }
   }
 
-  // Теперь эта функция — внутри компонента, у неё есть доступ
-  // к rows/columns/title/fileName из пропсов.
   function exportToExcel() {
     const data = rows.map((row) =>
-      Object.fromEntries(
-        columns.map((c) => [c.label, sanitizeForExcel(getDisplay(row, c))])
-      )
+      Object.fromEntries(columns.map((c) => [c.label, sanitizeForExcel(getDisplay(row, c))]))
     );
     const worksheet = XLSX.utils.json_to_sheet(data);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, title.slice(0, 31));
     XLSX.writeFile(workbook, `${fileName}.xlsx`);
+  }
+
+  async function handleDelete(row: T) {
+    const id = String(row.id ?? "");
+    if (!id) return;
+
+    const emailLabel = String(row[emailKey] ?? "this entry");
+    const confirmed = window.confirm(
+      `Permanently delete ${emailLabel}? This cannot be undone.`
+    );
+    if (!confirmed) return;
+
+    setDeletingId(id);
+    try {
+      const res = await fetch("/api/admin/delete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ resource, id }),
+      });
+      if (!res.ok) {
+        window.alert("Failed to delete. Please try again.");
+        return;
+      }
+      setRows((prev) => prev.filter((r) => String(r.id) !== id));
+    } catch {
+      window.alert("Failed to delete. Please try again.");
+    } finally {
+      setDeletingId(null);
+    }
   }
 
   return (
@@ -83,7 +114,7 @@ export function AdminDataTable<T extends Record<string, unknown>>({
         <div className="flex gap-2">
           <button
             onClick={copyAllEmails}
-            className="flex items-center gap-1.5 rounded-lg border border-line bg-panel px-3 py-1.5 text-xs text-parchment/80 transition-colors hover:border-brass hover:text-parchment"
+            className="flex items-center gap-1.5 rounded-lg border border-line bg-panel px-3 py-1.5 text-xs text-parchment/70 transition-colors hover:border-brass hover:text-parchment"
           >
             {copiedAll ? (
               <>
@@ -98,7 +129,7 @@ export function AdminDataTable<T extends Record<string, unknown>>({
 
           <button
             onClick={exportToExcel}
-            className="flex items-center gap-1.5 rounded-lg border border-line bg-panel px-3 py-1.5 text-xs text-parchment/80 transition-colors hover:border-brass hover:text-parchment"
+            className="flex items-center gap-1.5 rounded-lg border border-line bg-panel px-3 py-1.5 text-xs text-parchment/70 transition-colors hover:border-brass hover:text-parchment"
           >
             <FileSpreadsheet className="h-3.5 w-3.5" /> Экспорт в Excel
           </button>
@@ -106,22 +137,26 @@ export function AdminDataTable<T extends Record<string, unknown>>({
       </div>
 
       <div className="overflow-x-auto rounded-lg border border-line">
-        <table className="w-full text-left text-base">
+        <table className="w-full text-left text-sm">
           <thead className="bg-panel-2">
             <tr>
               {columns.map((c) => (
                 <th
                   key={String(c.key)}
-                  className="px-3 py-2 font-mono text-xs uppercase text-parchment/65"
+                  className="px-3 py-2 font-mono text-xs uppercase text-parchment/50"
                 >
                   {c.label}
                 </th>
               ))}
+              <th className="px-3 py-2 font-mono text-xs uppercase text-parchment/50" />
             </tr>
           </thead>
           <tbody>
             {rows.map((row, i) => {
               const rowId = `row-${i}`;
+              const idValue = String(row.id ?? "");
+              const isDeleting = deletingId === idValue;
+
               return (
                 <tr key={rowId} className="border-t border-line">
                   {columns.map((c) => {
@@ -154,6 +189,21 @@ export function AdminDataTable<T extends Record<string, unknown>>({
                       </td>
                     );
                   })}
+                  <td className="px-3 py-2 text-right">
+                    <button
+                      onClick={() => handleDelete(row)}
+                      disabled={isDeleting}
+                      aria-label="Delete row"
+                      title="Delete permanently"
+                      className="text-parchment/30 transition-colors hover:text-seal-light disabled:opacity-50"
+                    >
+                      {isDeleting ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                      ) : (
+                        <Trash2 className="h-4 w-4" />
+                      )}
+                    </button>
+                  </td>
                 </tr>
               );
             })}

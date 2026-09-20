@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
       mode: "subscription",
       customer_email: email,
       line_items: [{ price: priceIdForPlan(plan), quantity: 1 }],
-      payment_method_types: ["card", "paypal"],
+      payment_method_types: ["card"],
       billing_address_collection: "required",
       success_url: `${origin}/welcome?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/?checkout=canceled`,

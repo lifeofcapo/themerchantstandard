@@ -3,6 +3,7 @@ import { ArrowLeft, ScrollText } from "lucide-react";
 import { Header } from "@/components/sections/header";
 import { Footer } from "@/components/sections/footer";
 import { FAQ } from "../sections/faq";
+import { NewsletterSection } from "./news-letter-section";
 
 export function LegalPageLayout({
   title,
@@ -55,6 +56,7 @@ export function LegalPageLayout({
           </div>
         </div>
       <FAQ/>
+      <NewsletterSection/>
       </main>
       <Footer />
     </>
