@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowLeft, ScrollText } from "lucide-react";
 import { Header } from "@/components/sections/header";
 import { Footer } from "@/components/sections/footer";
+import { FAQ } from "../sections/faq";
 
 export function LegalPageLayout({
   title,
@@ -53,6 +54,7 @@ export function LegalPageLayout({
             {children}
           </div>
         </div>
+      <FAQ/>
       </main>
       <Footer />
     </>

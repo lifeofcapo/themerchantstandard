@@ -7,9 +7,9 @@ import { JoinButton } from "@/components/shared/join-button";
 import Image from "next/image";
 
 const links = [
-  { href: "#price", label: "Price" },
+  { href: "mechanism", label: "How It Works"},
   { href: "#ai-assistant", label: "AI Assistant" },
-  { href: "#wins", label: "Wins" },
+  { href: "#price", label: "Price" },
   { href: "#faq", label: "FAQ" },
 ];
 

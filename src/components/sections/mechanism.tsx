@@ -17,7 +17,7 @@ const notNeeded = [
 
 export function Mechanism() {
   return (
-    <section className="relative overflow-hidden border-b border-line py-24">
+    <section className="relative overflow-hidden border-b border-line py-24" id="mechanism">
       <div className="bg-gradient-wash absolute inset-0 opacity-70" />
       <div className="ledger-grid absolute inset-0 opacity-40" />
 
