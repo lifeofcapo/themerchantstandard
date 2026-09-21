@@ -7,6 +7,9 @@ import { Footer } from "@/components/sections/footer";
 import { VslLeadForm } from "@/components/shared/vsl-lead-form";
 import { VslCtaButton } from "@/components/shared/vsl-cta-button";
 
+const VIDEO_URL = "https://cdn.themerchantstandard.com/vsl-compressed.mp4";
+const POSTER_URL = "https://cdn.themerchantstandard.com/vsl-poster.jpg";
+
 const pillars = [
   { title: "The Product", desc: "A ready Partner Catalog of real music products — you don't make a single one." },
   { title: "The AI", desc: "Merchant AI reads the conversation and closes the deal with you, in seconds." },
@@ -85,16 +88,19 @@ export default function FreeTrainingClient() {
 
           <Reveal delay={200}>
             <div className="relative mx-auto mt-10 aspect-video w-full max-w-2xl overflow-hidden rounded-2xl border border-line bg-panel shadow-2xl shadow-black/40">
-              <video
-                ref={videoRef}
-                className="h-full w-full"
-                src="/videos/intro.mp4"
-                poster="/videos/intro-poster.jpg"
-                controls={playing}
-                playsInline
-                onPause={() => setPlaying(false)}
-                onEnded={() => setPlaying(false)}
-              />
+            <video
+              ref={videoRef}
+              className="h-full w-full"
+              src={VIDEO_URL}
+              poster={POSTER_URL}
+              preload="metadata"
+              playsInline
+              controls={playing}
+              onPause={() => setPlaying(false)}
+              onEnded={() => setPlaying(false)}
+              width={1920}
+              height={1080}
+            />
               {!playing && (
                 <button
                   onClick={handlePlay}

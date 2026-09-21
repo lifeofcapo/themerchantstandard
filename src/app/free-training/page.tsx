@@ -7,13 +7,33 @@ export const metadata: Metadata = {
     "Watch this free 12-minute training and see exactly how to start a real online business selling music products — with the product, an AI that closes deals for you, and the exact system.",
   alternates: { canonical: "https://themerchantstandard.com/free-training" },
   openGraph: {
-    title: "Free Training — The Merchant Standard",
+    title: "Free Training — TheMerchantStandard",
     description:
       "See the exact mechanism: the product, Merchant AI, and the system behind The Merchant Standard.",
     url: "https://themerchantstandard.com/free-training",
   },
 };
 
+const videoJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: "TheMerchantStandard — Free Training",
+  description:
+    "See exactly how to start a real online business selling music products — with the product, an AI that closes deals for you, and the exact system.",
+  thumbnailUrl: "https://cdn.themerchantstandard.com/vsl-poster.jpg",
+  uploadDate: "2026-01-15T00:00:00+00:00",
+  duration: "PT9M",
+  contentUrl: "https://cdn.themerchantstandard.com/vsl-compressed.mp4",
+};
+
 export default function FreeTrainingPage() {
-  return <FreeTrainingClient />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoJsonLd) }}
+      />
+      <FreeTrainingClient />
+    </>
+  );
 }

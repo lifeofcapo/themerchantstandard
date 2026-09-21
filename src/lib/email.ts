@@ -2,7 +2,7 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const FROM = "The Merchant Standard <info@themerchantstandard.com>";
+const FROM = "The Merchant Standard <hello@themerchantstandard.com>";
 
 export async function sendInviteEmail(to: string, inviteUrl: string) {
   await resend.emails.send({
