@@ -300,3 +300,11 @@ h1, h2, h3, h4 {
     animation: none;
   }
 }
+
+@keyframes video-glow-pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+.video-glow {
+  animation: video-glow-pulse 4s ease-in-out infinite;
+}

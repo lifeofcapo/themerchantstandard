@@ -87,20 +87,31 @@ export default function FreeTrainingClient() {
           </Reveal>
 
           <Reveal delay={200}>
-            <div className="relative mx-auto mt-10 aspect-video w-full max-w-2xl overflow-hidden rounded-2xl border border-line bg-panel shadow-2xl shadow-black/40">
-            <video
-              ref={videoRef}
-              className="h-full w-full"
-              src={VIDEO_URL}
-              poster={POSTER_URL}
-              preload="metadata"
-              playsInline
-              controls={playing}
-              onPause={() => setPlaying(false)}
-              onEnded={() => setPlaying(false)}
-              width={1920}
-              height={1080}
+          <div className="relative mx-auto mt-10 w-full max-w-2xl">
+            <div
+              aria-hidden
+              className="absolute -inset-6 sm:-inset-10"
+              style={{
+                background:
+                  "radial-gradient(ellipse 70% 70% at 50% 50%, rgba(201,162,39,0.6), rgba(201,162,39,0.25) 45%, transparent 75%)",
+                filter: "blur(50px)",
+              }}
             />
+
+            <div className="relative z-10 aspect-video w-full overflow-hidden rounded-2xl border border-line bg-panel shadow-2xl shadow-black/40">
+              <video
+                ref={videoRef}
+                className="h-full w-full object-cover"
+                src={VIDEO_URL}
+                poster={POSTER_URL}
+                preload="metadata"
+                playsInline
+                controls={playing}
+                onPause={() => setPlaying(false)}
+                onEnded={() => setPlaying(false)}
+                width={1920}
+                height={1080}
+              />
               {!playing && (
                 <button
                   onClick={handlePlay}
@@ -113,6 +124,7 @@ export default function FreeTrainingClient() {
                 </button>
               )}
             </div>
+          </div>
           </Reveal>
 
           <Reveal delay={250}>
