@@ -2,7 +2,7 @@ import { Resend } from "resend";
 import { SEQUENCE } from "./email-sequence";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const FROM = "The Merchant Standard <support@themerchantstandard.com>";
+const FROM = "The Merchant Standard <hello@themerchantstandard.com>";
 const SITE = "https://themerchantstandard.com";
 
 type Contact = {
