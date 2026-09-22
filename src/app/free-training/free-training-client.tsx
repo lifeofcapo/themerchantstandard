@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Play, ShieldCheck, Check, X, Lock } from "lucide-react";
+import { Play, ShieldCheck, Check, X, Lock, VolumeX, Volume2, Pause } from "lucide-react";
 import { Reveal } from "@/components/shared/reveal";
 import { Footer } from "@/components/sections/footer";
 import { VslLeadForm } from "@/components/shared/vsl-lead-form";
@@ -48,6 +48,10 @@ export default function FreeTrainingClient() {
   const [leadFormOpen, setLeadFormOpen] = React.useState(false);
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = React.useState(false);
+  const [muted, setMuted] = React.useState(false);
+  const [progress, setProgress] = React.useState(0);
+  const maxWatchedRef = React.useRef(0);
+
 
   function openForm() {
     setLeadFormOpen(true);
@@ -56,6 +60,42 @@ export default function FreeTrainingClient() {
   function handlePlay() {
     videoRef.current?.play();
     setPlaying(true);
+  }
+
+  function handlePauseToggle() {
+    if (!videoRef.current) return;
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+    } else {
+      videoRef.current.pause();
+    }
+  }
+
+  function handleTimeUpdate() {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.currentTime > maxWatchedRef.current + 0.5) {
+      video.currentTime = maxWatchedRef.current;
+      return;
+    }
+
+    maxWatchedRef.current = Math.max(maxWatchedRef.current, video.currentTime);
+    setProgress(video.duration ? (video.currentTime / video.duration) * 100 : 0);
+  }
+
+  function handleSeeking() {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.currentTime > maxWatchedRef.current + 0.5) {
+      video.currentTime = maxWatchedRef.current;
+    }
+  }
+
+  function blockKeys(e: React.KeyboardEvent) {
+    if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) {
+      e.preventDefault();
+    }
   }
 
   return (
@@ -87,44 +127,80 @@ export default function FreeTrainingClient() {
           </Reveal>
 
           <Reveal delay={200}>
-          <div className="relative mx-auto mt-10 w-full max-w-2xl">
-            <div
-              aria-hidden
-              className="absolute -inset-6 sm:-inset-10"
-              style={{
-                background:
-                  "radial-gradient(ellipse 70% 70% at 50% 50%, rgba(201,162,39,0.6), rgba(201,162,39,0.25) 45%, transparent 75%)",
-                filter: "blur(50px)",
-              }}
-            />
+              <div className="relative mx-auto mt-10 w-full max-w-2xl">
+                <div
+                  aria-hidden
+                  className="absolute -inset-6 sm:-inset-10"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse 70% 70% at 50% 50%, rgba(201,162,39,0.6), rgba(201,162,39,0.25) 45%, transparent 75%)",
+                    filter: "blur(50px)",
+                  }}
+                />
 
-            <div className="relative z-10 aspect-video w-full overflow-hidden rounded-2xl border border-line bg-panel shadow-2xl shadow-black/40">
-              <video
-                ref={videoRef}
-                className="h-full w-full object-cover"
-                src={VIDEO_URL}
-                poster={POSTER_URL}
-                preload="metadata"
-                playsInline
-                controls={playing}
-                onPause={() => setPlaying(false)}
-                onEnded={() => setPlaying(false)}
-                width={1920}
-                height={1080}
-              />
-              {!playing && (
-                <button
-                  onClick={handlePlay}
-                  aria-label="Play training"
-                  className="group absolute inset-0 flex items-center justify-center bg-ink/40 transition-colors hover:bg-ink/30"
-                >
-                  <span className="wax-seal flex h-20 w-20 items-center justify-center rounded-full transition-transform group-hover:scale-105">
-                    <Play className="h-8 w-8 translate-x-0.5 text-parchment" />
-                  </span>
-                </button>
-              )}
-            </div>
-          </div>
+                <div className="relative z-10 aspect-video w-full overflow-hidden rounded-2xl border border-line bg-panel shadow-2xl shadow-black/40">
+                  <video
+                    ref={videoRef}
+                    className="h-full w-full object-cover"
+                    src={VIDEO_URL}
+                    poster={POSTER_URL}
+                    preload="metadata"
+                    playsInline
+                    muted={muted}
+                    onTimeUpdate={handleTimeUpdate}
+                    onSeeking={handleSeeking}
+                    onPause={() => setPlaying(false)}
+                    onPlay={() => setPlaying(true)}
+                    onEnded={() => setPlaying(false)}
+                    onKeyDown={blockKeys}
+                    onContextMenu={(e) => e.preventDefault()}
+                    controlsList="nodownload noplaybackrate"
+                    disablePictureInPicture
+                    width={1920}
+                    height={1080}
+                  />
+
+                  {!playing && progress === 0 && (
+                    <button
+                      onClick={handlePlay}
+                      aria-label="Play training"
+                      className="group absolute inset-0 flex items-center justify-center bg-ink/40 transition-colors hover:bg-ink/30"
+                    >
+                      <span className="wax-seal flex h-20 w-20 items-center justify-center rounded-full transition-transform group-hover:scale-105">
+                        <Play className="h-8 w-8 translate-x-0.5 text-parchment" />
+                      </span>
+                    </button>
+                  )}
+
+                  {(playing || progress > 0) && (
+                    <div className="absolute inset-x-0 bottom-0 flex items-center gap-3 bg-gradient-to-t from-ink/90 to-transparent px-4 pb-3 pt-8">
+                      <button
+                        onClick={handlePauseToggle}
+                        aria-label={playing ? "Pause" : "Play"}
+                        className="text-parchment hover:text-brass"
+                      >
+                        {playing ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5" />}
+                      </button>
+
+                      {/* Прогресс-бар только для отображения — без drag/click-to-seek */}
+                      <div className="h-1 flex-1 overflow-hidden rounded-full bg-parchment/20">
+                        <div
+                          className="h-full rounded-full bg-brass transition-all duration-150"
+                          style={{ width: `${progress}%` }}
+                        />
+                      </div>
+
+                      <button
+                        onClick={() => setMuted((m) => !m)}
+                        aria-label={muted ? "Unmute" : "Mute"}
+                        className="text-parchment hover:text-brass"
+                      >
+                        {muted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
           </Reveal>
 
           <Reveal delay={250}>

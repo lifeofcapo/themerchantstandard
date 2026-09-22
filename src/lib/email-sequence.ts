@@ -2,18 +2,19 @@ import { renderEmail, ctaButton } from "./email-templates";
 
 const SITE = "https://themerchantstandard.com";
 const VSL_URL = `${SITE}/free-training`;
-const JOIN_URL = `${SITE}/free-training`; // ведёт туда же, где открыта форма/CTA к покупке
-
+const JOIN_URL = `${SITE}/free-training`;
+import { SEQUENCE_TEST_OFFSETS } from "./email-sequence.test";
 type SequenceStep = {
-  dayOffset: number; // сколько дней с момента входа в воронку должно пройти
+  dayOffset: number; 
   subject: string;
   body: (unsubscribeUrl: string) => string;
 };
 
+
 export const SEQUENCE: SequenceStep[] = [
   // Step 0 — Welcome (день 0)
   {
-    dayOffset: 0,
+    dayOffset: SEQUENCE_TEST_OFFSETS[0],
     subject: "Your free training is inside (watch before it closes)",
     body: (u) =>
       renderEmail({
@@ -44,7 +45,7 @@ export const SEQUENCE: SequenceStep[] = [
   },
   // Step 1 — Welcome Chain W2 (день 1)
   {
-    dayOffset: 1,
+    dayOffset: SEQUENCE_TEST_OFFSETS[1],
     subject: "$4,200 in 60 days — with zero experience",
     body: (u) =>
       renderEmail({
@@ -67,7 +68,7 @@ export const SEQUENCE: SequenceStep[] = [
   },
   // Step 2 — Welcome Chain W3 (день 2)
   {
-    dayOffset: 2,
+    dayOffset: SEQUENCE_TEST_OFFSETS[2],
     subject: "The AI that closes deals for you",
     body: (u) =>
       renderEmail({
@@ -91,7 +92,7 @@ export const SEQUENCE: SequenceStep[] = [
   },
   // Step 3 — Welcome Chain W4 (день 3)
   {
-    dayOffset: 3,
+    dayOffset: SEQUENCE_TEST_OFFSETS[3],
     subject: "Closing the free training",
     body: (u) =>
       renderEmail({
@@ -116,7 +117,7 @@ export const SEQUENCE: SequenceStep[] = [
   },
   // Step 4 — Дожим 1: Motivational (день 5)
   {
-    dayOffset: 5,
+    dayOffset: SEQUENCE_TEST_OFFSETS[4],
     subject: "Two versions of your next 6 months",
     body: (u) =>
       renderEmail({
@@ -141,7 +142,7 @@ export const SEQUENCE: SequenceStep[] = [
   },
   // Step 5 — Дожим 2: Trust (день 6)
   {
-    dayOffset: 6,
+    dayOffset: SEQUENCE_TEST_OFFSETS[5],
     subject: '"Is this legit or another scam?"',
     body: (u) =>
       renderEmail({
@@ -164,7 +165,7 @@ export const SEQUENCE: SequenceStep[] = [
   },
   // Step 6 — Дожим 3: Value (день 7)
   {
-    dayOffset: 7,
+    dayOffset: SEQUENCE_TEST_OFFSETS[6],
     subject: "What you're actually getting for $49",
     body: (u) =>
       renderEmail({
@@ -188,7 +189,7 @@ export const SEQUENCE: SequenceStep[] = [
   },
   // Step 7 — Дожим 4: Price (день 8)
   {
-    dayOffset: 8,
+    dayOffset: SEQUENCE_TEST_OFFSETS[7],
     subject: "If it's the $49 stopping you, read this",
     body: (u) =>
       renderEmail({
@@ -208,7 +209,7 @@ export const SEQUENCE: SequenceStep[] = [
   },
   // Step 8 — SOS 1 (день 10)
   {
-    dayOffset: 10,
+    dayOffset: SEQUENCE_TEST_OFFSETS[8],
     subject: "The part of the story I don't usually tell",
     body: (u) =>
       renderEmail({
@@ -228,7 +229,7 @@ export const SEQUENCE: SequenceStep[] = [
   },
   // Step 9 — SOS 2 (день 11)
   {
-    dayOffset: 11,
+    dayOffset: SEQUENCE_TEST_OFFSETS[9],
     subject: "The day I almost quit for good",
     body: (u) =>
       renderEmail({
@@ -247,7 +248,7 @@ export const SEQUENCE: SequenceStep[] = [
   },
   // Step 10 — SOS 3 (день 12)
   {
-    dayOffset: 12,
+    dayOffset: SEQUENCE_TEST_OFFSETS[10],
     subject: "You're not broken — the setup is",
     body: (u) =>
       renderEmail({
@@ -267,7 +268,7 @@ export const SEQUENCE: SequenceStep[] = [
   },
   // Step 11 — SOS 4 (день 13)
   {
-    dayOffset: 13,
+    dayOffset: SEQUENCE_TEST_OFFSETS[11],
     subject: "The 4 steps that changed my income",
     body: (u) =>
       renderEmail({
@@ -288,7 +289,7 @@ export const SEQUENCE: SequenceStep[] = [
   },
   // Step 12 — SOS 5 (день 14)
   {
-    dayOffset: 14,
+    dayOffset: SEQUENCE_TEST_OFFSETS[12],
     subject: "3 people who were exactly where you are",
     body: (u) =>
       renderEmail({
@@ -308,7 +309,7 @@ export const SEQUENCE: SequenceStep[] = [
   },
   // Step 13 — SOS 6 (день 15)
   {
-    dayOffset: 15,
+    dayOffset: SEQUENCE_TEST_OFFSETS[13],
     subject: "Where you'll be in 6 months",
     body: (u) =>
       renderEmail({
@@ -328,7 +329,7 @@ export const SEQUENCE: SequenceStep[] = [
   },
   // Step 14 — Second window D1 (день 17)
   {
-    dayOffset: 17,
+    dayOffset: SEQUENCE_TEST_OFFSETS[14],
     subject: "The doors are open — here's what's new",
     body: (u) =>
       renderEmail({
@@ -345,7 +346,7 @@ export const SEQUENCE: SequenceStep[] = [
   },
   // Step 15 — Second window D2 (день 18)
   {
-    dayOffset: 18,
+    dayOffset: SEQUENCE_TEST_OFFSETS[15],
     subject: "24 hours left",
     body: (u) =>
       renderEmail({
@@ -362,7 +363,7 @@ export const SEQUENCE: SequenceStep[] = [
   },
   // Step 16 — Second window D3, финал (день 19)
   {
-    dayOffset: 19,
+    dayOffset: SEQUENCE_TEST_OFFSETS[16],
     subject: "Closing tonight",
     body: (u) =>
       renderEmail({
