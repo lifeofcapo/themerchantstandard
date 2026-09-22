@@ -91,7 +91,7 @@ export default function PrivacyPolicyPage() {
         </ul>
         <p>
           To make a request, email{" "}
-          <a href="mailto:info@themerchantstandard.com">info@themerchantstandard.com</a>.
+          <a href="mailto:support@themerchantstandard.com">support@themerchantstandard.com</a>.
         </p>
       </section>
 
@@ -125,7 +125,7 @@ export default function PrivacyPolicyPage() {
         <h2>10. Contact</h2>
         <p>
           Questions about this policy or your data? Email{" "}
-          <a href="mailto:info@themerchantstandard.com">info@themerchantstandard.com</a>.
+          <a href="mailto:support@themerchantstandard.com">support@themerchantstandard.com</a>.
         </p>
       </section>
     </LegalPageLayout>

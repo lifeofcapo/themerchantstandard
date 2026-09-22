@@ -108,7 +108,12 @@ export const LeadScalarFieldEnum = {
   region: 'region',
   city: 'city',
   source: 'source',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  sequenceStep: 'sequenceStep',
+  lastEmailSentAt: 'lastEmailSentAt',
+  convertedAt: 'convertedAt',
+  unsubscribedAt: 'unsubscribedAt',
+  unsubscribeToken: 'unsubscribeToken'
 } as const
 
 export type LeadScalarFieldEnum = (typeof LeadScalarFieldEnum)[keyof typeof LeadScalarFieldEnum]
@@ -132,7 +137,12 @@ export const NewsletterSubscriberScalarFieldEnum = {
   id: 'id',
   email: 'email',
   ipAddress: 'ipAddress',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  sequenceStep: 'sequenceStep',
+  lastEmailSentAt: 'lastEmailSentAt',
+  convertedAt: 'convertedAt',
+  unsubscribedAt: 'unsubscribedAt',
+  unsubscribeToken: 'unsubscribeToken'
 } as const
 
 export type NewsletterSubscriberScalarFieldEnum = (typeof NewsletterSubscriberScalarFieldEnum)[keyof typeof NewsletterSubscriberScalarFieldEnum]

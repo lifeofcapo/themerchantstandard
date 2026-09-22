@@ -44,16 +44,22 @@ model Purchase {
 }
 
 model Lead {
-  id        String   @id @default(cuid())
-  name      String
-  email     String
-  phone     String
-  ipAddress String?
-  country   String?
-  region    String?
-  city      String?
-  source    String   @default("vsl")
-  createdAt DateTime @default(now())
+  id                String   @id @default(cuid())
+  name              String
+  email             String
+  phone             String
+  ipAddress         String?
+  country           String?
+  region            String?
+  city              String?
+  source            String   @default("vsl")
+  createdAt         DateTime @default(now())
+
+  sequenceStep      Int       @default(0)
+  lastEmailSentAt   DateTime?
+  convertedAt       DateTime?
+  unsubscribedAt    DateTime?
+  unsubscribeToken  String    @unique @default(cuid())
 }
 
 model Visit {
@@ -68,8 +74,14 @@ model Visit {
 }
 
 model NewsletterSubscriber {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  ipAddress String?
-  createdAt DateTime @default(now())
+  id                String   @id @default(cuid())
+  email             String   @unique
+  ipAddress         String?
+  createdAt         DateTime @default(now())
+
+  sequenceStep      Int       @default(0)
+  lastEmailSentAt   DateTime?
+  convertedAt       DateTime?
+  unsubscribedAt    DateTime?
+  unsubscribeToken  String    @unique @default(cuid())
 }

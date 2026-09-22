@@ -20,8 +20,18 @@ export type NewsletterSubscriberModel = runtime.Types.Result.DefaultSelection<Pr
 
 export type AggregateNewsletterSubscriber = {
   _count: NewsletterSubscriberCountAggregateOutputType | null
+  _avg: NewsletterSubscriberAvgAggregateOutputType | null
+  _sum: NewsletterSubscriberSumAggregateOutputType | null
   _min: NewsletterSubscriberMinAggregateOutputType | null
   _max: NewsletterSubscriberMaxAggregateOutputType | null
+}
+
+export type NewsletterSubscriberAvgAggregateOutputType = {
+  sequenceStep: number | null
+}
+
+export type NewsletterSubscriberSumAggregateOutputType = {
+  sequenceStep: number | null
 }
 
 export type NewsletterSubscriberMinAggregateOutputType = {
@@ -29,6 +39,11 @@ export type NewsletterSubscriberMinAggregateOutputType = {
   email: string | null
   ipAddress: string | null
   createdAt: Date | null
+  sequenceStep: number | null
+  lastEmailSentAt: Date | null
+  convertedAt: Date | null
+  unsubscribedAt: Date | null
+  unsubscribeToken: string | null
 }
 
 export type NewsletterSubscriberMaxAggregateOutputType = {
@@ -36,6 +51,11 @@ export type NewsletterSubscriberMaxAggregateOutputType = {
   email: string | null
   ipAddress: string | null
   createdAt: Date | null
+  sequenceStep: number | null
+  lastEmailSentAt: Date | null
+  convertedAt: Date | null
+  unsubscribedAt: Date | null
+  unsubscribeToken: string | null
 }
 
 export type NewsletterSubscriberCountAggregateOutputType = {
@@ -43,15 +63,33 @@ export type NewsletterSubscriberCountAggregateOutputType = {
   email: number
   ipAddress: number
   createdAt: number
+  sequenceStep: number
+  lastEmailSentAt: number
+  convertedAt: number
+  unsubscribedAt: number
+  unsubscribeToken: number
   _all: number
 }
 
+
+export type NewsletterSubscriberAvgAggregateInputType = {
+  sequenceStep?: true
+}
+
+export type NewsletterSubscriberSumAggregateInputType = {
+  sequenceStep?: true
+}
 
 export type NewsletterSubscriberMinAggregateInputType = {
   id?: true
   email?: true
   ipAddress?: true
   createdAt?: true
+  sequenceStep?: true
+  lastEmailSentAt?: true
+  convertedAt?: true
+  unsubscribedAt?: true
+  unsubscribeToken?: true
 }
 
 export type NewsletterSubscriberMaxAggregateInputType = {
@@ -59,6 +97,11 @@ export type NewsletterSubscriberMaxAggregateInputType = {
   email?: true
   ipAddress?: true
   createdAt?: true
+  sequenceStep?: true
+  lastEmailSentAt?: true
+  convertedAt?: true
+  unsubscribedAt?: true
+  unsubscribeToken?: true
 }
 
 export type NewsletterSubscriberCountAggregateInputType = {
@@ -66,6 +109,11 @@ export type NewsletterSubscriberCountAggregateInputType = {
   email?: true
   ipAddress?: true
   createdAt?: true
+  sequenceStep?: true
+  lastEmailSentAt?: true
+  convertedAt?: true
+  unsubscribedAt?: true
+  unsubscribeToken?: true
   _all?: true
 }
 
@@ -107,6 +155,18 @@ export type NewsletterSubscriberAggregateArgs<ExtArgs extends runtime.Types.Exte
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: NewsletterSubscriberAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: NewsletterSubscriberSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: NewsletterSubscriberMinAggregateInputType
@@ -137,6 +197,8 @@ export type NewsletterSubscriberGroupByArgs<ExtArgs extends runtime.Types.Extens
   take?: number
   skip?: number
   _count?: NewsletterSubscriberCountAggregateInputType | true
+  _avg?: NewsletterSubscriberAvgAggregateInputType
+  _sum?: NewsletterSubscriberSumAggregateInputType
   _min?: NewsletterSubscriberMinAggregateInputType
   _max?: NewsletterSubscriberMaxAggregateInputType
 }
@@ -146,7 +208,14 @@ export type NewsletterSubscriberGroupByOutputType = {
   email: string
   ipAddress: string | null
   createdAt: Date
+  sequenceStep: number
+  lastEmailSentAt: Date | null
+  convertedAt: Date | null
+  unsubscribedAt: Date | null
+  unsubscribeToken: string
   _count: NewsletterSubscriberCountAggregateOutputType | null
+  _avg: NewsletterSubscriberAvgAggregateOutputType | null
+  _sum: NewsletterSubscriberSumAggregateOutputType | null
   _min: NewsletterSubscriberMinAggregateOutputType | null
   _max: NewsletterSubscriberMaxAggregateOutputType | null
 }
@@ -174,6 +243,11 @@ export type NewsletterSubscriberWhereInput = {
   email?: Prisma.StringFilter<"NewsletterSubscriber"> | string
   ipAddress?: Prisma.StringNullableFilter<"NewsletterSubscriber"> | string | null
   createdAt?: Prisma.DateTimeFilter<"NewsletterSubscriber"> | Date | string
+  sequenceStep?: Prisma.IntFilter<"NewsletterSubscriber"> | number
+  lastEmailSentAt?: Prisma.DateTimeNullableFilter<"NewsletterSubscriber"> | Date | string | null
+  convertedAt?: Prisma.DateTimeNullableFilter<"NewsletterSubscriber"> | Date | string | null
+  unsubscribedAt?: Prisma.DateTimeNullableFilter<"NewsletterSubscriber"> | Date | string | null
+  unsubscribeToken?: Prisma.StringFilter<"NewsletterSubscriber"> | string
 }
 
 export type NewsletterSubscriberOrderByWithRelationInput = {
@@ -181,26 +255,43 @@ export type NewsletterSubscriberOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   ipAddress?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  sequenceStep?: Prisma.SortOrder
+  lastEmailSentAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  convertedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  unsubscribedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  unsubscribeToken?: Prisma.SortOrder
 }
 
 export type NewsletterSubscriberWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   email?: string
+  unsubscribeToken?: string
   AND?: Prisma.NewsletterSubscriberWhereInput | Prisma.NewsletterSubscriberWhereInput[]
   OR?: Prisma.NewsletterSubscriberWhereInput[]
   NOT?: Prisma.NewsletterSubscriberWhereInput | Prisma.NewsletterSubscriberWhereInput[]
   ipAddress?: Prisma.StringNullableFilter<"NewsletterSubscriber"> | string | null
   createdAt?: Prisma.DateTimeFilter<"NewsletterSubscriber"> | Date | string
-}, "id" | "email">
+  sequenceStep?: Prisma.IntFilter<"NewsletterSubscriber"> | number
+  lastEmailSentAt?: Prisma.DateTimeNullableFilter<"NewsletterSubscriber"> | Date | string | null
+  convertedAt?: Prisma.DateTimeNullableFilter<"NewsletterSubscriber"> | Date | string | null
+  unsubscribedAt?: Prisma.DateTimeNullableFilter<"NewsletterSubscriber"> | Date | string | null
+}, "id" | "email" | "unsubscribeToken">
 
 export type NewsletterSubscriberOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   ipAddress?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  sequenceStep?: Prisma.SortOrder
+  lastEmailSentAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  convertedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  unsubscribedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  unsubscribeToken?: Prisma.SortOrder
   _count?: Prisma.NewsletterSubscriberCountOrderByAggregateInput
+  _avg?: Prisma.NewsletterSubscriberAvgOrderByAggregateInput
   _max?: Prisma.NewsletterSubscriberMaxOrderByAggregateInput
   _min?: Prisma.NewsletterSubscriberMinOrderByAggregateInput
+  _sum?: Prisma.NewsletterSubscriberSumOrderByAggregateInput
 }
 
 export type NewsletterSubscriberScalarWhereWithAggregatesInput = {
@@ -211,6 +302,11 @@ export type NewsletterSubscriberScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"NewsletterSubscriber"> | string
   ipAddress?: Prisma.StringNullableWithAggregatesFilter<"NewsletterSubscriber"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"NewsletterSubscriber"> | Date | string
+  sequenceStep?: Prisma.IntWithAggregatesFilter<"NewsletterSubscriber"> | number
+  lastEmailSentAt?: Prisma.DateTimeNullableWithAggregatesFilter<"NewsletterSubscriber"> | Date | string | null
+  convertedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"NewsletterSubscriber"> | Date | string | null
+  unsubscribedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"NewsletterSubscriber"> | Date | string | null
+  unsubscribeToken?: Prisma.StringWithAggregatesFilter<"NewsletterSubscriber"> | string
 }
 
 export type NewsletterSubscriberCreateInput = {
@@ -218,6 +314,11 @@ export type NewsletterSubscriberCreateInput = {
   email: string
   ipAddress?: string | null
   createdAt?: Date | string
+  sequenceStep?: number
+  lastEmailSentAt?: Date | string | null
+  convertedAt?: Date | string | null
+  unsubscribedAt?: Date | string | null
+  unsubscribeToken?: string
 }
 
 export type NewsletterSubscriberUncheckedCreateInput = {
@@ -225,6 +326,11 @@ export type NewsletterSubscriberUncheckedCreateInput = {
   email: string
   ipAddress?: string | null
   createdAt?: Date | string
+  sequenceStep?: number
+  lastEmailSentAt?: Date | string | null
+  convertedAt?: Date | string | null
+  unsubscribedAt?: Date | string | null
+  unsubscribeToken?: string
 }
 
 export type NewsletterSubscriberUpdateInput = {
@@ -232,6 +338,11 @@ export type NewsletterSubscriberUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sequenceStep?: Prisma.IntFieldUpdateOperationsInput | number
+  lastEmailSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  convertedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  unsubscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  unsubscribeToken?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NewsletterSubscriberUncheckedUpdateInput = {
@@ -239,6 +350,11 @@ export type NewsletterSubscriberUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sequenceStep?: Prisma.IntFieldUpdateOperationsInput | number
+  lastEmailSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  convertedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  unsubscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  unsubscribeToken?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NewsletterSubscriberCreateManyInput = {
@@ -246,6 +362,11 @@ export type NewsletterSubscriberCreateManyInput = {
   email: string
   ipAddress?: string | null
   createdAt?: Date | string
+  sequenceStep?: number
+  lastEmailSentAt?: Date | string | null
+  convertedAt?: Date | string | null
+  unsubscribedAt?: Date | string | null
+  unsubscribeToken?: string
 }
 
 export type NewsletterSubscriberUpdateManyMutationInput = {
@@ -253,6 +374,11 @@ export type NewsletterSubscriberUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sequenceStep?: Prisma.IntFieldUpdateOperationsInput | number
+  lastEmailSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  convertedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  unsubscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  unsubscribeToken?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NewsletterSubscriberUncheckedUpdateManyInput = {
@@ -260,6 +386,11 @@ export type NewsletterSubscriberUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sequenceStep?: Prisma.IntFieldUpdateOperationsInput | number
+  lastEmailSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  convertedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  unsubscribedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  unsubscribeToken?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NewsletterSubscriberCountOrderByAggregateInput = {
@@ -267,6 +398,15 @@ export type NewsletterSubscriberCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   ipAddress?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  sequenceStep?: Prisma.SortOrder
+  lastEmailSentAt?: Prisma.SortOrder
+  convertedAt?: Prisma.SortOrder
+  unsubscribedAt?: Prisma.SortOrder
+  unsubscribeToken?: Prisma.SortOrder
+}
+
+export type NewsletterSubscriberAvgOrderByAggregateInput = {
+  sequenceStep?: Prisma.SortOrder
 }
 
 export type NewsletterSubscriberMaxOrderByAggregateInput = {
@@ -274,6 +414,11 @@ export type NewsletterSubscriberMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   ipAddress?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  sequenceStep?: Prisma.SortOrder
+  lastEmailSentAt?: Prisma.SortOrder
+  convertedAt?: Prisma.SortOrder
+  unsubscribedAt?: Prisma.SortOrder
+  unsubscribeToken?: Prisma.SortOrder
 }
 
 export type NewsletterSubscriberMinOrderByAggregateInput = {
@@ -281,6 +426,15 @@ export type NewsletterSubscriberMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   ipAddress?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  sequenceStep?: Prisma.SortOrder
+  lastEmailSentAt?: Prisma.SortOrder
+  convertedAt?: Prisma.SortOrder
+  unsubscribedAt?: Prisma.SortOrder
+  unsubscribeToken?: Prisma.SortOrder
+}
+
+export type NewsletterSubscriberSumOrderByAggregateInput = {
+  sequenceStep?: Prisma.SortOrder
 }
 
 
@@ -290,6 +444,11 @@ export type NewsletterSubscriberSelect<ExtArgs extends runtime.Types.Extensions.
   email?: boolean
   ipAddress?: boolean
   createdAt?: boolean
+  sequenceStep?: boolean
+  lastEmailSentAt?: boolean
+  convertedAt?: boolean
+  unsubscribedAt?: boolean
+  unsubscribeToken?: boolean
 }, ExtArgs["result"]["newsletterSubscriber"]>
 
 export type NewsletterSubscriberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -297,6 +456,11 @@ export type NewsletterSubscriberSelectCreateManyAndReturn<ExtArgs extends runtim
   email?: boolean
   ipAddress?: boolean
   createdAt?: boolean
+  sequenceStep?: boolean
+  lastEmailSentAt?: boolean
+  convertedAt?: boolean
+  unsubscribedAt?: boolean
+  unsubscribeToken?: boolean
 }, ExtArgs["result"]["newsletterSubscriber"]>
 
 export type NewsletterSubscriberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -304,6 +468,11 @@ export type NewsletterSubscriberSelectUpdateManyAndReturn<ExtArgs extends runtim
   email?: boolean
   ipAddress?: boolean
   createdAt?: boolean
+  sequenceStep?: boolean
+  lastEmailSentAt?: boolean
+  convertedAt?: boolean
+  unsubscribedAt?: boolean
+  unsubscribeToken?: boolean
 }, ExtArgs["result"]["newsletterSubscriber"]>
 
 export type NewsletterSubscriberSelectScalar = {
@@ -311,9 +480,14 @@ export type NewsletterSubscriberSelectScalar = {
   email?: boolean
   ipAddress?: boolean
   createdAt?: boolean
+  sequenceStep?: boolean
+  lastEmailSentAt?: boolean
+  convertedAt?: boolean
+  unsubscribedAt?: boolean
+  unsubscribeToken?: boolean
 }
 
-export type NewsletterSubscriberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "ipAddress" | "createdAt", ExtArgs["result"]["newsletterSubscriber"]>
+export type NewsletterSubscriberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "ipAddress" | "createdAt" | "sequenceStep" | "lastEmailSentAt" | "convertedAt" | "unsubscribedAt" | "unsubscribeToken", ExtArgs["result"]["newsletterSubscriber"]>
 
 export type $NewsletterSubscriberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "NewsletterSubscriber"
@@ -323,6 +497,11 @@ export type $NewsletterSubscriberPayload<ExtArgs extends runtime.Types.Extension
     email: string
     ipAddress: string | null
     createdAt: Date
+    sequenceStep: number
+    lastEmailSentAt: Date | null
+    convertedAt: Date | null
+    unsubscribedAt: Date | null
+    unsubscribeToken: string
   }, ExtArgs["result"]["newsletterSubscriber"]>
   composites: {}
 }
@@ -750,6 +929,11 @@ export interface NewsletterSubscriberFieldRefs {
   readonly email: Prisma.FieldRef<"NewsletterSubscriber", 'String'>
   readonly ipAddress: Prisma.FieldRef<"NewsletterSubscriber", 'String'>
   readonly createdAt: Prisma.FieldRef<"NewsletterSubscriber", 'DateTime'>
+  readonly sequenceStep: Prisma.FieldRef<"NewsletterSubscriber", 'Int'>
+  readonly lastEmailSentAt: Prisma.FieldRef<"NewsletterSubscriber", 'DateTime'>
+  readonly convertedAt: Prisma.FieldRef<"NewsletterSubscriber", 'DateTime'>
+  readonly unsubscribedAt: Prisma.FieldRef<"NewsletterSubscriber", 'DateTime'>
+  readonly unsubscribeToken: Prisma.FieldRef<"NewsletterSubscriber", 'String'>
 }
     
 

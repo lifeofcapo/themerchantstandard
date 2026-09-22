@@ -101,4 +101,13 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
     where: { id: purchase.id },
     data: { emailSentAt: new Date() },
   });
+
+  await prisma.lead.updateMany({
+  where: { email: session.customer_email ?? undefined, convertedAt: null },
+  data: { convertedAt: new Date() },
+  });
+  await prisma.newsletterSubscriber.updateMany({
+    where: { email: session.customer_email ?? undefined, convertedAt: null },
+    data: { convertedAt: new Date() },
+  });
 }

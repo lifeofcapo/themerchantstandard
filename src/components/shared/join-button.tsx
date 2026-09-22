@@ -197,7 +197,7 @@ export function JoinButton({
               Got it
             </Button>
             <Button asChild className="w-full sm:w-auto">
-              <a href="mailto:info@themerchantstandard.com">Contact us</a>
+              <a href="mailto:support@themerchantstandard.com">Contact us</a>
             </Button>
           </DialogFooter>
         </DialogContent>

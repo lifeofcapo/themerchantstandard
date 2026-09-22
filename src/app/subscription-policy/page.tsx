@@ -39,7 +39,7 @@ export default function SubscriptionPolicyPage() {
         <p>
           You can cancel anytime from the Manage Membership page (linked in the
           footer) or by emailing{" "}
-          <a href="mailto:info@themerchantstandard.com">info@themerchantstandard.com</a>.
+          <a href="mailto:support@themerchantstandard.com">support@themerchantstandard.com</a>.
           Cancelling stops future renewals — it doesn&apos;t retroactively refund the
           current billing period.
         </p>
@@ -71,7 +71,7 @@ export default function SubscriptionPolicyPage() {
           Because membership grants immediate access to the full curriculum and
           community, payments are generally non-refundable once a billing period has
           started. If you believe you were charged in error, contact us at{" "}
-          <a href="mailto:info@themerchantstandard.com">info@themerchantstandard.com</a> and
+          <a href="mailto:support@themerchantstandard.com">support@themerchantstandard.com</a> and
           we&apos;ll review it on a case-by-case basis.
         </p>
       </section>
@@ -97,7 +97,7 @@ export default function SubscriptionPolicyPage() {
         <h2>9. Contact</h2>
         <p>
           For billing questions or help managing your subscription, email{" "}
-          <a href="mailto:info@themerchantstandard.com">info@themerchantstandard.com</a>.
+          <a href="mailto:support@themerchantstandard.com">support@themerchantstandard.com</a>.
         </p>
       </section>
     </LegalPageLayout>
