@@ -85,3 +85,8 @@ model NewsletterSubscriber {
   unsubscribedAt    DateTime?
   unsubscribeToken  String    @unique @default(cuid())
 }
+
+model ProcessedWebhookEvent {
+  id        String   @id
+  createdAt DateTime @default(now())
+}

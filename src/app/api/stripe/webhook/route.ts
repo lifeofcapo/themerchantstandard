@@ -29,6 +29,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
   }
 
+  try {
+    await prisma.processedWebhookEvent.create({ data: { id: event.id } });
+  } catch {
+    console.log(`Event ${event.id} already processed, skipping.`);
+    return NextResponse.json({ received: true, deduped: true });
+  }
+
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
     await handleSuccessfulCheckout(session);
@@ -80,11 +87,16 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
       billingCountry: address?.country ?? undefined,
       ipAddress:
         ipFromMetadata && ipFromMetadata !== "unknown" ? ipFromMetadata : undefined,
-        
     },
   });
 
-  if (purchase.discordInviteUrl) {
+  const claim = await prisma.purchase.updateMany({
+    where: { id: purchase.id, discordInviteUrl: null },
+    data: { discordInviteUrl: "pending" },
+  });
+
+  if (claim.count === 0) {
+    console.log(`Purchase ${purchase.id} already has an invite, skipping.`);
     return;
   }
 
@@ -103,8 +115,8 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
   });
 
   await prisma.lead.updateMany({
-  where: { email: session.customer_email ?? undefined, convertedAt: null },
-  data: { convertedAt: new Date() },
+    where: { email: session.customer_email ?? undefined, convertedAt: null },
+    data: { convertedAt: new Date() },
   });
   await prisma.newsletterSubscriber.updateMany({
     where: { email: session.customer_email ?? undefined, convertedAt: null },

@@ -37,3 +37,8 @@ export type Visit = Prisma.VisitModel
  * 
  */
 export type NewsletterSubscriber = Prisma.NewsletterSubscriberModel
+/**
+ * Model ProcessedWebhookEvent
+ * 
+ */
+export type ProcessedWebhookEvent = Prisma.ProcessedWebhookEventModel
