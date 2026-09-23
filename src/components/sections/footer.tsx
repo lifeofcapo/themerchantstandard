@@ -45,7 +45,7 @@ export function Footer() {
           <p>© {new Date().getFullYear()} The Merchant Standard. All rights reserved. All course materials, content, software, branding, logos, trademarks, graphics, designs, videos, documents and other intellectual property made available through this platform are protected by copyright, trademark and other applicable intellectual property laws. No part may be copied, reproduced, distributed, modified, transmitted, displayed, published, sold, licensed or shared without prior written consent.</p>
           <p>
             Need support? <span className="text-parchment">Contact Us</span>{" "}
-            <a href="mailto:support@merchantstandard.com" className="text-brass hover:underline">
+            <a href="mailto:support@themerchantstandard.com" className="text-brass hover:underline">
               support@merchantstandard.com
             </a>
           </p>
