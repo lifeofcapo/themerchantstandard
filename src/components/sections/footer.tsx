@@ -46,7 +46,7 @@ export function Footer() {
           <p>
             Need support? <span className="text-parchment">Contact Us</span>{" "}
             <a href="mailto:support@themerchantstandard.com" className="text-brass hover:underline">
-              support@merchantstandard.com
+              support@themerchantstandard.com
             </a>
           </p>
         </div>
