@@ -1,41 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Merchant Standard
 
-## Getting Started
+Marketing site and membership funnel for The Merchant Standard, built with Next.js App Router.
 
-First, run the development server:
+## Stack
+
+- Next.js 15 (App Router, Server Components, Turbopack)
+- TypeScript
+- Prisma ORM with Supabase Postgres
+- Stripe Checkout and Billing (subscriptions, webhooks)
+- Resend for transactional and sequence email
+- Cloudflare R2 for video and media storage
+- Tailwind CSS
+- Vercel for hosting, cron jobs, and preview deployments
+- Vitest for testing
+
+## Features
+
+**Checkout and billing**
+Stripe Checkout with monthly and yearly plans, webhook-driven fulfillment, idempotent event handling to prevent duplicate processing on retries, automatic Discord invite generation on successful payment.
+
+**Lead capture**
+Web forms for free training signups and newsletter subscriptions, with server-side validation covering email format, disposable domains, blocklisted test values, phone number length, and input sanitization against XSS and spreadsheet formula injection.
+
+**Email automation**
+Multi-step follow-up sequences sent through Resend, tracking each contact's position in the sequence, automatic exit on conversion, one-click unsubscribe, DKIM/SPF/DMARC configured for deliverability.
+
+**Admin panel**
+Session-authenticated dashboard for viewing purchases, leads, and newsletter subscribers, with per-row deletion, Excel export, and clipboard copy for bulk email lists. Authentication uses signed session tokens rather than plaintext comparison.
+
+**Vitest**
+Testing admin-auth, email, phone and user name validation with vitest
+
+**Video delivery**
+Self-hosted video streaming from Cloudflare R2 with a custom player that blocks seeking past the furthest watched point, lazy loading, and poster fallback.
+
+**Other**
+Dynamic Open Graph image generation, structured data for SEO, country code resolution from IP geolocation and Stripe billing data, responsive design with reduced-motion support.
+
+## Getting started
 
 ```bash
+npm install
+cp .env.example .env
+npx prisma generate
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+See `.env.example` for the full list. At minimum you need a Postgres connection string, Stripe API keys, a Resend API key, and admin session secrets.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Database
 
-## Learn More
+Schema is managed with Prisma. Apply changes with:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npx prisma db push
+npx prisma generate
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+If direct database connections are blocked on your network, generate SQL manually and apply it through the Supabase SQL editor:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npx prisma migrate diff --from-empty --to-schema prisma/schema.prisma --script
+```
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-npx prisma migrate diff \
-  --from-empty \
-  --to-schema prisma/schema.prisma \
-  --script
+Private and proprietary. All rights reserved.
