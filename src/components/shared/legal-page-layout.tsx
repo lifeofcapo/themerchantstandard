@@ -22,17 +22,19 @@ export function LegalPageLayout({
         <div className="bg-gradient-wash-soft absolute inset-0 opacity-60" />
 
         <div className="relative mx-auto max-w-3xl px-6 py-20 sm:py-28">
-          <Link
-            href="/"
-            className="mb-10 inline-flex items-center gap-2 text-base text-parchment/65 transition-colors hover:text-brass"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            Back to home
-          </Link>
+          <div className="mb-10 flex items-center gap-6">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-base text-parchment/65 transition-colors hover:text-brass"
+            >
+              <ArrowLeft className="h-3.5 w-3.5" />
+              Back to home
+            </Link>
 
-          <span className="wax-seal mb-6 flex h-12 w-12 items-center justify-center rounded-full">
-            <ScrollText className="h-5 w-5 text-parchment" />
-          </span>
+            <span className="wax-seal flex h-12 w-12 items-center justify-center rounded-full">
+              <ScrollText className="h-5 w-5 text-parchment" />
+            </span>
+          </div>
 
           <h1 className="text-balance font-display text-3xl leading-tight sm:text-4xl">
             {title}
