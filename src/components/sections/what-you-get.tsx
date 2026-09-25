@@ -41,15 +41,19 @@ export function WhatYouGet() {
             Two Paths Forward
           </span>
           <h2 className="mt-4 font-display text-3xl text-parchment sm:text-4xl">
-            Their Way <span className="text-parchment/30">vs</span>{" "}
+            Their Way{" "}
+            <span className="text-parchment/30">vs</span>{" "}
             <span className="text-gradient-brass">Our Way</span>
           </h2>
         </div>
 
-        <div className="relative grid gap-6 md:grid-cols-2">
+        <div className="relative flex flex-col gap-6 md:grid md:grid-cols-2">
           <div className="flex flex-col rounded-3xl border border-line bg-ink px-8 py-10">
             <div className="text-center">
-              <h3 className="font-display text-2xl text-parchment/60">Their Way</h3>
+              <h3 className="font-display text-2xl text-parchment/60">
+                Their Way
+              </h3>
+
               <div className="mx-auto mt-4 h-px w-16 bg-line" />
             </div>
 
@@ -57,7 +61,10 @@ export function WhatYouGet() {
               {rows.map((r) => (
                 <li key={r.them} className="flex items-center gap-3">
                   <Check className="h-4 w-4 shrink-0 text-parchment/30" />
-                  <p className="text-base text-parchment/55">{r.them}</p>
+
+                  <p className="text-base text-parchment/55">
+                    {r.them}
+                  </p>
                 </li>
               ))}
             </ul>
@@ -74,12 +81,11 @@ export function WhatYouGet() {
             </div>
           </div>
 
-          <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 md:block">
-            <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-brass/50 bg-ink font-display text-base font-bold text-brass shadow-[0_0_24px_rgba(201,162,39,0.35)]">
+          <div className="flex justify-center md:hidden">
+            <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-brass/50 bg-ink font-display text-sm font-bold text-brass shadow-[0_0_24px_rgba(201,162,39,0.35)]">
               VS
             </span>
           </div>
-
           <div className="relative flex flex-col overflow-hidden rounded-3xl border border-brass/40 px-8 py-10">
             <div
               aria-hidden
@@ -90,14 +96,28 @@ export function WhatYouGet() {
               }}
             />
             <div className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 opacity-25 blur-2xl">
-              <Image src="/logo1.png" alt="" fill className="object-contain" />
+              <Image
+                src="/logo1.png"
+                alt=""
+                fill
+                className="object-contain"
+              />
             </div>
 
             <div className="relative flex items-center justify-center gap-3">
               <span className="h-9 w-9 shrink-0 overflow-hidden rounded-full border border-brass/30">
-                <Image src="/logo1.png" alt="" width={36} height={36} className="h-full w-full object-cover" />
+                <Image
+                  src="/logo1.png"
+                  alt=""
+                  width={36}
+                  height={36}
+                  className="h-full w-full object-cover"
+                />
               </span>
-              <h3 className="font-display text-2xl text-parchment">The Merchant Standard</h3>
+
+              <h3 className="font-display text-2xl text-parchment">
+                The Merchant Standard
+              </h3>
             </div>
             <div className="relative mx-auto mt-4 h-px w-16 bg-brass/30" />
 
@@ -105,7 +125,10 @@ export function WhatYouGet() {
               {rows.map((r) => (
                 <li key={r.us} className="flex items-center gap-3">
                   <Check className="h-4 w-4 shrink-0 text-brass" />
-                  <p className="text-base text-parchment/85">{r.us}</p>
+
+                  <p className="text-base text-parchment/85">
+                    {r.us}
+                  </p>
                 </li>
               ))}
             </ul>
@@ -117,13 +140,11 @@ export function WhatYouGet() {
               />
             </div>
           </div>
-        </div>
-
-        {/* Мобильный VS — между карточками в потоке */}
-        <div className="my-4 flex justify-center md:hidden">
-          <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-brass/50 bg-ink font-display text-sm font-bold text-brass shadow-[0_0_24px_rgba(201,162,39,0.35)]">
-            VS
-          </span>
+          <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 md:block">
+            <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-brass/50 bg-ink font-display text-base font-bold text-brass shadow-[0_0_24px_rgba(201,162,39,0.35)]">
+              VS
+            </span>
+          </div>
         </div>
       </div>
     </section>

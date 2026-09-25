@@ -12,7 +12,7 @@ const slides = [
     headline: "Wakes up, checks Discord.",
     body: "Three new artist replies overnight. While everyone else was asleep, the pipeline was working.",
     accent: "from-slate-700/40 via-slate-900/60 to-ink",
-    image: "/images/day-in-standard/01-morning.jpg",
+    image: "/images/day-in-standard/photo-1758773263238-1989d0cc788c.avif",
   },
   {
     step: "02",
@@ -20,7 +20,7 @@ const slides = [
     headline: "Opens Partner Catalog, picks the products.",
     body: "Finds the right fit for each artist — didn't make a single beat himself.",
     accent: "from-amber-900/30 via-slate-900/60 to-ink",
-    image: "/images/day-in-standard/02-catalog.jpg",
+    image: "/images/day-in-standard/photo-1642090104665-fadf84dbe164.avif",
   },
   {
     step: "03",
