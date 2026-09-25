@@ -53,7 +53,7 @@ const slides = [
     headline: "Closes the laptop by noon.",
     body: "That's the job. Six months ago he'd never sold anything.",
     accent: "from-slate-800/35 via-slate-900/60 to-ink",
-    image: "/images/day-in-standard/06-done.jpg",
+    image: "/images/day-in-standard/photo-1768766367333-c8b015e350d9.avif",
   },
 ];
 
