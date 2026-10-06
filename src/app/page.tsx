@@ -16,6 +16,7 @@ import { PSClosing } from "@/components/sections/ps-closing";
 import { Footer } from "@/components/sections/footer";
 import { Reveal } from "@/components/shared/reveal";
 import { NewsletterSection } from "@/components/shared/news-letter-section";
+import { AreYouPreparedToWork } from "@/components/sections/are-you-prepared-to-work";
 
 export default function Home() {
   return (
@@ -47,6 +48,9 @@ export default function Home() {
         </Reveal>
         <Reveal>
           <PriceJustification />
+        </Reveal>
+        <Reveal>
+          <AreYouPreparedToWork />
         </Reveal>
         <Reveal>
           <Guarantee />
