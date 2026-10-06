@@ -7,29 +7,28 @@ type RevealProps = {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  duration?: number;
   as?: keyof React.JSX.IntrinsicElements;
 };
 
-export function Reveal({ children, className, delay = 0, as = "div" }: RevealProps) {
-  const ref = React.useRef<HTMLDivElement | null>(null);
-  const [ready, setReady] = React.useState(false);
+export function Reveal({
+  children,
+  className,
+  delay = 0,
+  duration = 1200,
+  as = "div",
+}: RevealProps) {
+  const ref = React.useRef<HTMLElement | null>(null);
   const [visible, setVisible] = React.useState(false);
 
   React.useEffect(() => {
-    let raf2 = 0;
-    const raf1 = requestAnimationFrame(() => {
-      raf2 = requestAnimationFrame(() => setReady(true));
-    });
-    return () => {
-      cancelAnimationFrame(raf1);
-      if (raf2) cancelAnimationFrame(raf2);
-    };
-  }, []);
-
-  React.useEffect(() => {
-    if (!ready) return;
     const node = ref.current;
     if (!node) return;
+
+    if (typeof IntersectionObserver === "undefined") {
+      setVisible(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -40,15 +39,10 @@ export function Reveal({ children, className, delay = 0, as = "div" }: RevealPro
       },
       { threshold: 0.1, rootMargin: "0px 0px -80px 0px" }
     );
+
     observer.observe(node);
-
-    const failsafe = setTimeout(() => setVisible(true), 2000);
-
-    return () => {
-      observer.disconnect();
-      clearTimeout(failsafe);
-    };
-  }, [ready]);
+    return () => observer.disconnect();
+  }, []);
 
   const Comp = as as React.ElementType;
 
@@ -56,7 +50,10 @@ export function Reveal({ children, className, delay = 0, as = "div" }: RevealPro
     <Comp
       ref={ref}
       className={cn("reveal", visible && "reveal-visible", className)}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+      style={{
+        transitionDuration: `${duration}ms`,
+        transitionDelay: delay ? `${delay}ms` : undefined,
+      }}
     >
       {children}
     </Comp>
