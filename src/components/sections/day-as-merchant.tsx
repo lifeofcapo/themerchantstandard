@@ -147,13 +147,15 @@ function ScreenCatalog() {
         </span>
       </div>
 
-      <div className="flex items-center gap-4 rounded-xl border border-amber-500/70 bg-amber-950/20 px-4 py-3 shadow-[0_0_30px_-8px_rgba(245,158,11,0.4)]">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-amber-900/40">
+      <div className="flex items-center gap-3 rounded-xl border border-amber-500/70 bg-amber-950/20 px-3 py-3 shadow-[0_0_30px_-8px_rgba(245,158,11,0.4)] sm:gap-4 sm:px-4">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-900/40 sm:h-11 sm:w-11">
           <FileText className="h-5 w-5 text-amber-200" />
         </div>
-        <Wave className="bg-amber-400" />
-        <span className="w-20 text-base text-white">Dark sample</span>
-        <span className="rounded-full border border-amber-500/50 bg-amber-900/40 px-3 py-1 text-xs text-amber-300">
+        <div className="hidden flex-1 sm:flex">
+          <Wave className="bg-amber-400" />
+        </div>
+        <span className="min-w-0 flex-1 text-base text-white sm:w-20 sm:flex-none">Dark sample</span>
+        <span className="shrink-0 rounded-full border border-amber-500/50 bg-amber-900/40 px-3 py-1 text-xs text-amber-300">
           Selected
         </span>
       </div>
@@ -161,14 +163,16 @@ function ScreenCatalog() {
       {["Melodic", "Street"].map((name) => (
         <div
           key={name}
-          className="flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3"
+          className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] px-3 py-3 sm:gap-4 sm:px-4"
         >
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/5">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/5 sm:h-11 sm:w-11">
             <FileText className="h-5 w-5 text-white/70" />
           </div>
-          <Wave className="bg-white/40" />
-          <span className="w-20 text-base text-white">{name}</span>
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5">
+          <div className="hidden flex-1 sm:flex">
+            <Wave className="bg-white/40" />
+          </div>
+          <span className="min-w-0 flex-1 text-base text-white sm:w-20 sm:flex-none">{name}</span>
+          <span className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/5 sm:flex">
             <Play className="h-3.5 w-3.5 fill-white/80 text-white/80" />
           </span>
         </div>
@@ -417,12 +421,26 @@ export function DayAsMerchant() {
 
   const slide = slides[active];
 
+  const dots = slides.map((_, i) => (
+    <button
+      key={i}
+      onClick={() => setActive(i)}
+      aria-label={`Go to slide ${i + 1}`}
+      className={`h-1.5 rounded-full transition-all duration-300 ${
+        i === active ? "w-6 bg-brass" : "w-1.5 bg-parchment/20 hover:bg-parchment/40"
+      }`}
+    />
+  ));
+
+  const arrowClass =
+    "flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-panel text-parchment/80 transition-colors hover:border-brass/40 hover:text-brass";
+
   return (
     <section className="relative overflow-hidden border-b border-line py-24">
       <div className="ledger-grid absolute inset-0 opacity-40" />
       <div className="bg-gradient-wash-soft absolute inset-0 opacity-60" />
 
-      <div className="relative mx-auto max-w-5xl px-6">
+      <div className="relative mx-auto max-w-5xl px-4 sm:px-6">
         <div className="mb-14 flex flex-col items-center text-center">
           <span className="mb-3 text-xs uppercase tracking-[0.2em] text-brass">
             A Day in The Standard
@@ -438,7 +456,8 @@ export function DayAsMerchant() {
         </div>
 
         <div className="relative mx-auto w-full max-w-[640px]">
-          <div className="mx-auto flex h-[190px] w-full max-w-[560px] flex-col items-center justify-end text-center">
+          {/* текст шага над карточкой */}
+          <div className="mx-auto flex min-h-[200px] w-full max-w-[560px] flex-col items-center justify-end text-center sm:h-[190px]">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-parchment/65">
               Step {slide.step}
             </p>
@@ -453,43 +472,38 @@ export function DayAsMerchant() {
             <p className="mt-3 text-base leading-relaxed text-parchment/80">{slide.body}</p>
           </div>
 
-          <div className="mt-6 flex items-center gap-3 sm:gap-5">
-            <button
-              onClick={prev}
-              aria-label="Previous"
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-panel text-parchment/80 transition-colors hover:border-brass/40 hover:text-brass"
-            >
+          {/* карточка: на телефоне во всю ширину, стрелки по бокам только на десктопе */}
+          <div className="mt-6 flex items-stretch gap-5">
+            <button onClick={prev} aria-label="Previous" className={`${arrowClass} hidden sm:flex`}>
               <ChevronLeft className="h-4 w-4" />
             </button>
 
             <div
-              className={`relative h-[560px] min-w-0 flex-1 rounded-2xl transition-shadow duration-300 sm:h-[600px] ${
+              className={`relative h-[600px] w-full min-w-0 flex-1 rounded-2xl transition-shadow duration-300 sm:h-[600px] ${
                 slide.highlight ? "shadow-[0_0_60px_-10px_rgba(201,162,39,0.35)]" : ""
               }`}
             >
               {slide.visual}
             </div>
 
-            <button
-              onClick={next}
-              aria-label="Next"
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-panel text-parchment/80 transition-colors hover:border-brass/40 hover:text-brass"
-            >
+            <button onClick={next} aria-label="Next" className={`${arrowClass} hidden sm:flex`}>
               <ChevronRight className="h-4 w-4" />
             </button>
           </div>
-          <div className="mt-6 flex justify-center gap-2">
-            {slides.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActive(i)}
-                aria-label={`Go to slide ${i + 1}`}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i === active ? "w-6 bg-brass" : "w-1.5 bg-parchment/20 hover:bg-parchment/40"
-                }`}
-              />
-            ))}
+
+          {/* мобильное управление: стрелки и точки в одной строке под карточкой */}
+          <div className="mt-6 flex items-center justify-center gap-5 sm:hidden">
+            <button onClick={prev} aria-label="Previous" className={arrowClass}>
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <div className="flex gap-2">{dots}</div>
+            <button onClick={next} aria-label="Next" className={arrowClass}>
+              <ChevronRight className="h-4 w-4" />
+            </button>
           </div>
+
+          {/* десктоп: точки прямо под карточкой */}
+          <div className="mt-6 hidden justify-center gap-2 sm:flex">{dots}</div>
 
           <div className="mt-8 flex justify-center px-6 sm:px-0">
             <JoinButton label="Get This Life — Join Now" />

@@ -6,7 +6,6 @@ import { JoinButton } from "@/components/shared/join-button";
 
 const PHOTO_SRC = "/images/are-you-prepared/phones.png";
 
-// плавное растворение всех четырёх краёв фото (16:9, совпадает с файлом 1672×941)
 const EDGE_MASK = [
   "linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%)",
   "linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%)",
@@ -42,7 +41,23 @@ export function AreYouPreparedToWork() {
       <div className="ledger-grid absolute inset-0 opacity-40" />
       <div className="bg-gradient-wash-soft absolute inset-0 opacity-60" />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 md:grid-cols-[1fr_1.35fr] md:gap-4">
+      {photoOk && (
+        <>
+          <div className="pointer-events-none absolute inset-0 scale-105 blur-[6px] md:hidden" style={edgeMask}>
+            <Image
+              src={PHOTO_SRC}
+              alt=""
+              fill
+              sizes="100vw"
+              className="object-cover opacity-45"
+              onError={() => setPhotoOk(false)}
+            />
+          </div>
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/55 to-ink/90 md:hidden" />
+        </>
+      )}
+
+      <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-6 md:grid-cols-[1fr_1.35fr] md:gap-4">
         <div className="flex flex-col items-start">
           <span className="inline-flex items-center rounded-full border border-line bg-panel px-6 py-3 font-accent text-sm text-parchment">
             Ask Yourself
@@ -64,17 +79,18 @@ export function AreYouPreparedToWork() {
           </div>
 
           <div className="mt-10">
-            <JoinButton label="Join The Merchant Standard" />
+            <JoinButton label="Join The Real World" />
           </div>
         </div>
-        <div className="relative aspect-[16/9] w-full">
+
+        <div className="relative hidden aspect-[16/9] w-full md:block">
           {photoOk && (
             <div className="absolute inset-0" style={edgeMask}>
               <Image
                 src={PHOTO_SRC}
                 alt=""
                 fill
-                sizes="(min-width: 768px) 60vw, 100vw"
+                sizes="60vw"
                 className="object-cover"
                 onError={() => setPhotoOk(false)}
               />
