@@ -1,3 +1,6 @@
+import { Frown } from "lucide-react";
+import { Reveal } from "@/components/shared/reveal";
+
 const pains = [
   "You want to make money online but have no idea what to actually sell.",
   "You've got beats sitting on your laptop making you $0.",
@@ -5,7 +8,7 @@ const pains = [
   "You give away exclusive rights for $30 because you're scared to lose it.",
   'Every "model" out there needs money, a skill, or luck you don\'t have.',
 ];
-import { Frown } from "lucide-react";
+
 export function SaltOnWound() {
   return (
     <section className="relative overflow-hidden border-b border-line py-24">
@@ -21,38 +24,44 @@ export function SaltOnWound() {
 
       <div className="relative mx-auto max-w-3xl px-6">
         <div className="mb-12 flex flex-col items-center text-center">
-          <span className="mb-3 text-xs uppercase tracking-[0.2em] text-brass">
-            Sound Familiar?
-          </span>
-          <h2 className="font-display text-3xl text-parchment sm:text-4xl">
-            If any of this hits —{" "}
-            <span className="text-gradient-brass">keep reading.</span>
-          </h2>
+          <Reveal delay={0}>
+            <span className="mb-3 text-xs uppercase tracking-[0.2em] text-brass">
+              Sound Familiar?
+            </span>
+          </Reveal>
+
+          <Reveal delay={80}>
+            <h2 className="font-display text-3xl text-parchment sm:text-4xl">
+              If any of this hits —{" "}
+              <span className="text-gradient-brass">keep reading.</span>
+            </h2>
+          </Reveal>
         </div>
 
         <ul className="flex flex-col gap-4">
-          {pains.map((p) => (
-          <li
-            key={p}
-            className="flex items-start gap-4 rounded-xl border border-line bg-panel/60 px-6 py-4 text-base leading-relaxed text-parchment/80"
-          >
-            <Frown className="mt-0.5 h-4 w-4 shrink-0 text-parchment/50" strokeWidth={1.5} />
-            {p}
-          </li>
+          {pains.map((p, i) => (
+            <Reveal key={p} delay={i * 80} as="li">
+              <div className="flex items-start gap-4 rounded-xl border border-line bg-panel/60 px-6 py-4 text-base leading-relaxed text-parchment/80">
+                <Frown className="mt-0.5 h-4 w-4 shrink-0 text-parchment/50" strokeWidth={1.5} />
+                {p}
+              </div>
+            </Reveal>
           ))}
         </ul>
 
-        <div className="mt-10 rounded-xl border border-line bg-panel/60 px-8 py-7 text-center">
-          <p className="font-display text-lg italic text-parchment/80">
-            &ldquo;Maybe this online thing just isn&apos;t for me.&rdquo;
-          </p>
-          <p className="mt-5 text-base leading-relaxed text-parchment/80">
-            It&apos;s not you. Every one of those is a{" "}
-            <span className="font-semibold text-parchment">broken setup</span> — no
-            product, no system, no one closing with you.
-          </p>
-          <p className="mt-2 font-semibold text-parchment">Here&apos;s the fix.</p>
-        </div>
+        <Reveal delay={100}>
+          <div className="mt-10 rounded-xl border border-line bg-panel/60 px-8 py-7 text-center">
+            <p className="font-display text-lg italic text-parchment/80">
+              &ldquo;Maybe this online thing just isn&apos;t for me.&rdquo;
+            </p>
+            <p className="mt-5 text-base leading-relaxed text-parchment/80">
+              It&apos;s not you. Every one of those is a{" "}
+              <span className="font-semibold text-parchment">broken setup</span> — no
+              product, no system, no one closing with you.
+            </p>
+            <p className="mt-2 font-semibold text-parchment">Here&apos;s the fix.</p>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

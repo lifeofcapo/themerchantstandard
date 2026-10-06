@@ -1,5 +1,6 @@
 import { JoinButton } from "@/components/shared/join-button";
 import { Check } from "lucide-react";
+import { Reveal } from "@/components/shared/reveal";
 
 const included = [
   "The product, handed to you",
@@ -24,56 +25,75 @@ export function FinalCTA() {
       />
 
       <div className="relative mx-auto max-w-3xl px-6 text-center">
-        <span className="mb-4 inline-block font-mono text-xs uppercase tracking-[0.2em] text-brass">
-          Your Call
-        </span>
+        <Reveal delay={0}>
+          <span className="mb-4 inline-block font-mono text-xs uppercase tracking-[0.2em] text-brass">
+            Your Call
+          </span>
+        </Reveal>
 
-        <h2 className="font-display text-3xl text-parchment sm:text-4xl lg:text-5xl">
-          You&apos;ve got two options.
-        </h2>
+        <Reveal delay={80}>
+          <h2 className="font-display text-3xl text-parchment sm:text-4xl lg:text-5xl">
+            You&apos;ve got two options.
+          </h2>
+        </Reveal>
 
-        <div className="mt-10 rounded-xl border border-line bg-ink/60 px-8 py-6 text-left">
-          <p className="text-base leading-relaxed text-parchment/65">
-            Close this page and stay exactly where you are — same scroll, same{" "}
-            <em>&ldquo;I&apos;ll start later,&rdquo;</em> same six months you&apos;ve already lived.
+        <Reveal delay={160}>
+          <div className="mt-10 rounded-xl border border-line bg-ink/60 px-8 py-6 text-left">
+            <p className="text-base leading-relaxed text-parchment/65">
+              Close this page and stay exactly where you are — same scroll, same{" "}
+              <em>&ldquo;I&apos;ll start later,&rdquo;</em> same six months you&apos;ve already lived.
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal delay={220}>
+          <p className="my-5 font-mono text-xs uppercase tracking-widest text-parchment/50">
+            or
           </p>
-        </div>
+        </Reveal>
 
-        <p className="my-5 font-mono text-xs uppercase tracking-widest text-parchment/50">
-          or
-        </p>
+        <Reveal delay={280}>
+          <div className="rounded-xl border border-brass/35 bg-brass/5 px-8 py-7 text-left">
+            <p className="mb-5 font-display text-lg text-parchment">
+              Set your standard and start today:
+            </p>
+            <ul className="flex flex-col gap-3">
+              {included.map((item, i) => (
+                <li key={item} className="flex items-center gap-3 text-base text-parchment/80">
+                  <Check className="h-4 w-4 shrink-0 text-brass" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
 
-        <div className="rounded-xl border border-brass/35 bg-brass/5 px-8 py-7 text-left">
-          <p className="mb-5 font-display text-lg text-parchment">
-            Set your standard and start today:
+        <Reveal delay={360}>
+          <p className="mt-10 text-base text-parchment/80">
+            The product&apos;s ready. The AI&apos;s ready. The room&apos;s ready.
           </p>
-          <ul className="flex flex-col gap-3">
-            {included.map((item) => (
-              <li key={item} className="flex items-center gap-3 text-base text-parchment/80">
-                <Check className="h-4 w-4 shrink-0 text-brass" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <p className="mt-10 text-base text-parchment/80">
-          The product&apos;s ready. The AI&apos;s ready. The room&apos;s ready.
-        </p>
+        </Reveal>
 
-        <div className="mt-6">
-          <JoinButton
-            size="lg"
-            label="JOIN THE MERCHANT STANDARD → $49/mo"
-          />
-        </div>
+        <Reveal delay={420}>
+          <div className="mt-6">
+            <JoinButton
+              size="lg"
+              label="JOIN THE MERCHANT STANDARD → $49/mo"
+            />
+          </div>
+        </Reveal>
 
-        <p className="mt-4 font-mono text-xs text-parchment/50 uppercase tracking-widest">
-          Product + AI closer + system + brotherhood · cancel anytime
-        </p>
+        <Reveal delay={480}>
+          <p className="mt-4 font-mono text-xs text-parchment/50 uppercase tracking-widest">
+            Product + AI closer + system + brotherhood · cancel anytime
+          </p>
+        </Reveal>
 
-        <p className="mt-8 font-display text-xl italic text-brass-light">
-          Exit the default. Set your standard.
-        </p>
+        <Reveal delay={520}>
+          <p className="mt-8 font-display text-xl italic text-brass-light">
+            Exit the default. Set your standard.
+          </p>
+        </Reveal>
       </div>
     </section>
   );

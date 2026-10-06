@@ -37,10 +37,17 @@ export function Reveal({
           observer.disconnect();
         }
       },
-      { threshold: 0.1, rootMargin: "0px 0px -80px 0px" }
+      { threshold: 0, rootMargin: "0px 0px -40px 0px" }
     );
 
     observer.observe(node);
+
+    const rect = node.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setVisible(true);
+      observer.disconnect();
+    }
+
     return () => observer.disconnect();
   }, []);
 

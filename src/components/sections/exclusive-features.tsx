@@ -4,6 +4,7 @@ import * as React from "react";
 import Image from "next/image";
 import { Check } from "lucide-react";
 import { JoinButton } from "@/components/shared/join-button";
+import { Reveal } from "@/components/shared/reveal";
 
 type Part = { t: string; b?: boolean };
 
@@ -61,23 +62,21 @@ function FeatureCard({
   const [imageOk, setImageOk] = React.useState(true);
 
   return (
-    <div
-      className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-gradient-to-br from-panel via-ink/80 to-panel transition-all duration-500 hover:border-brass/50 hover:shadow-[0_0_50px_-12px_rgba(201,162,39,0.35)] md:flex-row md:items-stretch"
-    >
-        <div className="relative h-[220px] w-full shrink-0 md:h-[260px] md:w-[46%]">
+    <div className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-gradient-to-br from-panel via-ink/80 to-panel transition-all duration-500 hover:border-brass/50 hover:shadow-[0_0_50px_-12px_rgba(201,162,39,0.35)] md:flex-row md:items-stretch">
+      <div className="relative h-[220px] w-full shrink-0 md:h-[260px] md:w-[46%]">
         {imageOk && (
-            <div className="absolute inset-0" style={photoMask}>
+          <div className="absolute inset-0" style={photoMask}>
             <Image
-                src={image}
-                alt=""
-                fill
-                sizes="(min-width: 768px) 46vw, 100vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                onError={() => setImageOk(false)}
+              src={image}
+              alt=""
+              fill
+              sizes="(min-width: 768px) 46vw, 100vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              onError={() => setImageOk(false)}
             />
-            </div>
+          </div>
         )}
-        </div>
+      </div>
 
       <div className="flex flex-1 flex-col items-center justify-center gap-3 px-6 pb-8 pt-2 text-center md:items-start md:px-10 md:py-8 md:text-left">
         <h3 className="font-display text-2xl text-parchment transition-colors duration-500 group-hover:text-brass sm:text-3xl">
@@ -121,23 +120,32 @@ export function ExclusiveFeatures() {
 
       <div className="relative mx-auto max-w-4xl px-4 sm:px-6">
         <div className="mb-14 flex flex-col items-center text-center">
-          <span className="inline-flex items-center rounded-full border border-line bg-panel px-6 py-3 font-accent text-sm text-parchment">
-            Exclusive Features
-          </span>
-          <h2 className="mt-6 font-display text-3xl text-parchment sm:text-4xl">
-            You Will Get <span className="text-gradient-brass">Access To</span>
-          </h2>
+          <Reveal delay={0}>
+            <span className="inline-flex items-center rounded-full border border-line bg-panel px-6 py-3 font-accent text-sm text-parchment">
+              Exclusive Features
+            </span>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <h2 className="mt-6 font-display text-3xl text-parchment sm:text-4xl">
+              You Will Get <span className="text-gradient-brass">Access To</span>
+            </h2>
+          </Reveal>
         </div>
 
         <div className="flex flex-col gap-6">
-          {features.map((f) => (
-            <FeatureCard key={f.title} {...f} />
+          {features.map((f, i) => (
+            <Reveal key={f.title} delay={i * 120}>
+              <FeatureCard {...f} />
+            </Reveal>
           ))}
         </div>
 
-        <div className="mt-14 flex justify-center">
-          <JoinButton label="Join The Merchant Standard" />
-        </div>
+        <Reveal delay={100}>
+          <div className="mt-14 flex justify-center">
+            <JoinButton label="Join The Merchant Standard" />
+          </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -3,6 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { JoinButton } from "@/components/shared/join-button";
+import { Reveal } from "@/components/shared/reveal";
 
 const PHOTO_SRC = "/images/are-you-prepared/phones.png";
 
@@ -59,31 +60,37 @@ export function AreYouPreparedToWork() {
 
       <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-6 md:grid-cols-[1fr_1.35fr] md:gap-4">
         <div className="flex flex-col items-start">
-          <span className="inline-flex items-center rounded-full border border-line bg-panel px-6 py-3 font-accent text-sm text-parchment">
-            Ask Yourself
-          </span>
+          <Reveal delay={0}>
+            <span className="inline-flex items-center rounded-full border border-line bg-panel px-6 py-3 font-accent text-sm text-parchment">
+              Ask Yourself
+            </span>
+          </Reveal>
 
-          <h2 className="mt-6 font-display text-4xl leading-[1.05] text-parchment sm:text-5xl">
-            Are You Prepared To
-            <br />
-            <span className="text-gradient-brass">Work Hard?</span>
-          </h2>
+          <Reveal delay={100}>
+            <h2 className="mt-6 font-display text-4xl leading-[1.05] text-parchment sm:text-5xl">
+              Are You Prepared To
+              <br />
+              <span className="text-gradient-brass">Work Hard?</span>
+            </h2>
+          </Reveal>
 
           <div className="mt-8 space-y-6 text-base leading-relaxed text-parchment/80">
             {paragraphs.map((p, i) => (
-              <p key={i}>
+              <Reveal key={i} delay={200 + i * 80} as="p">
                 <span className="font-semibold text-parchment">{p.lead}</span>
                 {p.body && <> {p.body}</>}
-              </p>
+              </Reveal>
             ))}
           </div>
 
-          <div className="mt-10">
-            <JoinButton label="Join The Real World" />
-          </div>
+          <Reveal delay={440}>
+            <div className="mt-10">
+              <JoinButton label="Join The Real World" />
+            </div>
+          </Reveal>
         </div>
 
-        <div className="relative hidden aspect-[16/9] w-full md:block">
+        <Reveal delay={150} className="relative hidden aspect-[16/9] w-full md:block">
           {photoOk && (
             <div className="absolute inset-0" style={edgeMask}>
               <Image
@@ -96,7 +103,7 @@ export function AreYouPreparedToWork() {
               />
             </div>
           )}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -182,7 +182,6 @@ export default function FreeTrainingClient() {
                         {playing ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5" />}
                       </button>
 
-                      {/* Прогресс-бар только для отображения — без drag/click-to-seek */}
                       <div className="h-1 flex-1 overflow-hidden rounded-full bg-parchment/20">
                         <div
                           className="h-full rounded-full bg-brass transition-all duration-150"
