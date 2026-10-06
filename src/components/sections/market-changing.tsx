@@ -1,5 +1,6 @@
 import { JoinButton } from "@/components/shared/join-button";
 import { TrendingDown, Bot, Compass } from "lucide-react";
+import { Reveal } from "@/components/shared/reveal";
 
 const points = [
   {
@@ -29,38 +30,47 @@ export function MarketChanging() {
 
       <div className="relative mx-auto max-w-6xl px-6">
         <div className="mb-14 flex flex-col items-center text-center">
-          <span className="mb-3 text-xs uppercase tracking-[0.2em] text-seal-light">
-            The Market Is Changing
-          </span>
-          <h2 className="text-balance font-display text-3xl sm:text-4xl">
-            The beat market is{" "}
-            <span className="text-gradient-brass">about to change</span>
-          </h2>
+          <Reveal delay={0}>
+            <span className="mb-3 text-xs uppercase tracking-[0.2em] text-seal-light">
+              The Market Is Changing
+            </span>
+          </Reveal>
+
+          <Reveal delay={80}>
+            <h2 className="text-balance font-display text-3xl sm:text-4xl">
+              The beat market is{" "}
+              <span className="text-gradient-brass">about to change</span>
+            </h2>
+          </Reveal>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3">
-          {points.map((p) => (
-            <div key={p.title}>
+          {points.map((p, i) => (
+            <Reveal key={p.title} delay={i * 120}>
               <p.icon className="h-6 w-6 text-seal-light" />
               <p className="mt-4 font-mono text-xs uppercase tracking-widest text-seal-light">
                 {p.eyebrow}
               </p>
               <h3 className="mt-2 font-display text-xl text-parchment">{p.title}</h3>
               <p className="mt-3 text-base leading-relaxed text-parchment/80">{p.body}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-center text-center">
-          <p className="font-display text-lg italic text-parchment/80">
-            This is the window. Merchants win the next few years.{" "}
-            <span className="text-parchment">Movers win now.</span>
-          </p>
-        </div>
+        <Reveal delay={100}>
+          <div className="mt-12 flex flex-col items-center text-center">
+            <p className="font-display text-lg italic text-parchment/80">
+              This is the window. Merchants win the next few years.{" "}
+              <span className="text-parchment">Movers win now.</span>
+            </p>
+          </div>
+        </Reveal>
 
-        <div className="mt-10 flex justify-center">
-          <JoinButton label="Get Ahead of It — Join Now" />
-        </div>
+        <Reveal delay={160}>
+          <div className="mt-10 flex justify-center">
+            <JoinButton label="Get Ahead of It — Join Now" />
+          </div>
+        </Reveal>
       </div>
     </section>
   );

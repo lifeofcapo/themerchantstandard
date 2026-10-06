@@ -1,4 +1,5 @@
 import { Check, X } from "lucide-react";
+import { Reveal } from "@/components/shared/reveal";
 
 const forYou = [
   "You want to make money online",
@@ -19,48 +20,59 @@ export function WhoItsFor() {
 
       <div className="relative mx-auto max-w-4xl px-6">
         <div className="mb-14 flex flex-col items-center text-center">
-          <span className="mb-3 text-xs uppercase tracking-[0.2em] text-brass">
-            Qualification
-          </span>
-          <h2 className="font-display text-3xl text-parchment sm:text-4xl">
-            Is this{" "}
-            <span className="text-gradient-brass">for you?</span>
-          </h2>
+          <Reveal delay={0}>
+            <span className="mb-3 text-xs uppercase tracking-[0.2em] text-brass">
+              Qualification
+            </span>
+          </Reveal>
+
+          <Reveal delay={80}>
+            <h2 className="font-display text-3xl text-parchment sm:text-4xl">
+              Is this <span className="text-gradient-brass">for you?</span>
+            </h2>
+          </Reveal>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-2xl border border-brass/30 bg-panel p-8">
-            <h3 className="mb-6 flex items-center gap-2 font-display text-xl text-brass">
-              <Check className="h-5 w-5" /> This is for you if:
-            </h3>
-            <ul className="flex flex-col gap-4">
-              {forYou.map((t) => (
-                <li key={t} className="flex items-start gap-3 text-base text-parchment/80">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-brass" />
-                  {t}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="rounded-2xl border border-line bg-ink p-8">
-            <h3 className="mb-6 flex items-center gap-2 font-display text-xl text-parchment/65">
-              <X className="h-5 w-5" /> This is NOT for you if:
-            </h3>
-            <ul className="flex flex-col gap-4">
-              {notForYou.map((t) => (
-                <li key={t} className="flex items-start gap-3 text-base text-parchment/65">
-                  <X className="mt-0.5 h-4 w-4 shrink-0 text-parchment/25" />
-                  {t}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Reveal delay={100}>
+            <div className="rounded-2xl border border-brass/30 bg-panel p-8">
+              <h3 className="mb-6 flex items-center gap-2 font-display text-xl text-brass">
+                <Check className="h-5 w-5" /> This is for you if:
+              </h3>
+              <ul className="flex flex-col gap-4">
+                {forYou.map((t) => (
+                  <li key={t} className="flex items-start gap-3 text-base text-parchment/80">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-brass" />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+
+          <Reveal delay={180}>
+            <div className="rounded-2xl border border-line bg-ink p-8">
+              <h3 className="mb-6 flex items-center gap-2 font-display text-xl text-parchment/65">
+                <X className="h-5 w-5" /> This is NOT for you if:
+              </h3>
+              <ul className="flex flex-col gap-4">
+                {notForYou.map((t) => (
+                  <li key={t} className="flex items-start gap-3 text-base text-parchment/65">
+                    <X className="mt-0.5 h-4 w-4 shrink-0 text-parchment/25" />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
         </div>
 
-        <p className="mt-10 text-center font-display text-base italic text-parchment/65">
-          Money-making is a skill. It can be learned — the speed depends on the
-          effort you put in and the room you learn it in.
-        </p>
+        <Reveal delay={100}>
+          <p className="mt-10 text-center font-display text-base italic text-parchment/65">
+            Money-making is a skill. It can be learned — the speed depends on the
+            effort you put in and the room you learn it in.
+          </p>
+        </Reveal>
       </div>
     </section>
   );

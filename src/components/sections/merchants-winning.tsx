@@ -7,8 +7,6 @@ type Win = {
   stat: string;
   label: string;
   story: string;
-  // "photo" — портрет ученика (квадрат, лицо по центру)
-  // "screenshot" — скрин переписки/отзыва (может быть другого соотношения сторон)
   media: { type: "photo" | "screenshot"; src: string };
 };
 
