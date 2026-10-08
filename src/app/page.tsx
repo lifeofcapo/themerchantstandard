@@ -14,10 +14,10 @@ import { FAQ } from "@/components/sections/faq"
 import { FinalCTA } from "@/components/sections/final-cta";
 import { PSClosing } from "@/components/sections/ps-closing";
 import { Footer } from "@/components/sections/footer";
-import { Reveal } from "@/components/shared/reveal";
 import { NewsletterSection } from "@/components/shared/news-letter-section";
 import { AreYouPreparedToWork } from "@/components/sections/are-you-prepared-to-work";
 import { ExclusiveFeatures } from "@/components/sections/exclusive-features";
+import { OurStudentsAreWinning } from "@/components/sections/merchants-winning";
 
 export default function Home() {
   return (
@@ -33,6 +33,7 @@ export default function Home() {
           <MarketChanging />
           <WhatYouGet />
           <ValueStack />
+          <OurStudentsAreWinning />
           <ExclusiveFeatures />
           <PriceJustification />
           <AreYouPreparedToWork />

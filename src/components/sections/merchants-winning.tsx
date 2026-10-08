@@ -1,110 +1,78 @@
+"use client";
+
+import * as React from "react";
 import Image from "next/image";
 import { JoinButton } from "@/components/shared/join-button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Reveal } from "@/components/shared/reveal";
 
-type Win = {
-  name: string;
-  stat: string;
-  label: string;
-  story: string;
-  media: { type: "photo" | "screenshot"; src: string };
-};
-
-const wins: Win[] = [
-  {
-    name: "M. Delacroix",
-    stat: "$4,200",
-    label: "closed in first 60 days",
-    story: "Started with zero experience.",
-    media: { type: "photo", src: "/images/wins/delacroix.jpg" },
-  },
-  {
-    name: "T. Nakamura",
-    stat: "$900",
-    label: "single exclusive deal",
-    story: "One conversation, held the price with the AI.",
-    media: { type: "screenshot", src: "/images/wins/nakamura-deal.jpg" },
-  },
-  {
-    name: "A. Reyes",
-    stat: "12",
-    label: "repeat buyers signed",
-    story: "Turned one-off sales into a pipeline.",
-    media: { type: "photo", src: "/images/wins/reyes.jpg" },
-  },
-  {
-    name: "S. Kowalski",
-    stat: "$1,150",
-    label: "average deal, up from $200",
-    story: "Same person. One thing changed: a price standard he actually held.",
-    media: { type: "screenshot", src: "/images/wins/kowalski-deal.jpg" },
-  },
+const reviews = [
+  "/images/reviews/review2.jpg",
+  "/images/reviews/review3.jpg",
+  "/images/reviews/review4.jpg",
+  "/images/reviews/review5.jpg",
+  "/images/reviews/review6.jpg",
+  "/images/reviews/review7.jpg",
+  "/images/reviews/review8.jpg",
+  "/images/reviews/review9.jpg",
+  "/images/reviews/review10.jpg",
+  "/images/reviews/review11.jpg",
+  "/images/reviews/review1.jpg",
 ];
 
-export function MerchantsWinning() {
+function ReviewImage({ src, index }: { src: string; index: number }) {
+  const [ok, setOk] = React.useState(true);
+  if (!ok) return null;
+
   return (
-    <section id="wins" className="border-b border-line bg-panel/40 py-24">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-14 flex flex-col items-center text-center">
-          <span className="mb-3 text-xs uppercase tracking-[0.2em] text-brass">
-            Verified Deals · Deal Room
-          </span>
-          <h2 className="font-display text-3xl text-parchment sm:text-4xl">
-            Merchants who are <span className="text-gradient-brass">winning</span>
-          </h2>
-        </div>
+    <div className="group relative mb-4 overflow-hidden rounded-xl transition-all duration-500 hover:z-10 hover:shadow-[0_0_50px_-12px_rgba(201,162,39,0.45)] sm:mb-5">
+      <Image
+        src={src}
+        alt={`Student result ${index + 1}`}
+        width={0}
+        height={0}
+        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+        className="block h-auto w-full transition-transform duration-700 group-hover:scale-[1.02]"
+        onError={() => setOk(false)}
+      />
+      <div className="pointer-events-none absolute inset-0 border border-transparent transition-colors duration-500 group-hover:border-brass/60" />
+    </div>
+  );
+}
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {wins.map((w) => (
-            <Card
-              key={w.name}
-              className="overflow-hidden text-center transition-transform hover:-translate-y-1"
-            >
-              <div
-                className={[
-                  "relative w-full overflow-hidden border-b border-line bg-ink",
-                  w.media.type === "photo" ? "aspect-square" : "aspect-[4/3]",
-                ].join(" ")}
-              >
-                <Image
-                  src={w.media.src}
-                  alt={w.media.type === "photo" ? w.name : `${w.name} — deal proof`}
-                  fill
-                  className={
-                    w.media.type === "photo" ? "object-cover" : "object-contain p-2"
-                  }
-                />
-                <div className="wax-seal absolute right-3 top-3 flex h-9 min-w-9 items-center justify-center rounded-full px-2 text-[10px] font-semibold text-parchment shadow-lg">
-                  {w.stat}
-                </div>
-              </div>
+export function OurStudentsAreWinning() {
+  return (
+    <section className="relative overflow-hidden border-b border-line py-24">
+      <div className="absolute inset-0 bg-gradient-to-b from-ink via-panel/30 to-ink" />
+      <div className="absolute -left-40 top-1/4 h-[420px] w-[420px] rounded-full bg-brass/10 blur-3xl" />
+      <div className="absolute -right-40 bottom-1/4 h-[420px] w-[420px] rounded-full bg-brass/5 blur-3xl" />
+      <div className="ledger-grid absolute inset-0 opacity-40" />
+      <div className="bg-gradient-wash-soft absolute inset-0 opacity-60" />
 
-              <CardContent className="flex flex-col items-center px-5 pb-7 pt-5">
-                <p className="text-gradient-brass font-display text-2xl">{w.stat}</p>
-                <p className="mt-1 text-xs text-parchment/65">{w.label}</p>
-                <p className="mt-4 text-xs leading-relaxed text-parchment/65 italic">
-                  {w.story}
-                </p>
-                <p className="mt-4 font-mono text-xs text-parchment/50">{w.name}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        <div className="mx-auto mt-12 max-w-2xl rounded-xl border border-brass/25 bg-brass/5 px-8 py-6 text-center">
-          <p className="text-base leading-relaxed text-parchment/80">
-            What they share: they didn&apos;t just{" "}
-            <span className="italic">&ldquo;learn.&rdquo;</span> They stepped into a system
-            with{" "}
-            <span className="font-semibold text-parchment">
-              a product, an AI, and a room that holds the standard.
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
+        <Reveal>
+          <div className="mb-14 flex flex-col items-center text-center">
+            <span className="inline-flex items-center rounded-full border border-line bg-panel px-6 py-3 font-accent text-sm text-parchment">
+              The Merchant Standard Wins
             </span>
-          </p>
-        </div>
+            <h2 className="mt-6 font-display text-3xl text-parchment sm:text-4xl">
+              Our Merchants Are <span className="text-gradient-brass">Winning</span>
+            </h2>
+          </div>
+        </Reveal>
 
-        <div className="mt-10 flex justify-center">
-          <JoinButton label="I want results like this → Join" />
-        </div>
+      <div className="columns-1 gap-4 sm:columns-2 sm:gap-5 lg:columns-3">
+        {reviews.map((src, i) => (
+          <Reveal key={src} delay={(i % 3) * 120} className="break-inside-avoid">
+            <ReviewImage src={src} index={i} />
+          </Reveal>
+        ))}
+      </div>
+
+        <Reveal delay={200}>
+          <div className="mt-14 flex justify-center">
+            <JoinButton label="I want results like this → Join" />
+          </div>
+        </Reveal>
       </div>
     </section>
   );
