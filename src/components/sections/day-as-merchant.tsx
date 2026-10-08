@@ -52,18 +52,32 @@ function StepCard({
   body,
   image,
   highlight,
-}: (typeof steps)[number]) {
+  index,
+}: (typeof steps)[number] & { index: number }) {
   const [imageOk, setImageOk] = React.useState(true);
+  const [active, setActive] = React.useState(false);
+
+  const toggleActive = () => setActive((v) => !v);
 
   return (
     <div
+      onClick={toggleActive}
       className={[
-        "group flex flex-col overflow-hidden rounded-2xl border bg-panel transition-all duration-500 hover:-translate-y-1.5",
+        "group flex cursor-pointer flex-col overflow-hidden rounded-2xl border bg-panel transition-all duration-500",
+        "hover:-translate-y-1.5",
+        active ? "-translate-y-1.5" : "",
         highlight
-          ? "border-brass/40 hover:border-brass/70 hover:shadow-[0_0_55px_-10px_rgba(201,162,39,0.5)]"
-          : "border-line hover:border-brass/50 hover:shadow-[0_0_50px_-12px_rgba(201,162,39,0.35)]",
+          ? [
+              "border-brass/40 hover:border-brass/70 hover:shadow-[0_0_55px_-10px_rgba(201,162,39,0.5)]",
+              active ? "border-brass/70 shadow-[0_0_55px_-10px_rgba(201,162,39,0.5)]" : "",
+            ].join(" ")
+          : [
+              "border-line hover:border-brass/50 hover:shadow-[0_0_50px_-12px_rgba(201,162,39,0.35)]",
+              active ? "border-brass/50 shadow-[0_0_50px_-12px_rgba(201,162,39,0.35)]" : "",
+            ].join(" "),
       ].join(" ")}
     >
+
       <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-line bg-ink">
         {imageOk && (
           <Image
@@ -71,17 +85,23 @@ function StepCard({
             alt={title}
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-[1.04]"
+            priority={index < 3}
+            loading={index < 3 ? undefined : "eager"}
+            className={[
+              "object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-[1.04]",
+              active ? "grayscale-0 scale-[1.04]" : "",
+            ].join(" ")}
             onError={() => setImageOk(false)}
           />
         )}
         <div
           className={[
-            "pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100",
-            "bg-gradient-to-t from-brass/15 via-transparent to-transparent",
+            "pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-gradient-to-t from-brass/15 via-transparent to-transparent",
+            active ? "opacity-100" : "",
           ].join(" ")}
         />
       </div>
+
 
       <div className="flex flex-1 flex-col px-6 py-6">
         <span
@@ -89,7 +109,10 @@ function StepCard({
             "w-fit rounded-full border px-4 py-1.5 font-mono text-xs uppercase tracking-[0.15em] transition-colors duration-500",
             highlight
               ? "border-brass/50 bg-brass/10 text-brass"
-              : "border-line bg-ink/60 text-parchment/65 group-hover:border-brass/40 group-hover:text-brass",
+              : [
+                  "border-line bg-ink/60 text-parchment/65 group-hover:border-brass/40 group-hover:text-brass",
+                  active ? "border-brass/40 text-brass" : "",
+                ].join(" "),
           ].join(" ")}
         >
           {step}
@@ -138,7 +161,7 @@ export function DayAsMerchant() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {steps.map((s, i) => (
             <Reveal key={s.step} delay={(i % 3) * 120}>
-              <StepCard {...s} />
+              <StepCard {...s} index={i} />
             </Reveal>
           ))}
         </div>
