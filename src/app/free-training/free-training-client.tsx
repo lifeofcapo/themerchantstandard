@@ -6,6 +6,7 @@ import { Reveal } from "@/components/shared/reveal";
 import { Footer } from "@/components/sections/footer";
 import { VslLeadForm } from "@/components/shared/vsl-lead-form";
 import { VslCtaButton } from "@/components/shared/vsl-cta-button";
+import { OurStudentsAreWinning } from "@/components/sections/merchants-winning";
 
 const VIDEO_URL = "https://cdn.themerchantstandard.com/vsl-compressed.mp4";
 const POSTER_URL = "https://cdn.themerchantstandard.com/vsl-poster.jpg";
@@ -107,7 +108,7 @@ export default function FreeTrainingClient() {
         <div className="relative mx-auto max-w-3xl px-6 text-center">
           <Reveal>
             <span className="mb-4 inline-block font-mono text-xs uppercase tracking-[0.2em] text-brass">
-              Free 12-Minute Training
+              Free 9-Minute Training
             </span>
           </Reveal>
 
@@ -285,6 +286,8 @@ export default function FreeTrainingClient() {
           </Reveal>
         </div>
       </section>
+
+      < OurStudentsAreWinning />
 
       <section className="border-b border-line bg-panel/40 py-20">
         <div className="mx-auto max-w-2xl px-6 text-center">
