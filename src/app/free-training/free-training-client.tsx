@@ -108,7 +108,7 @@ export default function FreeTrainingClient() {
         <div className="relative mx-auto max-w-3xl px-6 text-center">
           <Reveal>
             <span className="mb-4 inline-block font-mono text-xs uppercase tracking-[0.2em] text-brass">
-              Free 9-Minute Training
+              Free 10-Minute Training
             </span>
           </Reveal>
 
