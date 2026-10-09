@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { fullCountryName } from "./country-name";
+import { fullCountryName } from "../lib/country-name";
 
 describe("fullCountryName", () => {
   it("converts ISO codes to full names", () => {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { validateLeadInput, isBlockedPhrase, EMAIL_REGEX } from "./lead-validation";
+import { validateLeadInput, isBlockedPhrase, EMAIL_REGEX } from "../lib/lead-validation";
 
 describe("isBlockedPhrase", () => {
   it("blocks exact test values", () => {

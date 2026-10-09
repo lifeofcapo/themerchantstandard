@@ -1,10 +1,5 @@
-const BLOCKED_TERMS = [
-  "test", "tester", "testing", "user", "username", "admin", "administrator",
-  "fake", "dummy", "sample", "example", "demo", "asdf", "qwerty", "foo",
-  "bar", "foobar", "xxx", "aaa", "noname", "anonymous", "nobody",
-  "johndoe", "janedoe", "firstname", "lastname",
-];
-
+import { BLOCKED_TERMS } from "@/lib/static/blocked-terms";
+import { DISPOSABLE_EMAIL_DOMAINS } from "@/lib/static/disposable-email-domains";
 
 export function isBlockedPhrase(value: string): boolean {
   const normalized = value.trim().toLowerCase().replace(/[\s._-]+/g, "");
@@ -21,12 +16,6 @@ export function isBlockedPhrase(value: string): boolean {
 export const NAME_REGEX = /^[A-Za-zÀ-ÖØ-öø-ÿА-Яа-яЁё\s'-]{2,60}$/;
 
 export const EMAIL_REGEX = /^[^\s@<>"'`]+@[^\s@<>"'`]+\.[^\s@<>"'`]{2,}$/;
-
-const DISPOSABLE_EMAIL_DOMAINS = new Set([
-  "mailinator.com", "yopmail.com", "tempmail.com", "trashmail.com",
-  "guerrillamail.com", "10minutemail.com", "fakeinbox.com", "test.com",
-  "example.com", "discard.email",
-]);
 
 export function validateLeadInput({
   name,

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { createAdminSessionToken, verifyAdminSessionToken } from "./admin-auth";
+import { createAdminSessionToken, verifyAdminSessionToken } from "../lib/admin-auth";
 
 describe("admin session tokens", () => {
   beforeEach(() => {
