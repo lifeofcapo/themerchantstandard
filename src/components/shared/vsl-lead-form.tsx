@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Loader2 } from "lucide-react";
 import { AsYouType, type CountryCode, parsePhoneNumberFromString } from "libphonenumber-js";
-import { COUNTRIES, getCountryByCode, type Country } from "@/lib/countries";
+import { COUNTRIES, getCountryByCode, type Country } from "@/lib/static/countries";
 import { validateLeadInput } from "@/lib/lead-validation";
 import {
   Dialog,
