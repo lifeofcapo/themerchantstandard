@@ -42,6 +42,7 @@ export async function POST(req: NextRequest) {
       customer_email: email,
       line_items: [{ price: priceIdForPlan(plan), quantity: 1 }],
       billing_address_collection: "required",
+      adaptive_pricing: { enabled: false },
       success_url: `${origin}/welcome?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/?checkout=canceled`,
       allow_promotion_codes: true,
