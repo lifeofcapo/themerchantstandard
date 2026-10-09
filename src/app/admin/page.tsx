@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 
 import { prisma } from "@/lib/prisma";
 import { AdminDataTable } from "@/components/admin/admin-data-table";
+import { AdminLogoutButton } from "@/components/admin/admin-logout-button";
 import { fullCountryName } from "@/lib/country-name";
 import { Metadata } from "next";
 export const metadata: Metadata = {
@@ -28,7 +29,10 @@ export default async function AdminPage() {
 
   return (
     <main className="mx-auto max-w-6xl px-6 py-12 text-parchment">
-      <h1 className="mb-8 font-display text-3xl">Admin Page</h1>
+      <div className="mb-8 flex items-center justify-between">
+        <h1 className="font-display text-3xl">Admin Page</h1>
+        <AdminLogoutButton />
+      </div>
 
       <section className="mb-14">
         <AdminDataTable

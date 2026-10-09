@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Copy, Check, FileSpreadsheet, ClipboardList, Trash2, Loader2 } from "lucide-react";
 import * as XLSX from "xlsx";
+import { ConfirmDialog } from "./confirm-dialog";
 
 type Column<T> = {
   key: keyof T;
@@ -41,6 +42,8 @@ export function AdminDataTable<T extends Record<string, unknown>>({
   const [copiedCell, setCopiedCell] = React.useState<string | null>(null);
   const [copiedAll, setCopiedAll] = React.useState(false);
   const [deletingId, setDeletingId] = React.useState<string | null>(null);
+  const [pendingDelete, setPendingDelete] = React.useState<T | null>(null);
+  const [deleteError, setDeleteError] = React.useState<string | null>(null);
 
   async function copyValue(value: string, cellId: string) {
     try {
@@ -48,7 +51,7 @@ export function AdminDataTable<T extends Record<string, unknown>>({
       setCopiedCell(cellId);
       setTimeout(() => setCopiedCell((c) => (c === cellId ? null : c)), 1200);
     } catch {
-      // clipboard недоступен — молча игнорируем
+      // clipboard недоступен - игнор
     }
   }
 
@@ -75,16 +78,20 @@ export function AdminDataTable<T extends Record<string, unknown>>({
     XLSX.writeFile(workbook, `${fileName}.xlsx`);
   }
 
-  async function handleDelete(row: T) {
+  function requestDelete(row: T) {
+    setDeleteError(null);
+    setPendingDelete(row);
+  }
+
+  async function confirmDelete() {
+    const row = pendingDelete;
+    setPendingDelete(null);
+    if (!row) return;
+
     const id = String(row.id ?? "");
     if (!id) return;
 
-    const emailLabel = String(row[emailKey] ?? "this entry");
-    const confirmed = window.confirm(
-      `Permanently delete ${emailLabel}? This cannot be undone.`
-    );
-    if (!confirmed) return;
-
+    setDeleteError(null);
     setDeletingId(id);
     try {
       const res = await fetch("/api/admin/delete", {
@@ -93,16 +100,20 @@ export function AdminDataTable<T extends Record<string, unknown>>({
         body: JSON.stringify({ resource, id }),
       });
       if (!res.ok) {
-        window.alert("Failed to delete. Please try again.");
+        setDeleteError("Failed to delete. Please try again.");
         return;
       }
       setRows((prev) => prev.filter((r) => String(r.id) !== id));
     } catch {
-      window.alert("Failed to delete. Please try again.");
+      setDeleteError("Failed to delete. Please try again.");
     } finally {
       setDeletingId(null);
     }
   }
+
+  const pendingEmailLabel = pendingDelete
+    ? String(pendingDelete[emailKey] ?? "this entry")
+    : "";
 
   return (
     <div>
@@ -135,6 +146,10 @@ export function AdminDataTable<T extends Record<string, unknown>>({
           </button>
         </div>
       </div>
+
+      {deleteError && (
+        <p className="mb-3 text-xs text-seal-light">{deleteError}</p>
+      )}
 
       <div className="overflow-x-auto rounded-lg border border-line">
         <table className="w-full text-left text-sm">
@@ -191,7 +206,7 @@ export function AdminDataTable<T extends Record<string, unknown>>({
                   })}
                   <td className="px-3 py-2 text-right">
                     <button
-                      onClick={() => handleDelete(row)}
+                      onClick={() => requestDelete(row)}
                       disabled={isDeleting}
                       aria-label="Delete row"
                       title="Delete permanently"
@@ -210,6 +225,16 @@ export function AdminDataTable<T extends Record<string, unknown>>({
           </tbody>
         </table>
       </div>
+
+      <ConfirmDialog
+        open={pendingDelete !== null}
+        title="Permanently delete this entry?"
+        description={`${pendingEmailLabel} — this cannot be undone.`}
+        confirmLabel="Delete"
+        cancelLabel="Cancel"
+        onConfirm={confirmDelete}
+        onCancel={() => setPendingDelete(null)}
+      />
     </div>
   );
 }
