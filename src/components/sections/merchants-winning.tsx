@@ -17,6 +17,8 @@ const reviews = [
   "/images/reviews/review10.jpg",
   "/images/reviews/review11.jpg",
   "/images/reviews/review1.jpg",
+  "/images/reviews/review12.jpg",
+  "/images/reviews/review13.jpg",
 ];
 
 function ReviewImage({ src, index }: { src: string; index: number }) {
