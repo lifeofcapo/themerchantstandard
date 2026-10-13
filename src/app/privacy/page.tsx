@@ -4,6 +4,7 @@ import { LegalPageLayout } from "@/components/shared/legal-page-layout";
 export const metadata: Metadata = {
   title: "Privacy Policy — The Merchant Standard",
   description: "How The Merchant Standard collects, uses, and protects your information.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function PrivacyPolicyPage() {

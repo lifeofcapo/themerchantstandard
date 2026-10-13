@@ -4,7 +4,9 @@ import { LegalPageLayout } from "@/components/shared/legal-page-layout";
 export const metadata: Metadata = {
   title: "Terms & Conditions — The Merchant Standard",
   description: "The terms that govern your use of The Merchant Standard membership.",
+  alternates: { canonical: "/terms" },
 };
+
 
 export default function TermsPage() {
   return (

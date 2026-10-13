@@ -18,6 +18,11 @@ import { NewsletterSection } from "@/components/shared/news-letter-section";
 import { AreYouPreparedToWork } from "@/components/sections/are-you-prepared-to-work";
 import { ExclusiveFeatures } from "@/components/sections/exclusive-features";
 import { OurStudentsAreWinning } from "@/components/sections/merchants-winning";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (

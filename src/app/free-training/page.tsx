@@ -22,7 +22,7 @@ const videoJsonLd = {
     "See exactly how to start a real online business selling music products — with the product, an AI that closes deals for you, and the exact system.",
   thumbnailUrl: "https://cdn.themerchantstandard.com/vsl-poster.jpg",
   uploadDate: "2026-09-22T00:00:00+00:00",
-  duration: "PT9M",
+  duration: "PT10M",
   contentUrl: "https://cdn.themerchantstandard.com/vsl-compressed.mp4",
 };
 
