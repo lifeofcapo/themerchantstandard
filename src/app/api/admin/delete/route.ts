@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { verifyAdminSessionToken } from "@/lib/admin-auth";
 
 const bodySchema = z.object({
-  resource: z.enum(["purchase", "lead", "newsletter"]),
+  resource: z.enum(["purchase", "lead", "newsletter", "mentorship"]),
   id: z.string().min(1),
 });
 
@@ -28,8 +28,10 @@ export async function POST(req: NextRequest) {
       await prisma.purchase.delete({ where: { id } });
     } else if (resource === "lead") {
       await prisma.lead.delete({ where: { id } });
-    } else {
+    } else if (resource === "newsletter") {
       await prisma.newsletterSubscriber.delete({ where: { id } });
+    } else {
+      prisma.mentorshipApplication.delete({ where: { id } });
     }
     return NextResponse.json({ ok: true });
   } catch (err) {

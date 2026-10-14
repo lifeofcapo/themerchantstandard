@@ -18,6 +18,7 @@ import { NewsletterSection } from "@/components/shared/news-letter-section";
 import { AreYouPreparedToWork } from "@/components/sections/are-you-prepared-to-work";
 import { ExclusiveFeatures } from "@/components/sections/exclusive-features";
 import { OurStudentsAreWinning } from "@/components/sections/merchants-winning";
+import { Mentorship } from "@/components/sections/mentorship";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -38,6 +39,7 @@ export default function Home() {
           <MarketChanging />
           <WhatYouGet />
           <ValueStack />
+          <Mentorship />
           <OurStudentsAreWinning />
           <ExclusiveFeatures />
           <PriceJustification />

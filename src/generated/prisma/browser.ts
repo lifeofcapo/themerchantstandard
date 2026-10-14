@@ -42,3 +42,8 @@ export type NewsletterSubscriber = Prisma.NewsletterSubscriberModel
  * 
  */
 export type ProcessedWebhookEvent = Prisma.ProcessedWebhookEventModel
+/**
+ * Model MentorshipApplication
+ * 
+ */
+export type MentorshipApplication = Prisma.MentorshipApplicationModel

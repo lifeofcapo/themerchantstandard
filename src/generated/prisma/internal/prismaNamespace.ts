@@ -401,7 +401,8 @@ export const ModelName = {
   Lead: 'Lead',
   Visit: 'Visit',
   NewsletterSubscriber: 'NewsletterSubscriber',
-  ProcessedWebhookEvent: 'ProcessedWebhookEvent'
+  ProcessedWebhookEvent: 'ProcessedWebhookEvent',
+  MentorshipApplication: 'MentorshipApplication'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -417,7 +418,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "purchase" | "lead" | "visit" | "newsletterSubscriber" | "processedWebhookEvent"
+    modelProps: "purchase" | "lead" | "visit" | "newsletterSubscriber" | "processedWebhookEvent" | "mentorshipApplication"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -791,6 +792,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    MentorshipApplication: {
+      payload: Prisma.$MentorshipApplicationPayload<ExtArgs>
+      fields: Prisma.MentorshipApplicationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MentorshipApplicationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipApplicationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MentorshipApplicationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipApplicationPayload>
+        }
+        findFirst: {
+          args: Prisma.MentorshipApplicationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipApplicationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MentorshipApplicationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipApplicationPayload>
+        }
+        findMany: {
+          args: Prisma.MentorshipApplicationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipApplicationPayload>[]
+        }
+        create: {
+          args: Prisma.MentorshipApplicationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipApplicationPayload>
+        }
+        createMany: {
+          args: Prisma.MentorshipApplicationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MentorshipApplicationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipApplicationPayload>[]
+        }
+        delete: {
+          args: Prisma.MentorshipApplicationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipApplicationPayload>
+        }
+        update: {
+          args: Prisma.MentorshipApplicationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipApplicationPayload>
+        }
+        deleteMany: {
+          args: Prisma.MentorshipApplicationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MentorshipApplicationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MentorshipApplicationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipApplicationPayload>[]
+        }
+        upsert: {
+          args: Prisma.MentorshipApplicationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipApplicationPayload>
+        }
+        aggregate: {
+          args: Prisma.MentorshipApplicationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMentorshipApplication>
+        }
+        groupBy: {
+          args: Prisma.MentorshipApplicationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MentorshipApplicationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MentorshipApplicationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MentorshipApplicationCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -911,6 +986,21 @@ export const ProcessedWebhookEventScalarFieldEnum = {
 } as const
 
 export type ProcessedWebhookEventScalarFieldEnum = (typeof ProcessedWebhookEventScalarFieldEnum)[keyof typeof ProcessedWebhookEventScalarFieldEnum]
+
+
+export const MentorshipApplicationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  message: 'message',
+  status: 'status',
+  ipAddress: 'ipAddress',
+  country: 'country',
+  createdAt: 'createdAt'
+} as const
+
+export type MentorshipApplicationScalarFieldEnum = (typeof MentorshipApplicationScalarFieldEnum)[keyof typeof MentorshipApplicationScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1168,6 +1258,7 @@ export type GlobalOmitConfig = {
   visit?: Prisma.VisitOmit
   newsletterSubscriber?: Prisma.NewsletterSubscriberOmit
   processedWebhookEvent?: Prisma.ProcessedWebhookEventOmit
+  mentorshipApplication?: Prisma.MentorshipApplicationOmit
 }
 
 /* Types for Logging */

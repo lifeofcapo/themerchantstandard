@@ -55,7 +55,8 @@ export const ModelName = {
   Lead: 'Lead',
   Visit: 'Visit',
   NewsletterSubscriber: 'NewsletterSubscriber',
-  ProcessedWebhookEvent: 'ProcessedWebhookEvent'
+  ProcessedWebhookEvent: 'ProcessedWebhookEvent',
+  MentorshipApplication: 'MentorshipApplication'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -155,6 +156,21 @@ export const ProcessedWebhookEventScalarFieldEnum = {
 } as const
 
 export type ProcessedWebhookEventScalarFieldEnum = (typeof ProcessedWebhookEventScalarFieldEnum)[keyof typeof ProcessedWebhookEventScalarFieldEnum]
+
+
+export const MentorshipApplicationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  message: 'message',
+  status: 'status',
+  ipAddress: 'ipAddress',
+  country: 'country',
+  createdAt: 'createdAt'
+} as const
+
+export type MentorshipApplicationScalarFieldEnum = (typeof MentorshipApplicationScalarFieldEnum)[keyof typeof MentorshipApplicationScalarFieldEnum]
 
 
 export const SortOrder = {

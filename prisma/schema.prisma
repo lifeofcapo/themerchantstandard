@@ -90,3 +90,15 @@ model ProcessedWebhookEvent {
   id        String   @id
   createdAt DateTime @default(now())
 }
+
+model MentorshipApplication {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  message   String
+  status    String   @default("NEW")
+  ipAddress String?
+  country   String?
+  createdAt DateTime @default(now())
+}

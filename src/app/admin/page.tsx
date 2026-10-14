@@ -11,10 +11,11 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminPage() {
-  const [leadsRaw, purchasesRaw,subscribers] = await Promise.all([
+  const [leadsRaw, purchasesRaw,subscribers, mentorshipRaw] = await Promise.all([
     prisma.lead.findMany({ orderBy: { createdAt: "desc" }, take: 200 }),
     prisma.purchase.findMany({ orderBy: { createdAt: "desc" }, take: 200 }),
     prisma.newsletterSubscriber.findMany({ orderBy: { createdAt: "desc" }, take: 200 }),
+    prisma.mentorshipApplication.findMany({ orderBy: { createdAt: "desc" }, take: 200 }),
   ]);
 
   const purchases = purchasesRaw.map((p) => ({
@@ -26,6 +27,12 @@ export default async function AdminPage() {
     ...l,
     country: fullCountryName(l.country),
   }));
+
+  const mentorship = mentorshipRaw.map((m) => ({
+  ...m,
+  country: fullCountryName(m.country),
+  message: m.message.length > 200 ? m.message.slice(0, 200) + "…" : m.message,
+}));
 
   return (
     <main className="mx-auto max-w-6xl px-6 py-12 text-parchment">
@@ -82,6 +89,25 @@ export default async function AdminPage() {
           columns={[
             { key: "email", label: "Email" },
             { key: "ipAddress", label: "IP" },
+            { key: "createdAt", label: "Date" },
+          ]}
+        />
+      </section>
+
+      <section className="mt-14">
+        <AdminDataTable
+          title="Mentorship applications"
+          rows={mentorship}
+          emailKey="email"
+          fileName="mentorship"
+          resource="mentorship"
+          columns={[
+            { key: "name", label: "Name" },
+            { key: "email", label: "Email" },
+            { key: "phone", label: "WhatsApp" },
+            { key: "country", label: "Country" },
+            { key: "status", label: "Status" },
+            { key: "message", label: "Message" },
             { key: "createdAt", label: "Date" },
           ]}
         />

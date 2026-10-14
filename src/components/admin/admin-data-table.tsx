@@ -18,8 +18,7 @@ function getDisplay<T extends Record<string, unknown>>(row: T, col: Column<T>): 
   const raw = row[col.key];
   return raw instanceof Date ? raw.toLocaleString() : String(raw ?? "—");
 }
-
-type Resource = "purchase" | "lead" | "newsletter";
+type Resource = "purchase" | "lead" | "newsletter" | "mentorship"
 
 type AdminDataTableProps<T extends Record<string, unknown>> = {
   title: string;

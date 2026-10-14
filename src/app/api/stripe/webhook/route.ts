@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import { Resend } from "resend";
 import { getStripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 import { createDiscordInvite } from "@/lib/discord";
@@ -8,6 +9,22 @@ import { sendInviteEmail } from "@/lib/email";
 // Next.js должен получать тело запроса как есть (не распарсенным),
 // иначе проверка подписи Stripe не пройдёт.
 export const runtime = "nodejs";
+
+const PLANS = ["monthly", "yearly", "mentorship_full", "mentorship_split"] as const;
+type Plan = (typeof PLANS)[number];
+
+function resolvePlan(value: string | undefined): Plan {
+  return PLANS.find((p) => p === value) ?? "monthly";
+}
+
+function escapeHtml(s: string) {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
 
 export async function POST(req: NextRequest) {
   const rawBody = await req.text();
@@ -51,6 +68,10 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
     return;
   }
 
+  const plan = resolvePlan(session.metadata?.plan);
+  const isMentorship = plan.startsWith("mentorship");
+  const normalizedEmail = email.trim().toLowerCase();
+
   const address = session.customer_details?.address;
   const ipFromMetadata = session.metadata?.ip_address;
 
@@ -58,7 +79,7 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
     where: { stripeSessionId: session.id },
     update: {
       status: "PAID",
-      plan: session.metadata?.plan === "yearly" ? "yearly" : "monthly",
+      plan,
       stripeCustomerId: (session.customer as string) ?? undefined,
       stripeSubscriptionId: (session.subscription as string) ?? undefined,
       billingName: session.customer_details?.name ?? undefined,
@@ -73,7 +94,7 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
     },
     create: {
       email,
-      plan: session.metadata?.plan === "yearly" ? "yearly" : "monthly",
+      plan,
       stripeSessionId: session.id,
       stripeCustomerId: (session.customer as string) ?? undefined,
       stripeSubscriptionId: (session.subscription as string) ?? undefined,
@@ -89,6 +110,47 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
         ipFromMetadata && ipFromMetadata !== "unknown" ? ipFromMetadata : undefined,
     },
   });
+
+  await prisma.lead.updateMany({
+    where: {
+      email: { equals: normalizedEmail, mode: "insensitive" },
+      convertedAt: null,
+    },
+    data: { convertedAt: new Date() },
+  });
+  await prisma.newsletterSubscriber.updateMany({
+    where: {
+      email: { equals: normalizedEmail, mode: "insensitive" },
+      convertedAt: null,
+    },
+    data: { convertedAt: new Date() },
+  });
+
+  // Уведомление владельцу об оплате менторства. Сбой не должен ломать webhook.
+  if (isMentorship) {
+    try {
+      const resend = new Resend(process.env.RESEND_API_KEY);
+      const amount =
+        session.amount_total != null
+          ? `${(session.amount_total / 100).toFixed(2)} ${(session.currency ?? "").toUpperCase()}`
+          : "unknown";
+      await resend.emails.send({
+        from: "The Merchant Standard <hello@themerchantstandard.com>",
+        to: process.env.MENTORSHIP_NOTIFY_EMAIL ?? "support@themerchantstandard.com",
+        subject: `Mentorship payment received: ${email}`,
+        html: `
+          <p><strong>Plan:</strong> ${escapeHtml(plan)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+          <p><strong>Name:</strong> ${escapeHtml(session.customer_details?.name ?? "unknown")}</p>
+          <p><strong>Amount:</strong> ${escapeHtml(amount)}</p>
+          <p><strong>Stripe session:</strong> ${escapeHtml(session.id)}</p>
+          <p>Start onboarding: Week 1 kickoff and private WhatsApp setup.</p>
+        `,
+      });
+    } catch (err) {
+      console.error("Mentorship notification email failed:", err);
+    }
+  }
 
   const claim = await prisma.purchase.updateMany({
     where: { id: purchase.id, discordInviteUrl: null },
@@ -112,14 +174,5 @@ async function handleSuccessfulCheckout(session: Stripe.Checkout.Session) {
   await prisma.purchase.update({
     where: { id: purchase.id },
     data: { emailSentAt: new Date() },
-  });
-
-  await prisma.lead.updateMany({
-    where: { email: session.customer_email ?? undefined, convertedAt: null },
-    data: { convertedAt: new Date() },
-  });
-  await prisma.newsletterSubscriber.updateMany({
-    where: { email: session.customer_email ?? undefined, convertedAt: null },
-    data: { convertedAt: new Date() },
   });
 }
