@@ -37,19 +37,6 @@ Self-hosted video streaming from Cloudflare R2 with a custom player that blocks 
 **Other**
 Dynamic Open Graph image generation, structured data for SEO, country code resolution from IP geolocation and Stripe billing data, responsive design with reduced-motion support.
 
-## Getting started
-
-```bash
-npm install
-cp .env.example .env
-npx prisma generate
-npm run dev
-```
-
-## Environment variables
-
-See `.env.example` for the full list. At minimum you need a Postgres connection string, Stripe API keys, a Resend API key, and admin session secrets.
-
 ## Database
 
 Schema is managed with Prisma. Apply changes with:
